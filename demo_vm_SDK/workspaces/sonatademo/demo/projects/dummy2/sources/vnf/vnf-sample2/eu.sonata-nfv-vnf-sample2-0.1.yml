@@ -1,0 +1,33 @@
+author: Name, Company, Contact
+connection_points:
+- id: input
+  interface: ethernet
+  type: external
+description: A sample VNF
+descriptor_version: vnfd-schema-01
+name: vnf-sample2
+vendor: eu.sonata-nfv
+version: '0.1'
+virtual_deployment_units:
+- connection_points:
+  - id: vdu01:cp01
+    interface: ethernet
+    type: internal
+  id: '1'
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 2
+      size_unit: GB
+    storage:
+      size: 10
+      size_unit: GB
+  vm_image: ubuntu:14.04
+  vm_image_format: docker
+virtual_links:
+- connection_points_reference:
+  - vdu01:cp01
+  - input
+  connectivity_type: E-LAN
+  id: input

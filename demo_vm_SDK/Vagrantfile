@@ -1,0 +1,226 @@
+# Copyright (c) 2015 SONATA-NFV and Paderborn University
+# ALL RIGHTS RESERVED.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# Neither the name of the SONATA-NFV [, ANY ADDITIONAL AFFILIATION]
+# nor the names of its contributors may be used to endorse or promote
+# products derived from this software without specific prior written
+# permission.
+#
+# This work has been performed in the framework of the SONATA project,
+# funded by the European Commission under Grant number 671517 through
+# the Horizon 2020 and 5G-PPP programmes. The authors would like to
+# acknowledge the contributions of their colleagues of the SONATA
+# partner consortium (www.sonata-nfv.eu).
+
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+#
+# This Vagrant file create a sonata-sdk VM.
+#
+#
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+
+Vagrant.configure(2) do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://atlas.hashicorp.com/search.
+
+  # there is a bug in the /etc/hosts of 16.04: https://bugs.launchpad.net/ubuntu/+source/livecd-rootfs/+bug/1561250
+  config.vm.box = "ubuntu/xenial64"
+
+ 
+  # SSH settings - generates error 
+  # sonata user was added manually - user: sonata - passw: sonata
+  #config.ssh.username = "vagrant"
+  #config.ssh.password = "vagrant"
+  #config.ssh.insert_key = "false"
+  config.ssh.forward_x11 = true
+
+  # Disable automatic box update checking. If you disable this, then
+  # boxes will only be checked for updates when the user runs
+  # `vagrant box outdated`. This is not recommended.
+  config.vm.box_check_update = false
+  
+  # disable shared folder
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  config.vm.network "forwarded_port", guest: 5000, host: 5000 # dummy gatekeeper
+  config.vm.network "forwarded_port", guest: 5001, host: 5001 # REST API
+  config.vm.network "forwarded_port", guest: 8081, host: 8081 # cAdvisor
+  config.vm.network "forwarded_port", guest: 9090, host: 9090 # Prometheus
+  config.vm.network "forwarded_port", guest: 9091, host: 9091 # Prometheus push gateway
+  config.vm.network "forwarded_port", guest: 3000, host: 3000 # Grafana
+  config.vm.network "forwarded_port", guest: 80, host: 8080 # Editor
+
+
+  # Provider-specific configuration so you can fine-tune various
+  # backing providers for Vagrant. These expose provider-specific options.
+  # Example for VirtualBox:
+  #
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "sonata-sdk"
+    vb.memory = "4096"
+    vb.cpus = "2"
+  end
+
+
+  # provision files from host, for later use during install
+  config.vm.provision "file", source: "./motd_demo_sdk", destination: "/tmp/motd"
+  config.vm.provision "file", source: "./config.yaml", destination: "/tmp/config.yaml"
+  config.vm.provision "file", source: "./docker-compose.yml", destination: "/tmp/docker-compose.yml"
+  config.vm.provision "file", source: "./workspaces", destination: "/tmp/workspaces"
+
+  config.vm.hostname = "sonata-sdk"
+
+  # change default password of the VM
+  # due to a bug in the ubuntu xenial vagrant box, password for vagrant user is not known...
+  # we add some new users ourselves 
+  config.vm.provision "add_user", type: "shell", inline: <<-SHELL 
+     apt-get install -y expect
+     sudo useradd -m -s /bin/bash -U sonata
+     echo '#!/usr/bin/expect
+      set timeout 20
+      spawn sudo passwd sonata
+      expect "Enter new UNIX password:" {send "sonata\\r"}
+      expect "Retype new UNIX password:" {send "sonata\\r"}
+      interact' > add_sonata_user
+    chmod +x add_sonata_user
+    ./add_sonata_user
+
+    sudo adduser sonata sudo
+  SHELL
+
+
+  # install Docker
+  config.vm.provision "docker" do |d|
+
+  end
+
+  # Enable provisioning with a shell script. Additional provisioners such as
+  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
+  # documentation for more information about their specific syntax and use.
+  config.vm.provision "son-emu", type: "shell", inline: <<-SHELL
+
+     # add users to docker groupt to avoid sudo typing
+     sudo gpasswd -a vagrant docker
+     sudo gpasswd -a sonata docker
+
+     
+     sudo apt-get update
+     sudo apt-get install -y git ansible terminator
+     sudo echo "localhost ansible_connection=local" >> /etc/ansible/hosts
+
+
+     # install containernet
+     cd /home/sonata
+     git clone https://github.com/containernet/containernet.git
+     echo "Installing containernet (will take some time ~30 minutes) ..."
+     cd containernet/ansible
+     sudo ansible-playbook install.yml
+
+
+
+     # install son-emu
+     echo "Installing son-emu (will take some time) ..."
+     cd /home/sonata
+     git clone https://github.com/sonata-nfv/son-emu.git
+     cd son-emu/ansible
+     sudo ansible-playbook install.yml
+
+     # execute son-emu installation
+     cd /home/sonata/son-emu
+     sudo python setup.py develop
+     
+     SHELL
+
+
+   config.vm.provision "son-cli", type: "shell", inline: <<-SHELL
+
+     # install son-cli
+     echo "Installing son-cli (will take some time) ..."
+     # needed to build pyYAML (libyaml is optional but recommended)
+     sudo apt-get install -y python3.4 python3-dev python3-pip libyaml-dev build-essential libyaml-dev libffi-dev libssl-dev gfortran libopenblas-dev liblapack-dev
+     # install docker-compose
+     sudo curl -L "https://github.com/docker/compose/releases/download/1.10.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+     sudo chmod +x /usr/local/bin/docker-compose
+
+     sudo pip3 install setuptools==34.0.2 
+     sudo pip3 install virtualenv 
+     sudo pip3 install numpy
+     sudo pip3 install scipy
+     sudo pip3 install docker==2.0.2
+     cd /home/sonata
+     git clone https://github.com/sonata-nfv/son-cli.git
+     cd son-cli
+     python3 setup.py develop  
+
+     SHELL
+
+
+  config.vm.provision "son-editor", type: "shell", inline: <<-SHELL
+     cd /home/sonata
+     # install editor
+     git clone https://github.com/stevenvanrossem/son-editor-backend
+     cd son-editor-backend/build-docker/ 
+     # copy the correct config file for son-editor
+     # github user: sonatademo
+     # github pass: s0natademo
+     # github ClientID : fd2e6190d732fa3401b3
+     # github ClientSecret : 104310705006d191f45771fdc721406cfe52d6c9
+     sudo cp /tmp/config.yaml ./
+     # make son-editor startup on reboot
+     sudo cp /tmp/docker-compose.yml ./
+     # add the example wokspaces
+     sudo cp -r /tmp/workspaces ./
+     sudo docker-compose build --no-cache
+     sudo docker-compose up -d 
+     SHELL
+
+
+
+  config.vm.provision "examples", type: "shell", inline: <<-SHELL
+
+     # place motd
+     sudo cp /tmp/motd /etc/motd
+
+     # pre-fetch sonata example vnfs from DockerHub
+     echo "Fetching SONATA example VNF container from DockerHub/sonatanfv"
+     cd /home/sonata
+     git clone https://github.com/sonata-nfv/son-examples.git
+     cd son-examples/vnfs
+     sudo bash pull.sh
+     cd /home/sonata/son-examples/service-projects
+     sudo bash pack.sh
+
+     echo "Fetching external containers for the monitoring framework"
+     sudo docker pull prom/pushgateway
+     sudo docker pull prom/prometheus
+     sudo docker pull grafana/grafana 
+     sudo docker pull google/cadvisor 
+
+    SHELL
+
+
+end

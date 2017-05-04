@@ -1,0 +1,52 @@
+author: Steven Van Rossem, Ghent University, steven.vanrossem@intec.ugent.be
+connection_points:
+- id: ns:port0
+  interface: ipv4
+  type: internal
+- id: ns:port1
+  interface: ipv4
+  type: internal
+description: Example service with an ovs switch and ryu openflow controller
+descriptor_version: '1.0'
+forwarding_graphs: []
+name: sonata-ovs-service
+network_functions:
+- vnf_id: ovs1
+  vnf_name: ovs-user-vnf
+  vnf_vendor: eu.sonata-nfv
+  vnf_version: '0.1'
+- vnf_id: ctrl
+  vnf_name: ctrl-vnf
+  vnf_vendor: eu.sonata-nfv
+  vnf_version: '0.1'
+vendor: eu.sonata-nfv
+version: '0.1'
+virtual_links:
+- connection_points_reference:
+  - ns:port0
+  - ovs1:port0
+  connectivity_type: E-Line
+  id: link-port0
+- connection_points_reference:
+  - ovs1:port0
+  - ns:port0
+  connectivity_type: E-Line
+  id: link-port0-b
+- connection_points_reference:
+  - ns:port1
+  - ovs1:port1
+  connectivity_type: E-Line
+  id: link-port1
+- connection_points_reference:
+  - ovs1:port1
+  - ns:port1
+  connectivity_type: E-Line
+  id: link-port1-b
+- connection_points_reference:
+  - ovs1:ctrl-port
+  - ctrl:ctrl-port
+  connectivity_type: E-LAN
+  id: ctrl-LAN
+vnf_depedency:
+- eu.sonata-nfv:ovs-user-vnf:0.1
+- eu.sonata-nfv:ctrl-vnf:0.1

@@ -1,0 +1,56 @@
+author: Name, Company, Contact
+connection_points:
+- id: ns:mgmt
+  interface: ethernet
+  type: management
+- id: ns:input
+  interface: ethernet
+  type: internal
+- id: ns:output
+  interface: ethernet
+  type: internal
+description: A sample NSD
+descriptor_version: '1.0'
+forwarding_graphs:
+- constituent_vnfs:
+  - sampleVNF
+  fg_id: ns:fg1
+  network_forwarding_paths:
+  - connection_points:
+    - connection_point_ref: ns:input
+      position: 1
+    - connection_point_ref: sampleVNF:input
+      position: 2
+    - connection_point_ref: sampleVNF:output
+      position: 3
+    - connection_point_ref: ns:output
+      position: 4
+    fp_id: ns:fg1:fp1
+  number_of_endpoints: 2
+  number_of_virtual_links: 2
+name: sample-nsd
+network_functions:
+- vnf_id: sampleVNF
+  vnf_name: vnf-sample
+  vnf_vendor: eu.sonata-nfv
+  vnf_version: '0.1'
+vendor: eu.sonata-nfv.service-descriptor
+version: '0.2'
+virtual_links:
+- connection_points_reference:
+  - ns:mgmt
+  - sampleVNF:mgmt
+  connectivity_type: E-LAN
+  id: mgmt
+- connection_points_reference:
+  - ns:input
+  - sampleVNF:input
+  connectivity_type: E-Line
+  id: ns:input-2-sample_vnf
+- connection_points_reference:
+  - sampleVNF:output
+  - ns:output
+  connectivity_type: E-Line
+  id: sample_vnf-2-ns:output
+vnf_depedency:
+- eu.sonata-nfv:vnf-sample:0.1
