@@ -1,0 +1,24 @@
+##
+# Socat L4FW VNF
+# Copyright 2017 Paderbron University
+##
+---
+vnf:
+    name: l4fw
+    description: Single-Container VNF.
+    external-connections:
+    -   name:              l4fw0
+        type:              bridge
+        VNFC:              socat
+        local_iface_name:  l4fw0
+        description:       A L4 forwarder
+    VNFC:
+    -   name:        socat
+        description: Socat TCP forwarder
+        VNFC image: /home/manuel/son-int-demo/osm/image-l4fw.qcow2
+        vcpus: 1
+        ram: 512
+        disk: 20
+        bridge-ifaces:
+        -   name:      l4fw0
+        numas: []

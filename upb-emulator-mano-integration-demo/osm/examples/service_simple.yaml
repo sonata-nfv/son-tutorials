@@ -1,0 +1,17 @@
+##
+# Copyright 2017 Paderborn University
+##
+---
+schema_version:  2
+scenario:
+  name:          service1
+  description:   Simple network scenario consisting of a single VNF connected to an external network
+  vnfs: 
+    vnf1:                   # vnf/net name in the scenario
+      vnf_name:  empty-vnf        # VNF name as introduced in OPENMANO DB
+  networks: 
+    default:                   # provide a name for this net or connection
+      external:  true
+      interfaces: 
+      - vnf1:  eth0       # Node and its interface
+
