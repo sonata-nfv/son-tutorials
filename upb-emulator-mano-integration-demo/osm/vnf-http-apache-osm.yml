@@ -15,7 +15,7 @@ vnf:
     VNFC:
     -   name:        apache
         description: Apache webserver container
-        VNFC image: /home/manuel/son-int-demo/osm/image-http.qcow2
+        VNFC image: /home/ubuntu/vagrant/osm/image-http.qcow2
         vcpus: 1
         ram: 512
         disk: 20
