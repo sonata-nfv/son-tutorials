@@ -108,8 +108,13 @@ Vagrant.configure(2) do |config|
 
      # updates and general box setup
      sudo apt-get update
-     sudo apt-get install -y git ansible mysql-server
+     sudo apt-get install -y git ansible mysql-server python3-pip
      sudo echo "localhost ansible_connection=local" >> /etc/ansible/hosts
+
+     # install OpenStack client
+     sudo pip3 install python-openstackclient
+     sudo pip3 install python-heatclient
+     sudo pip3 install python-neutronclient
 
      # son-emu, containernet, installation
      cd /home/ubuntu
@@ -121,6 +126,9 @@ Vagrant.configure(2) do |config|
 
      # SONATA SP installation
 
+     # build VNFs
+     cd /home/ubuntu/vagrant/vnfs
+     sudo ./build.sh
 
      
   SHELL

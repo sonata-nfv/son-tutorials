@@ -12,6 +12,10 @@ git clone -b int-demo https://github.com/mpeuster/son-emu.git
 cd /home/ubuntu/son-emu/ansible
 sudo ansible-playbook install.yml
 
+cd /home/ubuntu/son-emu
+sudo python setup.py install
+sudo python setup.py develop
+
 #echo "Running son-emu unit tests to validate installation"
 #cd /home/ubuntu/son-emu
 #sudo python setup.py develop

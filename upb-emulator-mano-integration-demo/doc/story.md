@@ -10,18 +10,17 @@ TODO ENV etc. (depends on used VM, see also demo.org)
 
 ```bash
 # start emulator
-sudo python src/emuvim/examples/demo_emulator_mano_integration.py
+sudo python son-emu/src/emuvim/examples/demo_emulator_mano_integration.py
 ```
 
 ### Deploy with Heat
 
 ```bash
-# setup openstack clients (in son-int-demo/)
-source osclient/venv/bin/activate
-source osclient/openstackrc.sh
+# setup openstack clients
+source vagrant/openstackrc.sh
 
 # deploy 
-openstack stack create -f yaml -t heat/demo-service-hot.yml demostack1
+openstack stack create -f yaml -t vagrant/heat/demo-service-hot.yml demostack1
 
 # show
 openstack image list
