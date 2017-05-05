@@ -19,4 +19,7 @@ sudo python setup.py develop
 #echo "Running son-emu unit tests to validate installation"
 #cd /home/ubuntu/son-emu
 #sudo python setup.py develop
-#sudo py.test -v src/emuvim/test/unittests   
+#sudo py.test -v src/emuvim/test/unittests
+
+sudo gpasswd -a ubuntu docker
+#sudo gpasswd -a vagrant docker

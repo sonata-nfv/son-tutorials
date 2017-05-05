@@ -81,12 +81,12 @@ Vagrant.configure(2) do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "son-int-demo"
-  # Display the VirtualBox GUI when booting the machine
+    vb.name = "sonata-emu-integration-demo"
     vb.gui = false
-  # Customize the amount of memory on the VM:
     vb.memory = "4096"
+    vb.cpus = "4"
   end
+ 
   #
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -101,7 +101,8 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+
+  config.vm.provision "basic_installation", type: "shell", privileged: true, inline: <<-SHELL
      # mysql install needs some extra tricks
      sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password root"
      sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password root"
@@ -110,27 +111,28 @@ Vagrant.configure(2) do |config|
      sudo apt-get update
      sudo apt-get install -y git ansible mysql-server python3-pip
      sudo echo "localhost ansible_connection=local" >> /etc/ansible/hosts
+  SHELL
 
+  config.vm.provision "open_stack_clients", type: "shell", privileged: false, inline: <<-SHELL
      # install OpenStack client
      sudo pip3 install python-openstackclient
      sudo pip3 install python-heatclient
-     sudo pip3 install python-neutronclient
+     sudo pip3 install python-neutronclient                
+  SHELL
 
-     # son-emu, containernet, installation
+  config.vm.provision "son-emu_installation", type: "shell", privileged: false, inline: <<-SHELL
      cd /home/ubuntu
      sh vagrant/scripts/install_son-emu.sh
+  SHELL
 
-     # OSM installation
+  config.vm.provision "osm_installation", type: "shell", privileged: false, inline: <<-SHELL
      cd /home/ubuntu
      sh vagrant/scripts/install_osm.sh
+  SHELL
 
-     # SONATA SP installation
-
-     # build VNFs
+  config.vm.provision "build_vnfs", type: "shell", privileged: false, inline: <<-SHELL
      cd /home/ubuntu/vagrant/vnfs
      sudo ./build.sh
-
-     
   SHELL
 
 end

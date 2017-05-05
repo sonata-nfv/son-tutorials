@@ -1,10 +1,4 @@
 # Story 1
-## Preparation
-
-```bash
-TODO ENV etc. (depends on used VM, see also demo.org)
-```
-
 
 ## Demo
 
@@ -97,7 +91,7 @@ curl -x http://172.17.0.2:3128 20.0.0.2:8899
 
 ## Helper
 
-* there should not be more than 20 Docker image on the machine (otherwise the OpenStack image clients/APIs might make trouble)
+* there should not be more than 20 Docker images on the machine (otherwise the OpenStack image clients/APIs might make trouble)
 
 ## TODO
 
