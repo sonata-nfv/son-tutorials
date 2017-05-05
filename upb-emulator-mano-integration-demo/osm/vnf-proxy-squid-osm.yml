@@ -15,7 +15,7 @@ vnf:
     VNFC:
     -   name:        squid
         description: Squid proxy
-        VNFC image: /home/ubuntu/vagrant/osm/image-proxy.qcow2
+        VNFC image: /home/vagrant/vagrant/osm/image-proxy.qcow2
         vcpus: 1
         ram: 512
         disk: 20

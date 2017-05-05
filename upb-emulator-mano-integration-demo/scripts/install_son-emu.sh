@@ -1,18 +1,18 @@
 #!/bin/bash
 
-cd /home/ubuntu
+cd /home/vagrant
 echo "Installing containernet (will take some time ~30 minutes) ..."
 git clone https://github.com/containernet/containernet.git
-cd /home/ubuntu/containernet/ansible
+cd /home/vagrant/containernet/ansible
 sudo ansible-playbook install.yml
 
-cd /home/ubuntu
+cd /home/vagrant
 echo "Installing son-emu (will take some time) ..."
 git clone -b int-demo https://github.com/mpeuster/son-emu.git
-cd /home/ubuntu/son-emu/ansible
+cd /home/vagrant/son-emu/ansible
 sudo ansible-playbook install.yml
 
-cd /home/ubuntu/son-emu
+cd /home/vagrant/son-emu
 sudo python setup.py install
 sudo python setup.py develop
 
@@ -21,5 +21,5 @@ sudo python setup.py develop
 #sudo python setup.py develop
 #sudo py.test -v src/emuvim/test/unittests
 
-sudo gpasswd -a ubuntu docker
-#sudo gpasswd -a vagrant docker
+#sudo gpasswd -a ubuntu docker
+sudo gpasswd -a vagrant docker
