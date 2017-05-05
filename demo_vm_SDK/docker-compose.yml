@@ -1,0 +1,9 @@
+version: '2'
+services:
+    son-editor:
+        build: .
+        ports:
+            - 80:80
+        volumes:
+            - ./workspaces:/root/son-editor/workspaces
+        restart: always

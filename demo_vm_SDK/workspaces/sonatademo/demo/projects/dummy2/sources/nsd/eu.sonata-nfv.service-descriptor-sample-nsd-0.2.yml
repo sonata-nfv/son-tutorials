@@ -1,0 +1,40 @@
+author: Name, Company, Contact
+connection_points:
+- id: ns:input
+  interface: ethernet
+  type: internal
+- id: ns:output
+  interface: ethernet
+  type: internal
+description: A sample NSD
+descriptor_version: '1.0'
+forwarding_graphs: []
+name: sample-nsd
+network_functions:
+- vnf_id: sampleVNF2
+  vnf_name: vnf-sample2
+  vnf_vendor: eu.sonata-nfv
+  vnf_version: '0.1'
+- vnf_id: sampleVNF3
+  vnf_name: vnf-sample3
+  vnf_vendor: eu.sonata-nfv
+  vnf_version: '0.1'
+- vnf_id: sampleVNF4
+  vnf_name: vnf-sample4
+  vnf_vendor: eu.sonata-nfv
+  vnf_version: '0.1'
+vendor: eu.sonata-nfv.service-descriptor
+version: '0.2'
+virtual_links:
+- connection_points_reference:
+  - ns:input
+  - sampleVNF2:input
+  - sampleVNF3:input
+  - ns:output
+  - sampleVNF4:input
+  connectivity_type: E-LAN
+  id: ELAN-lan
+vnf_depedency:
+- eu.sonata-nfv:vnf-sample2:0.1
+- eu.sonata-nfv:vnf-sample3:0.1
+- eu.sonata-nfv:vnf-sample4:0.1

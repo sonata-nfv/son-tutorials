@@ -1,0 +1,16 @@
+catalogue_servers: []
+catalogues_dir: catalogues
+configuration_dir: configuration
+default_descriptor_extension: yml
+default_service_platform: son_emu
+log_level: INFO
+name: demo
+platforms_dir: platforms
+schema_index: 0
+schemas_local_master: /root/.son-schema
+schemas_remote_master: https://raw.githubusercontent.com/sonata-nfv/son-schema/master/
+service_platforms:
+  son_emu:
+    credentials: {token_file: empty}
+    url: http://172.17.0.1:5000
+version: '0.03'
