@@ -18,7 +18,7 @@ The VM exposes several ports to the host machine to access several tools of the 
 * 3000 # Grafana
 * 8080 # Editor, browse to: http://localhost:8080/index.html
 * The emulator has a dashboard at: http://localhost:5001/dashboard/index.html
-* SSH login: user: `sonata` password: `sonata` at port 2222  
+* SSH login: user: `sonata` password: `sonata` at port 2222
   `ssh -p 2222 sonata@localhost`
 
 
@@ -34,11 +34,13 @@ The following SONATA repositories are installed in /home/sonata :
 The son-editor should be started at boot and available when browsing to: 
 http://localhost:8080/index.html
 
-A dedicated GitHub account was made for this SONATA demo to login into the editor:  
+A dedicated GitHub account was made for this SONATA demo to login into the editor:
 user: sonatademo password: s0natademo
 
-The son-emulator needs to be started up with a dedicated topology:  
+The son-emulator needs to be started up with a dedicated topology:
 ```
 cd son-emu
 sudo python src/emuvim/examples/demo_topo_1pop.py
 ```
+
+After this step, an NSD from the editor can be uploaded to the emulator and the [son-cli](https://github.com/sonata-nfv/son-cli) tools can be further used to manipulate the deployed service.

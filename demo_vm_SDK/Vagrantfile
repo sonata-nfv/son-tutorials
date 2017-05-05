@@ -96,7 +96,7 @@ Vagrant.configure(2) do |config|
 
   # change default password of the VM
   # due to a bug in the ubuntu xenial vagrant box, password for vagrant user is not known...
-  # we add some new users ourselves 
+  # we add some new users ourselves, with elevated privileges and no need to type sudo password
   config.vm.provision "add_user", type: "shell", inline: <<-SHELL 
      apt-get install -y expect
      sudo useradd -m -s /bin/bash -U sonata
@@ -110,6 +110,7 @@ Vagrant.configure(2) do |config|
     ./add_sonata_user
 
     sudo adduser sonata sudo
+    sudo echo "sonata ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
   SHELL
 
 
@@ -171,11 +172,14 @@ Vagrant.configure(2) do |config|
      sudo pip3 install numpy
      sudo pip3 install scipy
      sudo pip3 install docker==2.0.2
+     sudo pip3 install Flask
+     sudo pip3 install flask-cache
      cd /home/sonata
      git clone https://github.com/sonata-nfv/son-cli.git
      cd son-cli
      python3 setup.py develop  
-
+     #son-workspace --init
+     #son-access config --platform_id emu --new --url http://127.0.0.1:5000 --default
      SHELL
 
 
