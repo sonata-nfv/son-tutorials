@@ -19,7 +19,10 @@ The VM exposes several ports to the host machine to access several tools of the 
 * 8080 # Editor, browse to: http://localhost:8080/index.html
 * The emulator has a dashboard at: http://localhost:5001/dashboard/index.html
 * SSH login: user: `sonata` password: `sonata` at port 2222
-  `ssh -p 2222 sonata@localhost`
+  `ssh -X -p 2222 sonata@localhost`
+
+To use all features of son-emu and son-cli, the X server settings must be taken into account and X11 should be enabled when opening an SSH terminal to the VM.
+Further info about this is documented [here](https://github.com/sonata-nfv/son-emu/wiki/VNF-configuration-terminal)
 
 
 #### Demo VM example usage
