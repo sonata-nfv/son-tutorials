@@ -91,9 +91,10 @@ Vagrant.configure(2) do |config|
 
   # provision files from host, for later use during install
   config.vm.provision "file", source: "./motd_demo_sdk", destination: "/tmp/motd"
-  config.vm.provision "file", source: "./config.yaml", destination: "/tmp/config.yaml"
-  config.vm.provision "file", source: "./docker-compose.yml", destination: "/tmp/docker-compose.yml"
-  config.vm.provision "file", source: "./workspaces", destination: "/tmp/workspaces"
+  config.vm.provision "file", source: "./son-editor_files/config.yaml", destination: "/tmp/config.yaml"
+  config.vm.provision "file", source: "./son-editor_files/docker-compose.yml", destination: "/tmp/docker-compose.yml"
+  config.vm.provision "file", source: "./son-editor_files/workspaces", destination: "/tmp/workspaces"
+  config.vm.provision "file", source: "./son-editor_files/Dockerfile", destination: "/tmp/Dockerfile"
 
   config.vm.hostname = "sonata-sdk"
 
@@ -140,8 +141,10 @@ Vagrant.configure(2) do |config|
      # install containernet
      cd /home/sonata
      git clone https://github.com/containernet/containernet.git
+     cd containernet
+     git reset --hard 3ccac3f1d0d86767263e230fd1f91940f1633571
      echo "Installing containernet (will take some time ~30 minutes) ..."
-     cd containernet/ansible
+     cd ansible
      sudo ansible-playbook install.yml
 
 
@@ -149,15 +152,19 @@ Vagrant.configure(2) do |config|
      # install son-emu
      echo "Installing son-emu (will take some time) ..."
      cd /home/sonata
-     #git clone https://github.com/sonata-nfv/son-emu.git
-     git clone https://github.com/stevenvanrossem/son-emu.git
-     cd son-emu/ansible
+     git clone https://github.com/sonata-nfv/son-emu.git
+     cd son-emu
+     git reset --hard e435924ac4b840da2a042fb7032070aa60eb1060
+     cd ansible
      sudo ansible-playbook install.yml
 
      # execute son-emu installation
      cd /home/sonata/son-emu
      sudo python setup.py develop
      
+     # correct X11 settings
+     #echo "export DISPLAY=192.168.56.1:0" >> ~/.bashrc
+
      SHELL
 
 
@@ -178,10 +185,11 @@ Vagrant.configure(2) do |config|
      sudo pip3 install docker==2.0.2
      sudo pip3 install Flask
      sudo pip3 install flask-cache
+     sudo pip3 install matplotlib
      cd /home/sonata
-     #git clone https://github.com/sonata-nfv/son-cli.git
-     git clone https://github.com/stevenvanrossem/son-cli.git
+     git clone https://github.com/sonata-nfv/son-cli.git
      cd son-cli
+     git reset --hard 1b665473f31011bab7a167f5311bb88239f32991
      python3 setup.py develop  
      #son-workspace --init
      #son-access config --platform_id emu --new --url http://127.0.0.1:5000 --default
@@ -191,15 +199,17 @@ Vagrant.configure(2) do |config|
   config.vm.provision "son-editor", type: "shell", inline: <<-SHELL
      cd /home/sonata
      # install editor
-     #git clone https://github.com/sonata-nfv/son-editor-backend
-     git clone https://github.com/stevenvanrossem/son-editor-backend
-     cd son-editor-backend/build-docker/ 
+     git clone https://github.com/sonata-nfv/son-editor-backend
+     cd son-editor-backend
+     git reset --hard 5f759dcbc8824b2e7110998d36d25e3cf325f788
+     cd build-docker/ 
      # copy the correct config file for son-editor
      # github user: sonatademo
      # github pass: s0natademo
      # github ClientID : fd2e6190d732fa3401b3
      # github ClientSecret : 104310705006d191f45771fdc721406cfe52d6c9
      sudo cp /tmp/config.yaml ./
+     sudo cp /tmp/Dockerfile ./
      # make son-editor startup on reboot
      sudo cp /tmp/docker-compose.yml ./
      # add the example wokspaces
@@ -218,8 +228,7 @@ Vagrant.configure(2) do |config|
      # pre-fetch sonata example vnfs from DockerHub
      echo "Fetching SONATA example VNF container from DockerHub/sonatanfv"
      cd /home/sonata
-     #git clone https://github.com/sonata-nfv/son-examples.git
-     git clone https://github.com/stevenvanrossem/son-examples.git
+     git clone https://github.com/sonata-nfv/son-examples.git
      cd son-examples/vnfs
      sudo bash pull.sh
      cd /home/sonata/son-examples/service-projects
@@ -230,8 +239,6 @@ Vagrant.configure(2) do |config|
      sudo docker pull prom/prometheus
      sudo docker pull grafana/grafana 
      sudo docker pull google/cadvisor 
-
-     echo "export DISPLAY=192.168.56.1:0" >> ~/.bashrc
 
     SHELL
 
