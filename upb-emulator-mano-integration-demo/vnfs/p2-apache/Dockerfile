@@ -12,6 +12,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -
 	php7.0 \
 	libapache2-mod-php7.0 \
 	curl \
+        wget \
 	lynx-cur
 
 # Enable apache mods.
@@ -23,8 +24,13 @@ RUN chmod +x start.sh
 ADD ipconfig.sh ipconfig.sh
 RUN chmod +x ipconfig.sh
 
-ADD www /var/www/site
+#ADD www /var/www/site
+ADD cattube /var/www/site
 ADD apache.conf /etc/apache2/sites-enabled/000-default.conf
+
+# Downlaod large conent from remote site to keep our repository clean
+WORKDIR /var/www/site
+RUN wget http://peuster.de/cattube/bunny.mp4
 
 WORKDIR /
 
@@ -33,3 +39,7 @@ EXPOSE 80
 # normal entry point
 ENV SON_EMU_CMD ./start.sh
 CMD /bin/bash
+
+# manually test
+#docker run --rm -it  --name cattube -p 80:80 http-apache-img /usr/sbin/apache2ctl -D FOREGROUND &
+
