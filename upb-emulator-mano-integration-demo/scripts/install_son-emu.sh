@@ -8,7 +8,8 @@ sudo ansible-playbook install.yml
 
 cd /home/vagrant
 echo "Installing son-emu (will take some time) ..."
-git clone -b int-demo https://github.com/mpeuster/son-emu.git
+# TODO rely on master branch when everything is merged
+git clone -b merge-openstack-apis https://github.com/mpeuster/son-emu.git
 cd /home/vagrant/son-emu/ansible
 sudo ansible-playbook install.yml
 
