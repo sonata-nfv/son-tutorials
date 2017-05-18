@@ -12,4 +12,8 @@ do
     ifconfig $p up
 done
 
+#ifconfig eth0 down
+#ifconfig eth0 172.17.0.99 netmask 255.255.255.0
+#ifconfig eth0 up
+
 ifconfig > /ifconfig.debug
