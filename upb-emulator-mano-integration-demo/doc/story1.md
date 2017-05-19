@@ -102,6 +102,14 @@ curl -x http://192.168.11.10:3128 20.0.0.2:8899
 
 ## Helper
 
+### Dashboard URLs:
+
+```
+# Emulator Dashboard
+http://127.0.0.1:5001/dashboard/index.html
+
+```
+
 * there should not be more than 20 Docker images on the machine (otherwise the OpenStack image clients/APIs might make trouble)
 
 ## TODO
