@@ -78,6 +78,7 @@ TODO
 
 ### Use the service
 
+#### Inside the VM
 ```sh
 # HTTP: 
 curl 172.17.0.3
@@ -87,6 +88,14 @@ curl 172.17.0.4:8899
 curl -x http://172.17.0.2:3128 20.0.0.1
 # PROXY + L4FW + HTTP:
 curl -x http://172.17.0.2:3128 20.0.0.2:8899
+```
+
+#### From host machine
+
+First `scripts/setup_net.sh` needs to be executed to forward traffic from the VMs host net. You can now configure Firefox on the Host machine to use the proxy `192.168.11.10:3128` and surf to `20.0.0.2:8899` to show CatTube.
+
+```sh
+curl -x http://192.168.11.10:3128 20.0.0.2:8899
 ```
 
 ## Helper
