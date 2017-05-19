@@ -110,6 +110,18 @@ http://127.0.0.1:5001/dashboard/index.html
 
 ```
 
+### son-monitor
+
+```
+# in heat/
+sudo son-monitor init
+sudo son-monitor msd -f msd-heat.yml
+sudo son-monitor init stop
+```
+Problem: No data arrives in DB? cAdvisor seems to be missing?
+
+### Other infos
+
 * there should not be more than 20 Docker images on the machine (otherwise the OpenStack image clients/APIs might make trouble)
 
 ## TODO
