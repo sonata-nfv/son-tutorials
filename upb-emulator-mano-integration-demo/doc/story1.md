@@ -88,6 +88,8 @@ curl 172.17.0.4:8899
 curl -x http://172.17.0.2:3128 20.0.0.1
 # PROXY + L4FW + HTTP:
 curl -x http://172.17.0.2:3128 20.0.0.2:8899
+# Full downlaod of video file
+curl -x http://172.17.0.4:3128 20.0.0.2:8899/bunny.mp4 > /dev/null
 ```
 
 #### From host machine
