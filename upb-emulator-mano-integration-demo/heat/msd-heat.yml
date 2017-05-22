@@ -23,17 +23,21 @@ vnf_metrics:
       - vnf: "sonata-pop1_demostack1_http" 
       - vnf: "sonata-pop1_demostack1_l4fw" 
       - vnf: "sonata-pop1_demostack1_proxy" 
-#  - metric_type: "packet_rate"
-#    description: "packet rate (packets/sec)"
-#    vnf_ids:
-#      - vnf: "sonata-pop1_demostack1_http:http-net-0"
-#        direction: "tx"
-#      - vnf: "ovs1:port1"
-#        direction: "tx"
-#      - vnf: "ns_port0:port0"
-#        direction: "tx"
-#      - vnf: "ns_port1:port1"
-#        direction: "rx"
+  - metric_type: "packet_rate"
+    description: "packet rate (packets/sec)"
+    vnf_ids:
+      - vnf: "sonata-pop1_demostack1_http:http-net-0"
+        direction: "tx"
+      - vnf: "sonata-pop1_demostack1_l4fw:l4fw-net-0"
+        direction: "tx"
+      - vnf: "sonata-pop1_demostack1_proxy:prox-net-0"
+        direction: "tx"
+      - vnf: "sonata-pop1_demostack1_http:http-net-0"
+        direction: "rx"
+      - vnf: "sonata-pop1_demostack1_l4fw:l4fw-net-0"
+        direction: "rx"
+      - vnf: "sonata-pop1_demostack1_proxy:prox-net-0"
+        direction: "rx"
 
 
 ##
