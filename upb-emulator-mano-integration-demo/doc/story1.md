@@ -76,6 +76,14 @@ openmano instance-scenario-list -v
 TODO
 ```
 
+### Start Monitoring
+
+```sh
+sudo son-monitor init
+sudo son-monitor msd -f vagrant/heat/msd-heat.yml
+sudo son-monitor init stop
+```
+
 ### Use the service
 
 #### Inside the VM
@@ -94,31 +102,20 @@ curl -x http://172.17.0.4:3128 20.0.0.2:8899/bunny.mp4 > /dev/null
 
 #### From host machine
 
-First `scripts/setup_net.sh` needs to be executed to forward traffic from the VMs host net. You can now configure Firefox on the Host machine to use the proxy `192.168.11.10:3128` and surf to `20.0.0.2:8899` to show CatTube.
+First `scripts/setup_net.sh` needs to be executed to forward traffic from the VMs host net. You can now configure Firefox on the Host machine to use the proxy `192.168.11.10:3128` and surf to http://20.0.0.2:8899 to show CatTube.
 
 ```sh
 curl -x http://192.168.11.10:3128 20.0.0.2:8899
 ```
 
+## Dashboards
+
+* Emulator Dashboard: http://127.0.0.1:5001/dashboard/index_upb.html
+* Grafana monitoring: http://127.0.0.1:3000
+* cAdvisor: http://127.0.0.1:8081/docker/
+
+
 ## Helper
-
-### Dashboard URLs:
-
-```
-# Emulator Dashboard
-http://127.0.0.1:5001/dashboard/index.html
-
-```
-
-### son-monitor
-
-```
-# in heat/
-sudo son-monitor init
-sudo son-monitor msd -f msd-heat.yml
-sudo son-monitor init stop
-```
-Problem: No data arrives in DB? cAdvisor seems to be missing?
 
 ### Other infos
 
