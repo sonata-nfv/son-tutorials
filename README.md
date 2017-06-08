@@ -29,16 +29,17 @@ Further info about this is documented [here](https://github.com/sonata-nfv/son-e
 
 After startup, SSH into the VM as sonata user.
 The following SONATA repositories are installed in /home/sonata :
-* son-emu
-* son-editor
-* son-cli
-* son-examples
+* [son-emu](https://github.com/sonata-nfv/son-emu)
+* [son-editor](https://github.com/sonata-nfv/son-editor-backend)
+* [son-cli](https://github.com/sonata-nfv/son-cli )
+* [son-examples](https://github.com/sonata-nfv/son-examples)
 
 The son-editor should be started at boot and available when browsing to: 
 http://localhost:8080/index.html
 
-A dedicated GitHub account was made for this SONATA demo to login into the editor:
-user: sonatademo password: s0natademo
+A dedicated GitHub account was made for this SONATA demo to login into the editor:  
+user: sonatademo  
+password: s0natademo
 
 The son-emulator needs to be started up with a dedicated topology:
 ```
@@ -46,4 +47,4 @@ cd son-emu
 sudo python src/emuvim/examples/demo_topo_1pop.py
 ```
 
-After this step, an NSD from the editor can be uploaded to the emulator and the [son-cli](https://github.com/sonata-nfv/son-cli) tools can be further used to manipulate the deployed service.
+After this step, an NSD from the editor can be uploaded to the emulator and the [son-cli](https://github.com/sonata-nfv/son-cli) tools can be further used to manipulate the deployed service. Some deployment examples are described [here](https://github.com/sonata-nfv/son-emu/wiki).
