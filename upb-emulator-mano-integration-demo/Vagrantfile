@@ -1,0 +1,150 @@
+# Copyright (c) 2017 SONATA-NFV and Paderborn University
+# ALL RIGHTS RESERVED.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# Neither the name of the SONATA-NFV [, ANY ADDITIONAL AFFILIATION]
+# nor the names of its contributors may be used to endorse or promote
+# products derived from this software without specific prior written
+# permission.
+#
+# This work has been performed in the framework of the SONATA project,
+# funded by the European Commission under Grant number 671517 through
+# the Horizon 2020 and 5G-PPP programmes. The authors would like to
+# acknowledge the contributions of their colleagues of the SONATA
+# partner consortium (www.sonata-nfv.eu).
+
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+#
+# This Vagrant file create a son-emu VM.
+#
+#
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure(2) do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://atlas.hashicorp.com/search.
+  config.vm.box = "boxcutter/ubuntu1604" # we need a large disk for all the tools we use
+  #config.vm.box = "boxcutter/ubuntu1604-desktop"
+  #config.vm.box = "ubuntu/xenial64"
+
+  # Disable automatic box update checking. If you disable this, then
+  # boxes will only be checked for updates when the user runs
+  # `vagrant box outdated`. This is not recommended.
+  config.vm.box_check_update = true
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  config.vm.network "forwarded_port", guest: 3128, host: 3128 # demo service proxy port
+  config.vm.network "forwarded_port", guest: 5001, host: 5001 # emulator REST API / dashboard
+  config.vm.network "forwarded_port", guest: 8081, host: 8081 # cadvisor
+  config.vm.network "forwarded_port", guest: 3000, host: 3000 # grafana dashboard (son-monitor)
+  #config.vm.network "forwarded_port", guest: 8000, host: 8000
+  #config.vm.network "forwarded_port", guest: 8443, host: 8443
+  #config.vm.network "forwarded_port", guest: 4567, host: 4567
+  #config.vm.network "forwarded_port", guest: 9091, host: 9091 # push gateway
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  config.vm.network "private_network", ip: "192.168.11.10"
+  # config.vm.network "private_network", type: "dhcp"
+
+  # Create a public network, which generally matched to bridged network.
+  # Bridged networks make the machine appear as another physical device on
+  # your network.
+  # config.vm.network "public_network"
+  config.vm.hostname = "demo"
+  
+  # Share an additional folder to the guest VM. The first argument is
+  # the path on the host to the actual folder. The second argument is
+  # the path on the guest to mount the folder. And the optional third
+  # argument is a set of non-required options.
+  #config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder ".", "/home/vagrant/vagrant"
+  
+
+  # Provider-specific configuration so you can fine-tune various
+  # backing providers for Vagrant. These expose provider-specific options.
+  # Example for VirtualBox:
+  #
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "sonata-emu-integration-demo"
+    vb.gui = false
+    vb.memory = "4096"
+    vb.cpus = "2"
+    # this is a fix for the basebox. see: https://github.com/boxcutter/ubuntu/issues/82
+    vb.customize [
+        "modifyvm", :id,
+        "--cableconnected1", "on",
+    ]
+  end
+ 
+  #
+  # View the documentation for the provider you are using for more
+  # information on available options.
+
+  # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
+  # such as FTP and Heroku are also available. See the documentation at
+  # https://docs.vagrantup.com/v2/push/atlas.html for more information.
+  # config.push.define "atlas" do |push|
+  #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
+  # end
+
+  # Enable provisioning with a shell script. Additional provisioners such as
+  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
+  # documentation for more information about their specific syntax and use.
+
+  config.vm.provision "basic_installation", type: "shell", privileged: true, inline: <<-SHELL
+     # mysql install needs some extra tricks
+     sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password root"
+     sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password root"
+
+     # updates and general box setup
+     sudo apt-get update
+     sudo apt-get upgrade
+     sudo apt-get install -y git ansible mysql-server python3-pip
+     sudo echo "localhost ansible_connection=local" >> /etc/ansible/hosts
+  SHELL
+
+  config.vm.provision "open_stack_clients", type: "shell", privileged: false, inline: <<-SHELL
+     # install OpenStack client
+     sudo pip3 install python-openstackclient
+     sudo pip3 install python-heatclient
+     sudo pip3 install python-neutronclient                
+  SHELL
+
+  config.vm.provision "son-emu_installation", type: "shell", privileged: false, inline: <<-SHELL
+     cd /home/vagrant
+     sh vagrant/scripts/install_son-emu.sh
+  SHELL
+
+  config.vm.provision "osm_installation", type: "shell", privileged: false, inline: <<-SHELL
+     cd /home/vagrant
+     sh vagrant/scripts/install_osm.sh
+  SHELL
+
+  config.vm.provision "build_vnfs", type: "shell", privileged: false, inline: <<-SHELL
+     cd /home/vagrant/vagrant/vnfs
+     sudo ./build.sh
+  SHELL
+
+end

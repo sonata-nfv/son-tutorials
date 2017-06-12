@@ -1,0 +1,24 @@
+##
+# Squid proxy VNF
+# Copyright 2017 Paderbron University
+##
+---
+vnf:
+    name: proxy
+    description: Single-Container VNF.
+    external-connections:
+    -   name:              proxy0
+        type:              bridge
+        VNFC:              squid
+        local_iface_name:  proxy0
+        description:       A HTTP proxy
+    VNFC:
+    -   name:        squid
+        description: Squid proxy
+        VNFC image: /home/vagrant/vagrant/osm/image-proxy.qcow2
+        vcpus: 1
+        ram: 512
+        disk: 20
+        bridge-ifaces:
+        -   name:      proxy0
+        numas: []
