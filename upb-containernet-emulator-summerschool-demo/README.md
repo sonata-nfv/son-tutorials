@@ -440,6 +440,12 @@ Type:0  Code:0  ID:43  Seq:9  ECHO REPLY
 Now lets check if our Snort IDS logs SSH connection attempts:
 
 ```
+# check if Snort has logged the connection attempt?
+containernet> snort_vnf cat /snort-logs/alert
+
+# output
+<empty>
+
 # try to connect to the server via SSH:
 containernet> client ssh server
 
