@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # service platform configuration
-HOST_IP="172.0.0.199"
-
+#HOST_IP="172.0.0.198"
+HOST_IP="127.0.0.1"
 echo "Stopping all old containers ..."
 
 # clean
