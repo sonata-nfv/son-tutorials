@@ -182,15 +182,15 @@ son-emu-cli datacenter list
 +---------+-----------------+----------+----------------+--------------------+
 | Label   | Internal Name   | Switch   |   # Containers |   # Metadata Items |
 +=========+=================+==========+================+====================+
-| dc2     | dc2             | dc2.s1   |              1 |                  0 |
+| dc2     | dc2             | dc2.s1   |              0 |                  0 |
 +---------+-----------------+----------+----------------+--------------------+
-| dc1     | dc1             | dc1.s1   |              1 |                  0 |
+| dc1     | dc1             | dc1.s1   |              0 |                  0 |
 +---------+-----------------+----------+----------------+--------------------+
 
 # start "vnf1" in datacenter "dc1"
-son-emu-cli compute start -d dc1 -n vnf1
+son-emu-cli compute start -d dc1 -n vnf1 --image ubuntu:trusty
 # start "vnf2" in datacenter "dc2"
-son-emu-cli compute start -d dc2 -n vnf2
+son-emu-cli compute start -d dc2 -n vnf2 --image ubuntu:trusty
 
 # list running compute instances
 son-emu-cli compute list
@@ -203,6 +203,10 @@ son-emu-cli compute list
 | dc1          | vnf1        | ubuntu:trusty | vnf1-eth0        | dc1.s1-eth2             |
 +--------------+-------------+---------------+------------------+-------------------------+
 ```
+
+As you can see, the `son-emu-cli compute` CLI is inspired by cloud client interfaces, like OpenStack Nova. You can specify the used images with the `--image` flag followed by a Docker image identifier URL.
+
+Note: All Docker images required for this demo are already pre-build and available in the demo VM. List them using `docker images`.
 
 You can now interact with the running containers like in the previous Containernet examples. You can for example switch to the Containernet terminal and type:
 
@@ -232,7 +236,7 @@ Start another topology in which the learning switch functionality is disabled (`
 
 `sudo python ~/demo/topologies/son-emu_example2.py`
 
-We again start two compute instances:
+We again start some compute instances:
 
 ```sh
 # start "vnf1" in datacenter "dc1"
@@ -357,7 +361,7 @@ First, the service package needs to be uploaded to the emulator (this is also ca
 
 ```sh
 # upload (on-board) the package
-son-access push -p emu1 --upload sonata-demo-service.son
+son-access push --upload sonata-demo-service.son
 
 # output
 Upload succeeded (201): '{\n    "error": null, \n    "service_uuid": "9793adc0-688a-445f-b014-edf79eebf0fb", \n    "sha1": "90ea855a5a6d4ce78674df246fe8a46ff7cfdc40", \n    "size": 3652\n}\n'
@@ -369,10 +373,10 @@ Please copy the `service_uuid` since it is required in the next step to instanti
 
 ```sh
 # trigger the instantiation of the previously on-boarded service
-son-access push -p emu1 --deploy <insert service uuid from last step here>
+son-access push --deploy <insert service uuid from last step here>
 ```
 
-After this, the VNF container should be running in the emulator and we can play around with it like described in the following steps.
+After this, the VNF container should be running in the emulator and we can play around with it like described in the following steps. It was started by the SONATA Gatekeeper interface which also decided in which data center the VNF was placed. The default placement equally distributes the VNFs across all availabe data centers. The algorithm can be found and modified [here](https://github.com/sonata-nfv/son-emu/blob/master/src/emuvim/api/sonata/dummygatekeeper.py#L867).
 
 ### Check the running SONATA service
 
