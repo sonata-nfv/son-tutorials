@@ -549,7 +549,7 @@ openstack stack list
 | ab2c0eb2-2f32-45cf-8900-7ce6172478f9 | demo1      | CREATE_COMPLETE | 2017-06-19 14:01:47.571006 | None         |
 +--------------------------------------+------------+-----------------+----------------------------+--------------+
 
-# list running servers (deployed conteiners)
+# list running servers (deployed containers)
 openstack server list
 
 #output:
