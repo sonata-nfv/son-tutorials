@@ -29,7 +29,7 @@ The MeDICINE emulation platform was created to support network service developer
 
 * S. v. Rossem, W. Tavernier, M. Peuster, D. Colle, M. Pickavet and P. Demeester: **[Monitoring and debugging using an SDK for NFV-powered telecom applications](https://biblio.ugent.be/publication/8521281/file/8521284.pdf)**. IEEE Conference on Network Function Virtualization and Software Defined Networks (NFV-SDN), Palo Alto, CA, USA, Demo Session. (2016)
 
-* M. Peuster, S. Dräxler, H. Razzaghi, S. v. Rossem, W. Tavernier and H. Karl: **A Flexible Multi-PoP Infrastructure Emulator for Carrier-grade MANO Systems**. In IEEE 3rd Conference on Network Softwarization (NetSoft) Demo Track . (2017) 
+* M. Peuster, S. Dräxler, H. Razzaghi, S. v. Rossem, W. Tavernier and H. Karl: **A Flexible Multi-PoP Infrastructure Emulator for Carrier-grade MANO Systems**. In IEEE 3rd Conference on Network Softwarization (NetSoft) Demo Track. (2017) 
 
 ### YouTube Demos
 
@@ -43,7 +43,7 @@ There are a couple of YouTube videos available that demonstrate the emulator in 
 
 There is a _ready-to-use_ demo VM that can be downloaded and used to perform this demo:
 
-* [SONATA Emulator Demo VM 2017 Download](http://www.peuster.de/SONATA/sonata-emulator-demo-vm-2017.ova) (~4.1GB)
+* [SONATA Emulator Demo VM 2017 Download](http://www.peuster.de/SONATA/sonata-emulator-demo-vm-2017.ova) (~4-5GB)
 
 Import and start the downloaded VM using VirtualBox (see also: [Import VM to VirtualBox](https://docs.oracle.com/cd/E26217_01/E26796/html/qs-import-vm.html)).
 
@@ -469,9 +469,143 @@ Perfect! Our VNF works!
 
 The emulator provides a web-based dashboard that shows the outputs of `son-emu-cli compute list` and helps to visualize its state during demonstrations. You can open this dashboard by clicking **Emulator Dashboard** on the VM's Desktop while the emulator is running.
 
-### That's it!
+Now you can close the browser and stop the emulator with:
+```
+containernet> exit
+```
+
+## son-emu and its OpenStack-like interfaces
+
+Out emulation provides an emulated NFVI environment which might be controlled by arbitrary MANO solutions. To simplify the integration of other management and orchestration solutions, we offer a OpenStack-like interface to the emulated PoPs. This interface implements the REST endpoints usually provided by an OpenStack installation.
+
+Note: The implemented interfaces are _not feature complete_ and their code is still _experimental_.
+
+To demonstrate these interfaces to you, we want to use the original OpenStack command line clients (`openstack`) to deploy a service on an emulated datacenter.
+
+First, we need to start another demo topology which can be viewed with:
+
+```
+mousepad demo/topologies/son-emu_example4.py
+```
+
+You can easily see how the OpenStack-like interfaces are attached to `dc1`:
+```Python
+    api1 = OpenstackApiEndpoint("0.0.0.0", 6001)
+    api1.connect_datacenter(dc1)
+    api1.connect_dc_network(net)
+    api1.start()
+```
+
+To start this topology do:
+```
+sudo python demo/topologies/son-emu_example4.py 
+```
+
+After the emulator has started, open a _second terminal window_ and do:
+
+```
+openstack --version
+```
+
+to validate that we are really using the default OpenStack command line interfaces.
+
+Then we can view a pre-defined OpenStack HEAT template which defines a service with three VNFs:
+
+```
+mousepad demo/example_heat_service.yml
+```
+
+The defined service looks like shown in the following figure and consists of three interconnected VNFs:
+
+* Squid Proxy: A HTTP proxy element.
+* Socat L4FW: A TCP forwarding element.
+* Apache HTTP: A HTTP server.
+
+```
+                +-------+        +------+         +-------------+
+  +--(docker0)--+ Proxy +--------> L4FW +---------> HTTP Server |
+                +-------+        +------+         +-------------+
+```
+
+(all three Docker images used in this service do already exist in the demo VM cf. `docker images`)
+
+To deploy this HEAT service template do the following (in the second terminal window):
+
+```
+openstack stack create -f yaml -t demo/example_heat_service.yml demo1
+```
+
+After the command has finished we can validate that the service and its three components are deployed:
+
+
+```sh
+# list running stacks 
+openstack stack list
+
+# output:
++--------------------------------------+------------+-----------------+----------------------------+--------------+
+| ID                                   | Stack Name | Stack Status    | Creation Time              | Updated Time |
++--------------------------------------+------------+-----------------+----------------------------+--------------+
+| ab2c0eb2-2f32-45cf-8900-7ce6172478f9 | demo1      | CREATE_COMPLETE | 2017-06-19 14:01:47.571006 | None         |
++--------------------------------------+------------+-----------------+----------------------------+--------------+
+
+# list running servers (deployed containers)
+openstack server list
+
+#output:
++------------------+-----------------+--------+----------+-----------------+
+| ID               | Name            | Status | Networks | Image Name      |
++------------------+-----------------+--------+----------+-----------------+
+| 9da56148-2cd1-4f | dc1_demo1_proxy | ACTIVE |          | proxy-squid-img |
+| bd-80ac-         |                 |        |          |                 |
+| fcaf18a93737     |                 |        |          |                 |
+| ec5668e2-ec76-43 | dc1_demo1_http  | ACTIVE |          | http-apache-img |
+| d7-a7a5-54b6c649 |                 |        |          |                 |
+| 762e             |                 |        |          |                 |
+| eb7aabc7-cb65-47 | dc1_demo1_l4fw  | ACTIVE |          | l4fw-socat-img  |
+| bd-a0e6-8b4c1b86 |                 |        |          |                 |
+| ac70             |                 |        |          |                 |
++------------------+-----------------+--------+----------+-----------------+
+
+# use the docker command to see what is deployed
+docker ps
+
+# output:
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS                     NAMES
+e83b8e47c15b        proxy-squid-img     "/bin/sh"           About a minute ago   Up About a minute   0.0.0.0:32770->3128/tcp   mn.dc1_demo1_proxy
+01221a92757d        l4fw-socat-img      "/bin/sh"           About a minute ago   Up About a minute   0.0.0.0:32769->8899/tcp   mn.dc1_demo1_l4fw
+2892121c2516        http-apache-img     "/bin/sh"           About a minute ago   Up About a minute   0.0.0.0:32768->80/tcp     mn.dc1_demo1_http
+
+```
+
+To test the running service, we want to do a HTTP `GET` request to the proxy VNF that is then forwarded to the Apache VNF by the TCP forwarding VNF.
+
+To do this, we need the management IP of the proxy VNF which can be found using the dashboard: Use the `Emulator Dashboard` icon on the Desktop for this. The IP of the proxy container should be: `172.17.0.4` and can be used for a CURL request to validate that our service works:
+
+```
+curl -x http://172.17.0.4:3128 20.0.0.2:8899/example.html
+
+# output:
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HelloWorld!</title>
+</head>
+<body>
+<h1>This is a great service served by the emulator!</h1>
+</body>
+
+```
+
+Great! This webpage was served by our Apache VNF through the proxy VNF and forwarding VNF.
 
 Now you can stop the emulator with:
 ```
 containernet> exit
 ```
+
+## That's it!
+
+
+
+

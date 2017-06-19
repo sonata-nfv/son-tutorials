@@ -137,6 +137,11 @@ Vagrant.configure(2) do |config|
      sh vagrant/scripts/install_son-emu.sh
   SHELL
 
+  config.vm.provision "son-cli_installation", type: "shell", privileged: false, inline: <<-SHELL
+     cd /home/vagrant
+     sh vagrant/scripts/install_son-cli.sh
+  SHELL
+
   config.vm.provision "osm_installation", type: "shell", privileged: false, inline: <<-SHELL
      cd /home/vagrant
      sh vagrant/scripts/install_osm.sh
