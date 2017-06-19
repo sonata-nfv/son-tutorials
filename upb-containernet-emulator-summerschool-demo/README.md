@@ -476,7 +476,7 @@ containernet> exit
 
 ## son-emu and its OpenStack-like interfaces
 
-Out emulation provides an emulated NFVI environment which might be controlled by arbitrary MANO solutions. To simlify the integration of other management and orchestration solutions, we offer a OpenStack-like interface to the emulated PoPs. This interfce implements the REST endpoints usually provided by an OpenStack installation.
+Out emulation provides an emulated NFVI environment which might be controlled by arbitrary MANO solutions. To simplify the integration of other management and orchestration solutions, we offer a OpenStack-like interface to the emulated PoPs. This interface implements the REST endpoints usually provided by an OpenStack installation.
 
 Note: The implemented interfaces are _not feature complete_ and their code is still _experimental_.
 
@@ -509,7 +509,7 @@ openstack --version
 
 to validate that we are really using the default OpenStack command line interfaces.
 
-Then we can view a pre-ddefined OpenStack HEAT template which defines a service with three VNFs:
+Then we can view a pre-defined OpenStack HEAT template which defines a service with three VNFs:
 
 ```
 mousepad demo/example_heat_service.yml
@@ -553,11 +553,19 @@ openstack stack list
 openstack server list
 
 #output:
-+--------------------------------------+------------+-----------------+----------------------------+--------------+
-| ID                                   | Stack Name | Stack Status    | Creation Time              | Updated Time |
-+--------------------------------------+------------+-----------------+----------------------------+--------------+
-| ab2c0eb2-2f32-45cf-8900-7ce6172478f9 | demo1      | CREATE_COMPLETE | 2017-06-19 14:01:47.571006 | None         |
-+--------------------------------------+------------+-----------------+----------------------------+--------------+
++------------------+-----------------+--------+----------+-----------------+
+| ID               | Name            | Status | Networks | Image Name      |
++------------------+-----------------+--------+----------+-----------------+
+| 9da56148-2cd1-4f | dc1_demo1_proxy | ACTIVE |          | proxy-squid-img |
+| bd-80ac-         |                 |        |          |                 |
+| fcaf18a93737     |                 |        |          |                 |
+| ec5668e2-ec76-43 | dc1_demo1_http  | ACTIVE |          | http-apache-img |
+| d7-a7a5-54b6c649 |                 |        |          |                 |
+| 762e             |                 |        |          |                 |
+| eb7aabc7-cb65-47 | dc1_demo1_l4fw  | ACTIVE |          | l4fw-socat-img  |
+| bd-a0e6-8b4c1b86 |                 |        |          |                 |
+| ac70             |                 |        |          |                 |
++------------------+-----------------+--------+----------+-----------------+
 
 # use the docker command to see what is deployed
 docker ps
