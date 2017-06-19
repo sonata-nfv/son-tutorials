@@ -81,8 +81,8 @@ resources:
   demo:net:subnet:
     type: OS::Neutron::Subnet
     properties:
-      cidr: 12.0.0.0/24
-      gateway_ip: 12.0.0.254
+      cidr: 20.0.0.0/24
+      gateway_ip: 20.0.0.254
       name: demo:net:subnet
       network:
         get_resource: demo:net
