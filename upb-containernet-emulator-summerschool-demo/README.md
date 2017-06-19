@@ -29,7 +29,7 @@ The MeDICINE emulation platform was created to support network service developer
 
 * S. v. Rossem, W. Tavernier, M. Peuster, D. Colle, M. Pickavet and P. Demeester: **[Monitoring and debugging using an SDK for NFV-powered telecom applications](https://biblio.ugent.be/publication/8521281/file/8521284.pdf)**. IEEE Conference on Network Function Virtualization and Software Defined Networks (NFV-SDN), Palo Alto, CA, USA, Demo Session. (2016)
 
-* M. Peuster, S. Dräxler, H. Razzaghi, S. v. Rossem, W. Tavernier and H. Karl: **A Flexible Multi-PoP Infrastructure Emulator for Carrier-grade MANO Systems**. In IEEE 3rd Conference on Network Softwarization (NetSoft) Demo Track . (2017) 
+* M. Peuster, S. Dräxler, H. Razzaghi, S. v. Rossem, W. Tavernier and H. Karl: **A Flexible Multi-PoP Infrastructure Emulator for Carrier-grade MANO Systems**. In IEEE 3rd Conference on Network Softwarization (NetSoft) Demo Track. (2017) 
 
 ### YouTube Demos
 
@@ -43,7 +43,7 @@ There are a couple of YouTube videos available that demonstrate the emulator in 
 
 There is a _ready-to-use_ demo VM that can be downloaded and used to perform this demo:
 
-* [SONATA Emulator Demo VM 2017 Download](http://www.peuster.de/SONATA/sonata-emulator-demo-vm-2017.ova) (~4.1GB)
+* [SONATA Emulator Demo VM 2017 Download](http://www.peuster.de/SONATA/sonata-emulator-demo-vm-2017.ova) (~4-5GB)
 
 Import and start the downloaded VM using VirtualBox (see also: [Import VM to VirtualBox](https://docs.oracle.com/cd/E26217_01/E26796/html/qs-import-vm.html)).
 
