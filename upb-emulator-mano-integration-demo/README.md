@@ -7,7 +7,7 @@ Manuel Peuster<br>
 Paderborn University<br>
 [Website](https://cs.uni-paderborn.de/cn/person/?tx_upbperson_personsite%5BpersonId%5D=13271&tx_upbperson_personsite%5Bcontroller%5D=Person&cHash=bafec92c0ada0bdfe8af6e2ed99efb4e) | [GitHub](https://github.com/mpeuster)
 
-##Background
+## Background
 
 ### Demo Presentation
 
