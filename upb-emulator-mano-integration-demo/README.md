@@ -43,7 +43,9 @@ There are a couple of YouTube videos available that demonstrate the emulator in 
 * SONATA Y1 review demo: https://youtu.be/ZANz97pV9ao
 * OSM integration tech-preview: https://youtu.be/8X2lpAbeLvM
 
-## Demonstration VM
+## Demo
+
+### Demonstration VM
 
 There is a _ready-to-use_ demo VM that can be downloaded and used to perform this demo:
 
@@ -56,7 +58,7 @@ Username: sonata
 Password: sonata
 ```
 
-## Demo
+### Storyboard
 
 TODO link to each flavor of the demo (`doc/`) ...
 
