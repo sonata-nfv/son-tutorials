@@ -17,6 +17,9 @@ docker build -t $target_repo/sonata-iperf3-vnf -f sonata-iperf3-vnf-docker/Docke
 # snort IDS vnf
 docker build -t $target_repo/sonata-snort-ids-vnf -f sonata-snort-ids-vnf-docker/Dockerfile sonata-snort-ids-vnf-docker
 
+docker build -t l4fw-socat-img -f p2-l4fw-socat/Dockerfile p2-l4fw-socat
+docker build -t http-apache-img -f p2-apache/Dockerfile p2-apache
+docker build -t proxy-squid-img -f p2-squid/Dockerfile p2-squid
 # OVS vnf
 #docker build -t $target_repo/sonata-ovs1-vnf -f sonata-ovs1-vnf-docker/Dockerfile sonata-ovs1-vnf-docker
 # OVS userspace vnf
