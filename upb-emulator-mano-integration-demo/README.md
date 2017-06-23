@@ -62,4 +62,7 @@ Password: sonata
 
 TODO link to each flavor of the demo (`doc/`) ...
 
-
+* (A) HEAT-based service deployment
+* (B) OpenSource MANO as MANO
+* (C) SONATA service package w. emulator GK
+* (D) [SONATA service platform as MANO](../blob/master/upb-emulator-mano-integration-demo/doc/story_sonata_sp.md)
