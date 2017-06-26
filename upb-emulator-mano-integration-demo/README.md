@@ -60,7 +60,7 @@ Password: sonata
 
 ### Storyboard
 
-TODO link to each flavor of the demo (`doc/`) ...
+There are four different flavors and stories of this demo, pick one of them:
 
 * (A) [HEAT-based service deployment](../upb-emulator-mano-integration-demo/doc/story_heat.md)
 * (B) [OpenSource MANO as MANO](../upb-emulator-mano-integration-demo/doc/story_osm.md)
