@@ -3,6 +3,7 @@ from mininet.log import setLogLevel
 from emuvim.dcemulator.net import DCNetwork
 from emuvim.api.openstack.openstack_api_endpoint import OpenstackApiEndpoint
 from emuvim.api.rest.rest_api_endpoint import RestApiEndpoint
+from emuvim.api.sonata import SonataDummyGatekeeperEndpoint
 
 
 logging.basicConfig(level=logging.INFO)
@@ -46,6 +47,7 @@ class DemoTopology(DCNetwork):
         self._create_links()
         self._create_rest_api_endpoints()
         self._create_openstack_api_endpoints()
+        self._create_dummygk_api_endpoints()
 
     def _create_switches(self):
         self.sw1 = self.addSwitch("s1")
@@ -101,6 +103,15 @@ class DemoTopology(DCNetwork):
         apiR.connectDCNetwork(self)
         # start
         apiR.start()
+
+    def _create_dummygk_api_endpoints(self):
+        # create
+        apiSDK = SonataDummyGatekeeperEndpoint("0.0.0.0", 5000)
+        # connect PoPs
+        apiSDK.connectDatacenter(self.pop1)
+        apiSDK.connectDatacenter(self.pop2)
+        # start
+        apiSDK.start()
 
 
 def main():
