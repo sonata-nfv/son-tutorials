@@ -1,0 +1,60 @@
+---
+descriptor_version: "vnfd-schema-01"
+vendor: "eu.sonata-nfv"
+name: "socat-vnf"
+version: "0.1"
+author: "Manuel Peuster, Paderborn University <manuel.peuster@upb.de>"
+description: "Socat L4 forwarder VNF"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "1"
+    vm_image: "eu.sonata-nfv_socat-vnf_0.1_1"
+    vm_image_format: "docker"
+    resource_requirements:
+      cpu:
+        vcpus: 1
+      memory:
+        size: 1
+        size_unit: "GB"
+      storage:
+        size: 1
+        size_unit: "GB"
+    connection_points:
+      - id: "vdu01:eth0"
+        interface: "ipv4"
+        type: "internal"
+      - id: "vdu01:eth1"
+        interface: "ipv4"
+        type: "internal"
+
+##
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "mgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:eth0"
+      - "mgmt"
+  - id: "data"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:eth1"
+      - "vnf:data"
+
+##
+## The VNF connection points to the 
+## outside world.
+##
+connection_points:
+  - id: "vnf:mgmt"
+    interface: "ipv4"
+    type: "management"
+  - id: "vnf:data"
+    interface: "ipv4"
+    type: "internal"
+
+
