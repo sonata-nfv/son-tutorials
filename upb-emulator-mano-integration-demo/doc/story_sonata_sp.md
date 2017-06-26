@@ -1,4 +1,4 @@
-#  Story: SONATA service platform ontop of emulation
+#  Story: Deploy service using SONATA SP
 
 ## Environment setup
 

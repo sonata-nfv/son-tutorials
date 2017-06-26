@@ -1,4 +1,4 @@
-# Story 1
+# Story: Deploy service using OSM
 
 ## Demo
 
