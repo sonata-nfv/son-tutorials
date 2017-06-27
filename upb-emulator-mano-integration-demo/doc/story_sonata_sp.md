@@ -1,5 +1,16 @@
 #  Story: Deploy service using SONATA SP
 
+## View service descriptors
+```sh
+# NSD
+mousepad TODO
+
+# VNFD(s)
+mousepad TODO
+mousepad TODO
+mousepad TODO
+```
+
 ## Environment setup
 
 ```
