@@ -1,5 +1,19 @@
 # Story: Deploy service using SONATA emulator's dummy gatekeeper
 
+## View service descriptors
+```sh
+# project structure
+tree demo/sonata-dk/sonata-demo-service/
+
+# NSD
+mousepad demo/sonata-dk/sonata-demo-service/sources/nsd/demo-nsd.yml
+
+# VNFD(s)
+mousepad demo/sonata-dk/sonata-demo-service/sources/vnf/apache-vnf/emulator-demo-http-apache-vnfd.yml
+mousepad demo/sonata-dk/sonata-demo-service/sources/vnf/socat-vnf/emulator-demo-l4fw-socat-vnfd.yml
+mousepad cat demo/sonata-dk/sonata-demo-service/sources/vnf/squid-vnf/emulator-demo-proxy-squid-vnfd.yml
+```
+
 ## Environment setup
 
 ```sh
