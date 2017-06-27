@@ -2,15 +2,17 @@
 
 ## Environment setup
 
-### IA only deployment
 ```
-# start databases 
-~/son-tutorials/upb-emulator-mano-integration-demo/sonata-sp/deploy_environment.sh
+# start SONATA SP helper components (databases etc.) 
+demo/sonata-sp/deploy_environment.sh
 
+# start emulator
+sudo python demo/demo_topology.py
 ```
 
-### Full SP deployment
+## Demo soryboard
 
-## Demo storyboard
-
-TODO
+```sh
+# deploy service using infrastructure abstraction module
+demo/sonata-sp/sonata_deploy_service.sh
+```

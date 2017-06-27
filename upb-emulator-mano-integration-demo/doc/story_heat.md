@@ -3,15 +3,15 @@
 ## Evironment setup
 
 ```sh
-# setup openstack clients
-source openstackrc.sh
+# start emulator
+sudo python demo/demo_topology.py
 ```
 
 ## Demo storyboard
 
 ```sh
-# deploy 
-openstack stack create -f yaml -t heat/demo-service-hot.yml demo1
+# deploy stack
+openstack stack create -f yaml -t demo/heat/demo-service-hot.yml stack1
 
 # show
 openstack image list
@@ -19,7 +19,7 @@ openstack stack list
 openstack server list
 
 # remove
-openstack stack delete demo1
+openstack stack delete stack1
 # press y + <enter> to confirm
 ```
 

@@ -4,16 +4,14 @@
 
 ```sh
 # start emulator
-sudo python ~/son-tutorials/upb-emulator-mano-integration-demo/demo_topology.py
+sudo python demo/demo_topology.py
 ```
 
 ## Demo storyboard
 
 ```sh
-cd ~/son-tutorials/upb-emulator-mano-integration-demo/sonata-dk
-
 # package service
-son-package --project sonata-demo-service -n sonata-demo-service
+son-package --project demo/sonata-dk/sonata-demo-service -n sonata-demo-service
 
 # on-board service
 son-access push --upload sonata-demo-service.son
