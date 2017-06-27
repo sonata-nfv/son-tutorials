@@ -8,7 +8,7 @@
 import docker
 import subprocess
 
-PROXY_CONTAINER_NAME = ["/mn.proxy"]  # TODO add for other demos (see MSD)
+PROXY_CONTAINER_NAME = ["/mn.proxy", "/mn.t1.vnf2.a", "/mn.squid.1", "/mn.vnf_proxy"]
 
 
 def main():

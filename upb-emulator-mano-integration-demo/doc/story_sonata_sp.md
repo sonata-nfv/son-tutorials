@@ -49,6 +49,9 @@ sudo son-monitor init stop
 # full downlaod of video file
 curl -x http://172.17.0.6:3128 20.0.0.2:8899/bunny.mp4 > /dev/null
 
-# or open Firefox and browe to 20.0.0.2:8899 to visit "CatTube" and watch the video
+# open browser and access the service through the proxy VNF
+demo/scripts/open_service_with_proxy.py &
+
+# or click "Chromium Web Browser w. Proxy" on Desktop to visit "CatTube" and watch the video
 ```
 
