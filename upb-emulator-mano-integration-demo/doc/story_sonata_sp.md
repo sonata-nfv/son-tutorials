@@ -3,12 +3,12 @@
 ## View service descriptors
 ```sh
 # NSD
-mousepad TODO
+mousepad son-sp-infrabstract/vim-adaptor/adaptor/YAML/emulator-demo-nsd.yml
 
 # VNFD(s)
-mousepad TODO
-mousepad TODO
-mousepad TODO
+mousepad son-sp-infrabstract/vim-adaptor/adaptor/YAML/emulator-demo-http-apache-vnfd.yml
+mousepad son-sp-infrabstract/vim-adaptor/adaptor/YAML/emulator-demo-l4fw-socat-vnfd.yml
+mousepad son-sp-infrabstract/vim-adaptor/adaptor/YAML/emulator-demo-proxy-squid-vnfd.yml
 ```
 
 ## Environment setup
