@@ -23,7 +23,32 @@ sudo python demo/demo_topology.py
 
 ## Demo soryboard
 
+### Deploy service
+
 ```sh
 # deploy service using infrastructure abstraction module
 demo/sonata-sp/sonata_deploy_service.sh
 ```
+
+### Start Monitoring
+
+```sh
+# start son-monitor
+sudo son-monitor init
+# monitor service
+sudo son-monitor msd -f demo/sonata-sp/msd-sp.yml
+# (stop monitoring)
+sudo son-monitor init stop
+
+# open Chrome browser and use the bookmarks to navigate to Grafana dashboard
+```
+
+### Use the service
+
+```sh
+# full downlaod of video file
+curl -x http://172.17.0.6:3128 20.0.0.2:8899/bunny.mp4 > /dev/null
+
+# or open Firefox and browe to 20.0.0.2:8899 to visit "CatTube" and watch the video
+```
+
