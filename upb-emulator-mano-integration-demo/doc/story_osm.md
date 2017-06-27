@@ -4,10 +4,13 @@
 
 ```sh
 # start emulator
-sudo python son-emu/src/emuvim/examples/demo_emulator_mano_integration.py
+sudo python demo/demo_topology.py
 ```
 
 ```sh
+# cleanup old DB entries (in ~/osm/RO)
+sudo scripts/install-openmano.sh -u root -p root --develop --noclone --forcedb --no-install-packages
+
 # start OSM
 service-openmano start
 ```
@@ -20,20 +23,20 @@ service-openmano start
 openmano tenant-create osm
 export OPENMANO_TENANT=osm
 # create datacenter(s)
-openmano datacenter-create openstack-site http://127.0.0.1:6001/v2.0 --type openstack --description "PoP1"
-openmano datacenter-create openstack-site2 http://127.0.0.1:6002/v2.0 --type openstack --description "PoP2"
+openmano datacenter-create pop1 http://127.0.0.1:6003/v2.0 --type openstack --description "osm-pop1"
+openmano datacenter-create pop2 http://127.0.0.1:6004/v2.0 --type openstack --description "osm-pop2"
 # attach datacenter(s)
-openmano datacenter-attach openstack-site --user=username --password=password --vim-tenant-name=tenantName
-openmano datacenter-attach openstack-site2 --user=username --password=password --vim-tenant-name=tenantName
+openmano datacenter-attach pop1 --user=username --password=password --vim-tenant-name=tenantName
+openmano datacenter-attach pop2 --user=username --password=password --vim-tenant-name=tenantName
 # check
 openmano datacenter-list
 ```
 
 ### Create VNF(s)
 ```sh
-openmano vnf-create ~/vagrant/osm/vnf-http-apache-osm.yml
-openmano vnf-create ~/vagrant/osm/vnf-proxy-squid-osm.yml
-openmano vnf-create ~/vagrant/osm/vnf-l4fw-socat-osm.yml
+openmano vnf-create ~/demo/osm/vnf-http-apache-osm.yml
+openmano vnf-create ~/demo/osm/vnf-proxy-squid-osm.yml
+openmano vnf-create ~/demo/osm/vnf-l4fw-socat-osm.yml
 
 openmano vnf-list -v
 ```
@@ -41,11 +44,11 @@ openmano vnf-list -v
 ### Create & deploy scenario
 ```sh
 # upload
-openmano scenario-create ~/vagrant/osm/scenario-demo.yml
+openmano scenario-create ~/demo/osm/scenario-demo.yml
 # create instance on first PoP
-openmano instance-scenario-create --scenario demo --name inst1 --datacenter openstack-site
+openmano instance-scenario-create --scenario demo --name inst1 --datacenter pop1
 # create second instance on second PoP
-openmano instance-scenario-create --scenario demo --name inst2 --datacenter openstack-site2
+openmano instance-scenario-create --scenario demo --name inst2 --datacenter pop2
 
 openmano instance-scenario-list -v
 ```
