@@ -31,8 +31,9 @@ vnfd:vnfd-catalog:
 
             # Image including the full path
             image: '/home/sonata/demo/osm/image-l4fw.qcow2'
+            #image: cirros034
 
-            bridge-interface:
+            external-interface:
             # Specify the external interfaces
             # There can be multiple interfaces defined
             -   name: l4fw0
@@ -40,7 +41,7 @@ vnfd:vnfd-catalog:
                     type: VIRTIO
                     bandwidth: '0'
                     vpci: '0000:00:0a.0'
-                vnfd-connection-point-ref: http0
+                vnfd-connection-point-ref: l4fw0
 
         connection-point:
             -   name: l4fw0

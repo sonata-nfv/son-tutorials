@@ -71,10 +71,10 @@ class DemoTopology(DCNetwork):
 
     def _create_openstack_api_endpoints(self):
         # create
-        api1 = OpenstackApiEndpoint("0.0.0.0", 6001)
-        api2 = OpenstackApiEndpoint("0.0.0.0", 6002)
-        api3 = OpenstackApiEndpoint("0.0.0.0", 6003)
-        api4 = OpenstackApiEndpoint("0.0.0.0", 6004)
+        api1 = OpenstackApiEndpoint("172.0.0.101", 6001)
+        api2 = OpenstackApiEndpoint("172.0.0.101", 6002)
+        api3 = OpenstackApiEndpoint("172.0.0.101", 6003)
+        api4 = OpenstackApiEndpoint("172.0.0.101", 6004)
         # connect PoPs
         api1.connect_datacenter(self.pop1)
         api2.connect_datacenter(self.pop2)

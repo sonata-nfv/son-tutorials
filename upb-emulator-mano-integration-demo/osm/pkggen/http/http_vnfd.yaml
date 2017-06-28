@@ -31,8 +31,9 @@ vnfd:vnfd-catalog:
 
             # Image including the full path
             image: '/home/sonata/demo/osm/image-http.qcow2'
+            #image: cirros034
 
-            bridge-interface:
+            external-interface:
             # Specify the external interfaces
             # There can be multiple interfaces defined
             -   name: http0
