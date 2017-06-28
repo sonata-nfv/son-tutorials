@@ -1,0 +1,61 @@
+nsd:nsd-catalog:
+    nsd:
+    -   id: demo
+        name: demo
+        short-name: demo
+        description: Demo nentwork scenario with three VNFs.
+        vendor: UPB
+        version: '1.0'
+
+        # Place the logo as png in icons directory and provide the name here
+        # logo: <update, optional>
+
+        # Specify the VNFDs that are part of this NSD
+        constituent-vnfd:
+            # The member-vnf-index needs to be unique, starting from 1
+            # vnfd-id-ref is the id of the VNFD
+            # Multiple constituent VNFDs can be specified
+        -   member-vnf-index: 1
+            vnfd-id-ref: http
+        -   member-vnf-index: 2
+            vnfd-id-ref: l4fw
+        -   member-vnf-index: 3
+            vnfd-id-ref: proxy
+
+        #vld:
+        # Networks for the VNFs
+        #    -   id: demo_nsd_vld0
+        #        name: management
+        #        short-name: management
+        #        type: ELAN
+        #        mgmt-network: 'true'
+        #        # vim-network-name: <update>
+        #        # provider-network:
+        #        #     overlay-type: VLAN
+        #        #     segmentation_id: <update>
+        #        vnfd-connection-point-ref:
+        #        # Specify the constituent VNFs
+        #        # member-vnf-index-ref - entry from constituent vnf
+        #        # vnfd-id-ref - VNFD id
+        #        # vnfd-connection-point-ref - connection point name in the VNFD
+        #        -   nsd:member-vnf-index-ref: 1
+        #            nsd:vnfd-id-ref: http_vnfd
+        #            # NOTE: Validate the entry below
+        #            nsd:vnfd-connection-point-ref: eth0
+        #    -   id: http_nsd_vld1
+        #        name: http_nsd_vld1
+        #        short-name: http_nsd_vld1
+        #        type: ELAN
+        #        # vim-network-name: <update>
+        #        # provider-network:
+        #        #     overlay-type: VLAN
+        #        #     segmentation_id: <update>
+        #        vnfd-connection-point-ref:
+        #        # Specify the constituent VNFs
+        #        # member-vnf-index-ref - entry from constituent vnf
+        #        # vnfd-id-ref - VNFD id
+        #        # vnfd-connection-point-ref - connection point name in the VNFD
+        #        -   nsd:member-vnf-index-ref: 1
+        #            nsd:vnfd-id-ref: http_vnfd
+        #            # NOTE: Validate the entry below
+        #            nsd:vnfd-connection-point-ref: eth1
