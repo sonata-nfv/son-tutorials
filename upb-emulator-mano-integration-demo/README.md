@@ -41,7 +41,7 @@ The MeDICINE emulation platform was created to support network service developer
 
 The following demo shows the OSM part of this dem (falvor E):
 
-* [SONATA Emulator OSM integration demo (IEEE NetSof'17)](TODO)
+* [SONATA Emulator OSM integration demo (IEEE NetSoft 2017)](TODO)
 
 There are a couple more videos available that demonstrate the emulator in different usage scenarios (some videos show older software versions):
 
@@ -55,7 +55,7 @@ There are a couple more videos available that demonstrate the emulator in differ
 
 There is a _ready-to-use_ demo VM that can be downloaded and used to perform this demo:
 
-* [SONATA Emulator Integration Demo VM 2017 Download](http://www.peuster.de/SONATA/todo) (~20GB since it ships with OSM, and SONATA service platform pre-installed) Will be available from 3017-07-03.
+* [SONATA Emulator Integration Demo VM 2017 Download](http://www.peuster.de/SONATA/todo) (~20GB since it ships with OSM, and SONATA service platform pre-installed)
 
 Import and start the downloaded VM using VirtualBox (see also: [Import VM to VirtualBox](https://docs.oracle.com/cd/E26217_01/E26796/html/qs-import-vm.html)).
 
@@ -68,7 +68,7 @@ Password: sonata
 
 * 4 CPU cores
 * 8 GB RAM
-* > 20GB free disk space
+* 20GB free disk space
 * `vboxnet0` @ `172.0.0.0/24` installed
 
 ### Storyboard
