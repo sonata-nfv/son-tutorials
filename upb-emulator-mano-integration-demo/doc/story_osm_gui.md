@@ -73,7 +73,7 @@ You can re-pack the descriptors with `./pack.sh` in the `pkggen` folder.
 # start son-monitor
 sudo son-monitor init
 # monitor service
-sudo son-monitor msd -f demo/osm/msd-osm.yml
+sudo son-monitor msd -f demo/osm/msd-osm-gui.yml
 # (stop monitoring)
 sudo son-monitor init stop
 

@@ -34,8 +34,8 @@ service-openmano start
 openmano tenant-create osm
 export OPENMANO_TENANT=osm
 # create datacenter(s)
-openmano datacenter-create pop1 http://127.0.0.1:6003/v2.0 --type openstack --description "osm-pop1"
-openmano datacenter-create pop2 http://127.0.0.1:6004/v2.0 --type openstack --description "osm-pop2"
+openmano datacenter-create pop1 http://172.0.0.101:6003/v2.0 --type openstack --description "osm-pop1"
+openmano datacenter-create pop2 http://172.0.0.101:6004/v2.0 --type openstack --description "osm-pop2"
 # attach datacenter(s)
 openmano datacenter-attach pop1 --user=username --password=password --vim-tenant-name=tenantName
 openmano datacenter-attach pop2 --user=username --password=password --vim-tenant-name=tenantName

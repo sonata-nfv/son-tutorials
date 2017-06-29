@@ -30,13 +30,13 @@ vnf_metrics:
         direction: "tx"
       - vnf: "l4fw:l4fw-eth0"
         direction: "tx"
-      - vnf: "proxy:squid-vnf-0"
+      - vnf: "proxy:proxy-eth0"
         direction: "tx"
       - vnf: "http:http-eth0"
         direction: "rx"
       - vnf: "l4fw:l4fw-eth0"
         direction: "rx"
-      - vnf: "proxy:squid-vnf-0"
+      - vnf: "proxy:proxy-eth0"
         direction: "rx"
 
 
