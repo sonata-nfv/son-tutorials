@@ -1,0 +1,2 @@
+374d1a6bbc694b82b272260a3a553308  http_vnfd.yaml
+9d5abdd652157909a0ac00ed796dcbb0  icons/sonata.png

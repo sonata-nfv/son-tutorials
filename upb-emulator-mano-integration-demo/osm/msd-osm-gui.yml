@@ -26,17 +26,17 @@ vnf_metrics:
   - metric_type: "packet_rate"
     description: "packet rate (packets/sec)"
     vnf_ids:
-      - vnf: "http:http-net-0"
+      - vnf: "http:http-eth0"
         direction: "tx"
-      - vnf: "l4fw:l4fw-net-0"
+      - vnf: "l4fw:l4fw-eth0"
         direction: "tx"
-      - vnf: "proxy:prox-net-0"
+      - vnf: "proxy:proxy-eth0"
         direction: "tx"
-      - vnf: "http:http-net-0"
+      - vnf: "http:http-eth0"
         direction: "rx"
-      - vnf: "l4fw:l4fw-net-0"
+      - vnf: "l4fw:l4fw-eth0"
         direction: "rx"
-      - vnf: "proxy:prox-net-0"
+      - vnf: "proxy:proxy-eth0"
         direction: "rx"
 
 

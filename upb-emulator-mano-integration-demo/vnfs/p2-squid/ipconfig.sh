@@ -3,7 +3,7 @@
 sleep 1
 
 # IP setup (we need to try different names in different scenarios, but never eth0 which is the docker if)
-declare -a PORTS=("prox-net-0" "proxy0-0" "proxy0-1")
+declare -a PORTS=("prox-net-0" "proxy0-0" "proxy0-1" "proxy-eth0" "squid-vnf-0" "vnf-data")
 
 for p in "${PORTS[@]}"
 do

@@ -1,50 +1,16 @@
 # son-tutorials
 In this repository, dissemination material for the SONATA project is made available.
 
-### SDK Demo Virtual Machine
-A VM can be automatically generated that has all SONATA SDK features installed, 
-using [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/).
+## Demos
 
-The files can be found in the folder `demo_vm_SDK`.
-
-The VM is built by executing: `vagrant up`
-
-The VM exposes several ports to the host machine to access several tools of the SONATA SDK:
-* 5000 # dummy gatekeeper
-* 5001 # REST API
-* 8081 # cAdvisor
-* 9090 # Prometheus
-* 9091 # Prometheus push gateway 
-* 3000 # Grafana
-* 8080 # Editor, browse to: http://localhost:8080/index.html
-* The emulator has a dashboard at: http://localhost:5001/dashboard/index.html
-* SSH login: user: `sonata` password: `sonata` at port 2222
-  `ssh -X -p 2222 sonata@localhost`
-
-To use all features of son-emu and son-cli, the X server settings must be taken into account and X11 should be enabled when opening an SSH terminal to the VM.
-Further info about this is documented [here](https://github.com/sonata-nfv/son-emu/wiki/VNF-configuration-terminal)
+* [SONATA SDK demo/tutorial](https://github.com/sonata-nfv/son-tutorials/tree/master/demo_vm_SDK) (Softnetworking 2017, Venice, Italy)
+* [Containernet and SONATA Emulator demo/tutorial](https://github.com/sonata-nfv/son-tutorials/tree/master/upb-containernet-emulator-summerschool-demo) (Summerschool 2017, Karlstad, Sweden)
+* [SONATA Emulator to MANO integration demo](https://github.com/sonata-nfv/son-tutorials/tree/master/upb-emulator-mano-integration-demo) (IEEE NetSoft 2017, Bologna, Italy)
 
 
-#### Demo VM example usage
+## Contributors (see individual demos for contact details)
 
-After startup, SSH into the VM as sonata user.
-The following SONATA repositories are installed in /home/sonata :
-* [son-emu](https://github.com/sonata-nfv/son-emu)
-* [son-editor](https://github.com/sonata-nfv/son-editor-backend)
-* [son-cli](https://github.com/sonata-nfv/son-cli )
-* [son-examples](https://github.com/sonata-nfv/son-examples)
-
-The son-editor should be started at boot and available when browsing to: 
-http://localhost:8080/index.html
-
-A dedicated GitHub account was made for this SONATA demo to login into the editor:  
-user: sonatademo  
-password: s0natademo
-
-The son-emulator needs to be started up with a dedicated topology:
-```
-cd son-emu
-sudo python src/emuvim/examples/demo_topo_1pop.py
-```
-
-After this step, an NSD from the editor can be uploaded to the emulator and the [son-cli](https://github.com/sonata-nfv/son-cli) tools can be further used to manipulate the deployed service. Some deployment examples are described [here](https://github.com/sonata-nfv/son-emu/wiki).
+* Steven Van Rossem (https://github.com/stevenvanrossem)
+* Thomas Soenen (https://github.com/tsoenen)
+* Wouter Tavernier (https://github.com/wtaverni)
+* Manuel Peuster (https://github.com/mpeuster)

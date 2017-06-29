@@ -15,7 +15,7 @@ vnf:
     VNFC:
     -   name:        socat
         description: Socat TCP forwarder
-        VNFC image: /home/vagrant/vagrant/osm/image-l4fw.qcow2
+        VNFC image: /home/sonata/demo/osm/image-l4fw.qcow2
         vcpus: 1
         ram: 512
         disk: 20
