@@ -1,6 +1,6 @@
 # SONATA Emulator to MANO Integration Demo
 
-This demo shows how to use Containernet or its extension MeDICINE (son-emu) to setup custom emulated networks that use Docker containers as compute instances, e.g., to run virtualized network functions (VNFs).
+In this demo, we showcase an emulation platform that executes containerized network services in user-defined multi-PoP topologies. The platform does not only allow network service developers to locally test their services but also to connect real-world management and orchestration (MANO) solutions to the emulated PoPs. During our interactive demonstration we focus on the integration between the emulated infrastructure and state-of-the-art orchestration solutions like SONATA and OSM.
 
 **Contact information:**<br>
 Manuel Peuster<br>
@@ -13,7 +13,9 @@ Paderborn University<br>
 
 This demo was presented in IEEE NetSoft 2017 demo track, July 2017, Bologna, Italy:
 
-* M. Peuster, S. Dräxler, H. Razzaghi, S. v. Rossem, W. Tavernier and H. Karl: **A Flexible Multi-PoP Infrastructure Emulator for Carrier-grade MANO Systems**. In IEEE 3rd Conference on Network Softwarization (NetSoft) Demo Track. (2017) 
+* M. Peuster, S. Dräxler, H. Razzaghi, S. v. Rossem, W. Tavernier and H. Karl: [**A Flexible Multi-PoP Infrastructure Emulator for Carrier-grade MANO Systems**](https://cs.uni-paderborn.de/fileadmin/informatik/fg/cn/Publications_Conference_Paper/Publications_Conference_Paper_2017/peuster_netsoft_demo_paper_2017.pdf). In IEEE 3rd Conference on Network Softwarization (NetSoft) Demo Track. (2017)
+* Demo Poster [download](https://github.com/mpeuster/son-tutorials/raw/master/upb-emulator-mano-integration-demo/doc/poster-sonata-emulator-integration-demo.pdf)
+* Demo support slides [download](https://github.com/mpeuster/son-tutorials/raw/master/upb-emulator-mano-integration-demo/doc/sonata-emulator-integration-demo-slides.pptx) 
 
 ### Containernet
 
@@ -66,7 +68,7 @@ There are five different flavors and stories of this demo, pick one of them:
 * (B) [SONATA service package w. emulator GK](https://github.com/mpeuster/son-tutorials/blob/master/upb-emulator-mano-integration-demo/doc/stroy_sonata_dk.md)
 * (C) [SONATA service platform as MANO](../upb-emulator-mano-integration-demo/doc/story_sonata_sp.md)
 * (D) [OSM as MANO (RO only)](../upb-emulator-mano-integration-demo/doc/story_osm.md)
-* (E) [OSM as MANO (fully w. GUI)](../upb-emulator-mano-integration-demo/doc/story_osm_gui.md)
+* (E) [OSM as MANO (full)](../upb-emulator-mano-integration-demo/doc/story_osm_gui.md)
 
 ## Feedback
 
