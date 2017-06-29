@@ -37,9 +37,13 @@ The MeDICINE emulation platform was created to support network service developer
 
 * S. v. Rossem, W. Tavernier, M. Peuster, D. Colle, M. Pickavet and P. Demeester: **[Monitoring and debugging using an SDK for NFV-powered telecom applications](https://biblio.ugent.be/publication/8521281/file/8521284.pdf)**. IEEE Conference on Network Function Virtualization and Software Defined Networks (NFV-SDN), Palo Alto, CA, USA, Demo Session. (2016)
 
-### YouTube Video
+### YouTube Video(s)
 
-There are a couple of YouTube videos available that demonstrate the emulator in different usage scenarios (some videos show older software versions):
+The following demo shows the OSM part of this dem (falvor E):
+
+* [SONATA Emulator OSM integration demo (IEEE NetSof'17)](TODO)
+
+There are a couple more videos available that demonstrate the emulator in different usage scenarios (some videos show older software versions):
 
 * Snort VNF example: https://youtu.be/nj5hTk1LLe4
 * SONATA Y1 review demo: https://youtu.be/ZANz97pV9ao
@@ -51,7 +55,7 @@ There are a couple of YouTube videos available that demonstrate the emulator in 
 
 There is a _ready-to-use_ demo VM that can be downloaded and used to perform this demo:
 
-* [SONATA Emulator Integration Demo VM 2017 Download](http://www.peuster.de/SONATA/todo) (~20GB since it ships with OSM, and SONATA service platform pre-installed) Will be available from 3017-07-03. 
+* [SONATA Emulator Integration Demo VM 2017 Download](http://www.peuster.de/SONATA/todo) (~20GB since it ships with OSM, and SONATA service platform pre-installed) Will be available from 3017-07-03.
 
 Import and start the downloaded VM using VirtualBox (see also: [Import VM to VirtualBox](https://docs.oracle.com/cd/E26217_01/E26796/html/qs-import-vm.html)).
 
@@ -59,6 +63,13 @@ Import and start the downloaded VM using VirtualBox (see also: [Import VM to Vir
 Username: sonata
 Password: sonata
 ```
+
+#### VM Requirements
+
+* 4 CPU cores
+* 8 GB RAM
+* > 20GB free disk space
+* `vboxnet0` @ `172.0.0.0/24` installed
 
 ### Storyboard
 
