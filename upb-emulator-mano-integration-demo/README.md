@@ -63,7 +63,7 @@ Password: sonata
 There are five different flavors and stories of this demo, pick one of them:
 
 * (A) [HEAT-based service deployment](../upb-emulator-mano-integration-demo/doc/story_heat.md)
-* (B) [SONATA service package w. emulator GK](../upb-emulator-mano-integration-demo/doc/story_sonata_dk.md)
+* (B) [SONATA service package w. emulator GK](https://github.com/mpeuster/son-tutorials/blob/master/upb-emulator-mano-integration-demo/doc/stroy_sonata_dk.md)
 * (C) [SONATA service platform as MANO](../upb-emulator-mano-integration-demo/doc/story_sonata_sp.md)
 * (D) [OSM as MANO (RO only)](../upb-emulator-mano-integration-demo/doc/story_osm.md)
 * (E) [OSM as MANO (fully w. GUI)](../upb-emulator-mano-integration-demo/doc/story_osm_gui.md)

@@ -3,12 +3,12 @@
 ## View service descriptors
 ```sh
 # NSD
-mousepad demo/osm/scenario-demo.yml
+mousepad demo/osm/pkggen/demo_nsd/demo_nsd.yaml
 
 # VNFD(s)
-mousepad demo/osm/vnf-http-apache-osm.yml
-mousepad demo/osm/vnf-l4fw-socat-osm.yml
-mousepad demo/osm/vnf-proxy-squid-osm.yml
+mousepad demo/osm/pkggen/http/http_vnfd.yaml
+mousepad demo/osm/pkggen/l4fw/l4fw_vnfd.yaml
+mousepad demo/osm/pkggen/proxy/proxy_vnfd.yaml
 ```
 
 ## Environment setup
@@ -30,7 +30,7 @@ Logs:
 less /var/log/osm/openmano.log
 ```
 
-You have to set the route to be able to access the launchpad (do on host):
+You have to set the route to be able to access the OSM launchpad (do on host):
 ```
 demo/osm/set_route.sh
 ```
