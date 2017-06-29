@@ -25,21 +25,15 @@ lxc exec osmr2 -- bash
 lxc list
 ```
 
-Create and attach PoPs (do in RO container):
-```sh
-export OPENMANO_TENANT=osm
-openmano tenant-create osm
-openmano datacenter-create pop1 http://172.0.0.101:6003/v2.0 --type openstack --description "osm-pop1"
-openmano datacenter-create pop2 http://172.0.0.101:6004/v2.0 --type openstack --description "osm-pop2"
-openmano datacenter-attach pop1 --user=username --password=password --vim-tenant-name=tenantName
-openmano datacenter-attach pop2 --user=username --password=password --vim-tenant-name=tenantName
-```
-
 Logs:
 ```sh
 less /var/log/osm/openmano.log
 ```
 
+You have to set the route to be able to access the launchpad (do on host):
+```
+demo/osm/set_route.sh
+```
 
 ## Demo storyboard
 
@@ -98,5 +92,16 @@ demo/scripts/open_service_with_proxy.py &
 # or click "Chromium Web Browser w. Proxy" on Desktop to visit "CatTube" and watch the video
 ```
 
+## Setup helper
+Already performend, not needed for demo, just for documentation!
 
+Create and attach PoPs (do in RO container):
+```sh
+export OPENMANO_TENANT=osm
+openmano tenant-create osm
+openmano datacenter-create pop1 http://172.0.0.101:6003/v2.0 --type openstack --description "osm-pop1"
+openmano datacenter-create pop2 http://172.0.0.101:6004/v2.0 --type openstack --description "osm-pop2"
+openmano datacenter-attach pop1 --user=username --password=password --vim-tenant-name=tenantName
+openmano datacenter-attach pop2 --user=username --password=password --vim-tenant-name=tenantName
+```
 
