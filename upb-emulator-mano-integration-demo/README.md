@@ -41,7 +41,9 @@ The MeDICINE emulation platform was created to support network service developer
 
 The following demo shows the OSM part of this dem (falvor E):
 
-* [SONATA Emulator OSM integration demo (IEEE NetSoft 2017)](TODO)
+[![Alt text](https://img.youtube.com/vi/pFL9wDNOBho/0.jpg)](https://www.youtube.com/watch?v=pFL9wDNOBho)
+
+* [SONATA Emulator OSM integration demo (IEEE NetSoft 2017)](https://youtu.be/pFL9wDNOBho)
 
 There are a couple more videos available that demonstrate the emulator in different usage scenarios (some videos show older software versions):
 
