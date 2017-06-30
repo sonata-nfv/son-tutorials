@@ -55,7 +55,7 @@ There are a couple more videos available that demonstrate the emulator in differ
 
 There is a _ready-to-use_ demo VM that can be downloaded and used to perform this demo:
 
-* [SONATA Emulator Integration Demo VM 2017 Download](http://www.peuster.de/SONATA/todo) (~20GB since it ships with OSM, and SONATA service platform pre-installed)
+* [SONATA Emulator Integration Demo VM 2017 Download](https://www.amazon.de/clouddrive/share/tdR4RWvPRWPEfWRtwIlRCdWwoh8sQ4sq8MmaxS79lFr?ref_=cd_ph_share_link_copy) (~20GB since it ships with OSM, and SONATA service platform pre-installed)
 
 Import and start the downloaded VM using VirtualBox (see also: [Import VM to VirtualBox](https://docs.oracle.com/cd/E26217_01/E26796/html/qs-import-vm.html)).
 
