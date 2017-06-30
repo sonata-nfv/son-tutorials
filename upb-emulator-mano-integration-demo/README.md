@@ -39,7 +39,7 @@ The MeDICINE emulation platform was created to support network service developer
 
 ### YouTube Video(s)
 
-The following demo shows the OSM part of this dem (falvor E):
+The following YouTube video shows the OSM part of this demo (falvor E):
 
 [![Alt text](https://img.youtube.com/vi/pFL9wDNOBho/0.jpg)](https://www.youtube.com/watch?v=pFL9wDNOBho)
 
