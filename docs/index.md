@@ -41,32 +41,35 @@ Quick guide of use
 --> 
 ## Service Platform Installation
 
-<!--
-      4.4.2 4.2 Service Platform installation (Felipe)
-          4.4.2.1 4.2.1 Pre-requisites
-          4.4.2.2 4.2.2 Installation options
-          4.4.2.3 4.2.3 Installation instructions
-          4.4.2.4 4.2.4 Installation Videos (if any)
---> 
+### Pre-requisites 
+
+### Installation Options 
+
+### Step-by-step instructions 
+
+### Installation videos 
 
 ## SDK
 
-<!--
-      4.4.3 4.3 SDK (Luis)
-          4.4.3.1 4.3.1 Pre-requisites
-          4.4.3.2 4.3.2 Installation options
-          4.4.3.3 4.3.3 Installation instructions
-          4.4.3.4 4.3.4 Installation Videos (if any)
--->
-<!-- 
-      4.4.4 4.4 Emulator (Manuel)
-          4.4.4.1 4.4.1 Pre-requisites
-          4.4.4.2 4.4.2 Installation options
-          4.4.4.3 4.4.3 Installation instructions
-          4.4.4.4 4.4.4 Installation Videos (if any)
---> 
+### Pre-requisites
 
-# Usage guide
+### Installation options
+
+### Step-by-step instructions 
+
+### Installation Videos (if any)
+
+## Emulator 
+
+### Pre-requisites
+
+### Installation options
+
+### Step-by-step instructions 
+
+### Installation Videos (if any)
+
+# Administration and User guide
 
 <!--  
   4.5 5. Start using SONATA
@@ -87,9 +90,7 @@ Quick guide of use
   4.7 7. List of acronyms (All)
 --> 
 
-# Further information 
+# References
 
-<!--
-4.8 References
---> 
+
 
