@@ -15,7 +15,7 @@ Quick guide of use
 
 
 
-#Brief SONATA introduction
+# Brief SONATA introduction
 
 <!--
   4.2 2. What´s SONATA? (Peer)
