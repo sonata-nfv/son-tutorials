@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 title: Midnight theme
 description: Midnight is a theme for GitHub Pages.
 show_downloads: true
 google_analytics:
 theme: jekyll-theme-midnight
+=======
+theme: jekyll-theme-midnight
+>>>>>>> 32e0504cd06468c47053034df5c69de2b10ee943
