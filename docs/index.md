@@ -2,7 +2,7 @@
 layout: default
 ---
 
-
+![](http://sonata-nfv.eu/sites/sonata-nfv.eu/themes/zen/sonatina/images/sonata_logo.svg)
 
 <!-- Some introductory text about a paragraph or so and scope of this site -->  
 
