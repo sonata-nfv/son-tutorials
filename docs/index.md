@@ -26,20 +26,20 @@ Quick guide of use
           4.2.3.2 2.3.2 SDK
 -->
 
-##About the latest release v3.0 
+## About the latest release v3.0 
 
 <!--  4.3 3. Release information (Peer) --> 
 
-#Component Installation
+# Component Installation
 
-##Overview 
+## Overview 
 
 <!-- 
 
   4.4 4. Installation (Dario)
       4.4.1 4.1 General instructions and main steps
 --> 
-##Service Platform Installation
+## Service Platform Installation
 
 <!--
       4.4.2 4.2 Service Platform installation (Felipe)
@@ -48,7 +48,8 @@ Quick guide of use
           4.4.2.3 4.2.3 Installation instructions
           4.4.2.4 4.2.4 Installation Videos (if any)
 --> 
-##SDK
+
+## SDK
 
 <!--
       4.4.3 4.3 SDK (Luis)
@@ -65,7 +66,8 @@ Quick guide of use
           4.4.4.4 4.4.4 Installation Videos (if any)
 --> 
 
-#Usage guide
+# Usage guide
+
 <!--  
   4.5 5. Start using SONATA
       4.5.1 5.1 General workflow
@@ -75,9 +77,19 @@ Quick guide of use
           4.5.4.1 5.4.1 Login to SONATA Service Platform (Panos)
           4.5.4.2 5.4.2 Add a new VIM/WIM (Panos)
 --> 
-#Helpdesk
+
+# Helpdesk
+
 <!--
   4.6 6. Support (Peer)
        4.6.1 6.1 Process
        4.6.2 6.2 Contact details
   4.7 7. List of acronyms (All)
+--> 
+
+# Further information 
+
+<!--
+4.8 References
+--> 
+
