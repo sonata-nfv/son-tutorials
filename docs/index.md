@@ -77,11 +77,8 @@ These are the highest level modules. Further details on each one of them can be 
 The service development kit (SDK) consists of the following main modules:
 
 * ***CLI***: SONATA SDK's command line interface tools to aid in developing network services and VNFs
-
 * ***Editor***: SONATA's web-based editor for service and function descriptors
-
 * ***Emulator***: emulation platform to support network service developers in locally prototyping and testing complete network service chains in realistic end-to-end multi-PoP scenarios
-
 * ***Analyzer***: analysis framework to study a service's behaviour
 
 
