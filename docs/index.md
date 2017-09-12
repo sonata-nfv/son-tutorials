@@ -59,7 +59,7 @@ SONATA's Service Platform (SP) is where:
 
 To support all these features, we have designed a modular and very flexible architecture, shown below.
 
-![](http://sonata-nfv.github.io/son-tutorials/docs/figures/Implementation_architecture.png)
+![](http://sonata-nfv.github.io/son-tutorials/figures/Implementation_architecture.png)
 
 
 The main modules of the SP are the following:
@@ -77,7 +77,7 @@ These are the highest level modules. Further details on each one of them can be 
 
 The service development kit (SDK) consists of the following main modules:
 
-* ***CLI***: SONATA SDK's command line interface tools to aid in developing network services and VNFs
+* ***[https://github.com/sonata-nfv/son-cli CLI]***: SONATA SDK's command line interface tools to aid in developing network services and VNFs
 * ***Editor***: SONATA's web-based editor for service and function descriptors
 * ***Emulator***: emulation platform to support network service developers in locally prototyping and testing complete network service chains in realistic end-to-end multi-PoP scenarios
 * ***Analyzer***: analysis framework to study a service's behaviour
