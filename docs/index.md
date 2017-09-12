@@ -101,7 +101,7 @@ This is version 3.0 of the SONATA platform, the fifth release of the code. The m
 
 
 
-# [Component Installation](http://sonata-nfv.github.io/son-tutorials/component_installation.md)
+# [Component Installation](http://sonata-nfv.github.io/son-tutorials/component_installation)
 
 
 # Administration and User guide

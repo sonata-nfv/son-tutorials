@@ -1,8 +1,10 @@
 ---
 layout: default
+title: Overview of Component Installation 
 ---
 
 # Overview 
+====
 
 <!-- 
 
