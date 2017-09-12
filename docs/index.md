@@ -26,10 +26,13 @@ This quick guide is organized in the following manner:
 
 # Brief SONATA introduction
 
-## What is SONATA 
 SONATA is an agile service development and orchestration framework for 5G virtualized networks. It provides a programming model and a development tool chain for virtualized services, fully integrated with a DevOps-enabled service platform and orchestration system. SONATA therefore targets both the flexible programmability of software networks as well as the optimization of their deployments. Its modular design makes the SONATA service platform effortlessly customizable to meet the needs of different service providers. 
 
+*** What is SONATA ? ***
+
 SONATA provides a platform for supporting the lifecycle of virtualized networking services. In particular, network function chaining and orchestration are the target domains of SONATA. 
+
+*** Who is it for ? *** 
 
 The SONATA platform supports two main stakeholders in telecommunications service creation: service developers and service operators. SONATA's Network Service Development Kit (SDK) facilitates network service development for service developers. Such services are then deployed and run on SONATA's Service Platform. Through its extensive customization capabilities, the service platform allows communication service providers to adapt service provisioning to their specific environment and needs. SONATA enables a DevOps workflow between the SDK tools and the service platform, which allows developers and operators to closely collaborate in providing an outstanding experience to customers. 
 
@@ -77,7 +80,7 @@ These are the highest level modules. Further details on each one of them can be 
 The service development kit (SDK) consists of the following main modules:
 
 * ***[CLI](https://github.com/sonata-nfv/son-cli)***: SONATA SDK's command line interface tools to aid in developing network services and VNFs
-* ***[Editor](https://github.com/sonata-nfv/son-editor)***: SONATA's web-based editor for service and function descriptors. The [https://github.com/sonata-nfv/son-editor-frontend](Editor frontend) and [Editor backend](https://github.com/sonata-nfv/son-editor-backend) are the frontend and backend of SONATA's web-based service and function descriptor editor.
+* ***[Editor](https://github.com/sonata-nfv/son-editor)***: SONATA's web-based editor for service and function descriptors. The [Editor frontend](https://github.com/sonata-nfv/son-editor-frontend) and [Editor backend](https://github.com/sonata-nfv/son-editor-backend) are the frontend and backend of SONATA's web-based service and function descriptor editor.
 * ***[Emulator](https://github.com/sonata-nfv/son-emu)***: emulation platform to support network service developers in locally prototyping and testing complete network service chains in realistic end-to-end multi-PoP scenarios
 * ***[Analyzer](https://github.com/sonata-nfv/son-analyze)***: analysis framework to study a service's behaviour
 
