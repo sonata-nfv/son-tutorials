@@ -50,6 +50,7 @@ The SONATA platform consists of a number of software modules which together prov
 #### Service Platform 
 
 SONATA's Service Platform (SP) is where:
+
 * users are created, authenticated and authorized;
 * packages, containing (network) services and (virtual network) functions descriptions, are on-boarded, validated and stored in the catalogue. A service or a function can bring with it a specific manager, which may change the default behaviour the SP has for specific aspect of that service's or function's lifecycle (e.g., placement, scaling, etc.);
 * services from the catalogue are instantiated (with licences verified) and orchestrated, through the MANO, in the abstracted infrastructure;
@@ -64,12 +65,12 @@ To support all these features, we have designed a modular and very flexible arch
 
 The main modules of the SP are the following:
 
-* ***Gatekeeper:*** controls and enforces whoever (and whatever) wants to interact with the SP and guarantees the quality of the submitted packages, by validating them against a schema (syntactically), the topology of the described service and it's integrity;
-* ***Catalogues:*** stores and manages (smart delete: only packages with services that do not have running instances can be deleted) package files, it's meta-data as well as service's and functions' meta-data;
-* ***MANO Framework:*** the orchestrator, who manages each service's lifecycle, including when the service and/or its functions bring specific managers with them to be used in certain segments of their lifecycle. Please note the clear separation between the two levels, the ***Network Function Virtualization Orchestrator (NFVO)*** and the ***Virtual Network Function Manager(VNFM)*** and Controller. This separation was originally recommended by ETSI, and it effectively corresponds to two very different levels of abstraction that is important to be kept separate;
-* ***Infrastructure Abstraction:*** hides the complexity and diversity of having to deal with multiple VIMs and WIMs;
-* ***Repositories:*** stores and manages service and function records, resulting from the instantiation, update and termination processes;
-* ***Monitoring:*** collects, stores and provides monitoring data for the services and functions instances.
+* ***[https://github.com/sonata-nfv/son-gkeeper](Gatekeeper):*** controls and enforces whoever (and whatever) wants to interact with the SP and guarantees the quality of the submitted packages, by validating them against a schema (syntactically), the topology of the described service and it's integrity;
+* ***[https://github.com/sonata-nfv/son-catalogue](Catalogues):*** stores and manages (smart delete: only packages with services that do not have running instances can be deleted) package files, it's meta-data as well as service's and functions' meta-data. The catalogues use the SONATA schema for their metadata as defined in [https://github.com/sonata-nfv/son-schema](SONATA schema);
+* ***[https://github.com/sonata-nfv/son-mano-framework](MANO Framework):*** the orchestrator, who manages each service's lifecycle, including when the service and/or its functions bring specific managers with them to be used in certain segments of their lifecycle. Please note the clear separation between the two levels, the ***Network Function Virtualization Orchestrator (NFVO)*** and the ***Virtual Network Function Manager(VNFM)*** and Controller. This separation was originally recommended by ETSI, and it effectively corresponds to two very different levels of abstraction that is important to be kept separate;
+* ***[https://github.com/sonata-nfv/son-sp-infrabstract](Infrastructure Abstraction):*** hides the complexity and diversity of having to deal with multiple VIMs and WIMs;
+* ***[https://github.com/sonata-nfv/son-catalogue-repos](Repositories):*** stores and manages service and function records, resulting from the instantiation, update and termination processes;
+* ***[https://github.com/sonata-nfv/son-monitor](Monitoring):*** collects (via [https://github.com/sonata-nfv/son-monitor-probe](monitoring probes)), stores and provides monitoring data for the services and functions instances.
 
 These are the highest level modules. Further details on each one of them can be found in each one of those modules GitHub's repositories.
 
@@ -77,11 +78,10 @@ These are the highest level modules. Further details on each one of them can be 
 
 The service development kit (SDK) consists of the following main modules:
 
-* ***[https://github.com/sonata-nfv/son-cli CLI]***: SONATA SDK's command line interface tools to aid in developing network services and VNFs
-* ***Editor***: SONATA's web-based editor for service and function descriptors
-* ***Emulator***: emulation platform to support network service developers in locally prototyping and testing complete network service chains in realistic end-to-end multi-PoP scenarios
-* ***Analyzer***: analysis framework to study a service's behaviour
-
+* ***[https://github.com/sonata-nfv/son-cli](CLI)***: SONATA SDK's command line interface tools to aid in developing network services and VNFs
+* ***[https://github.com/sonata-nfv/son-editor](Editor)***: SONATA's web-based editor for service and function descriptors. The [https://github.com/sonata-nfv/son-editor-frontend](Editor frontend) and [https://github.com/sonata-nfv/son-editor-backend](Editor backend) are the frontend and backend of SONATA's web-based service and function descriptor editor.
+* ***[https://github.com/sonata-nfv/son-emu](Emulator)***: emulation platform to support network service developers in locally prototyping and testing complete network service chains in realistic end-to-end multi-PoP scenarios
+* ***[https://github.com/sonata-nfv/son-analyze](Analyzer)***: analysis framework to study a service's behaviour
 
 
 ## About the latest release v3.0 
