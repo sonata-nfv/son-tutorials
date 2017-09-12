@@ -97,44 +97,9 @@ This is version 3.0 of the SONATA platform, the fifth release of the code. The m
 * many additional features, bug fixes, performance improvements
 
 
-# Component Installation
 
-## Overview 
+# [Component Installation](http://sonata-nfv.github.io/son-tutorials/component_installation.md)
 
-<!-- 
-
-  4.4 4. Installation (Dario)
-      4.4.1 4.1 General instructions and main steps
---> 
-## Service Platform Installation
-
-### Pre-requisites 
-
-### Installation Options 
-
-### Step-by-step instructions 
-
-### Installation videos 
-
-## SDK
-
-### Pre-requisites
-
-### Installation options
-
-### Step-by-step instructions 
-
-### Installation Videos (if any)
-
-## Emulator 
-
-### Pre-requisites
-
-### Installation options
-
-### Step-by-step instructions 
-
-### Installation Videos (if any)
 
 # Administration and User guide
 
