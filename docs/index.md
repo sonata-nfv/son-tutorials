@@ -39,11 +39,11 @@ The SONATA platform supports two main stakeholders in telecommunications service
 
 The main architectural components of the SONATA platform are shown in the figure below. In line with the support of service developers and service operators, SONATA distinguishes the two main components SDK and service platform. Services developed and deployed by this system run on top of the underlying infrastructure accessible to the SONATA system via Virtual Infrastructure Managers (VIMs), abstracting from the actual hardware and software.
 
-![](http://sonata-nfv.github.io/son-tutorials/docs/figures/Sonatamaincomponents.png)
+![](http://sonata-nfv.github.io/son-tutorials/figures/Sonatamaincomponents.png)
 
 Each of the two main components can be divided into a number of subcomponents, realized in a micro-service-based approach. Detailed information on the architecture and its components can be found in [http://sonata-nfv.eu/sites/default/files/sonata/public/content-files/pages/SONATA_D2.2_Architecture_and_Design.pdf deliverable D2.2].
 
-### SONATA 3.0 modules=====
+### SONATA 3.0 modules
 
 The SONATA platform consists of a number of software modules which together provide the required functionality for network service creation, deployment, and management. Most modules can be attributed directly to either the service platform or to the service development (SDK), according to their use. Some modules are cross-cutting and are used in both major components. 
 
@@ -63,6 +63,7 @@ To support all these features, we have designed a modular and very flexible arch
 
 
 The main modules of the SP are the following:
+
 * ***Gatekeeper:*** controls and enforces whoever (and whatever) wants to interact with the SP and guarantees the quality of the submitted packages, by validating them against a schema (syntactically), the topology of the described service and it's integrity;
 * ***Catalogues:*** stores and manages (smart delete: only packages with services that do not have running instances can be deleted) package files, it's meta-data as well as service's and functions' meta-data;
 * ***MANO Framework:*** the orchestrator, who manages each service's lifecycle, including when the service and/or its functions bring specific managers with them to be used in certain segments of their lifecycle. Please note the clear separation between the two levels, the ***Network Function Virtualization Orchestrator (NFVO)*** and the ***Virtual Network Function Manager(VNFM)*** and Controller. This separation was originally recommended by ETSI, and it effectively corresponds to two very different levels of abstraction that is important to be kept separate;
