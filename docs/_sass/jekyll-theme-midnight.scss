@@ -221,6 +221,13 @@ dt {
         margin-right: 10px;
         font-size: 11px;
       }
+      
+      &.sonata-logo {
+        font-size: 0;
+        line-height: 0;
+        background: #ffffff;
+        padding: 0 10px;
+      }
     }
   }
 }
