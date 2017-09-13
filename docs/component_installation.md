@@ -3,29 +3,25 @@ layout: default
 title: Overview of Component Installation 
 ---
 
-# Overview 
+# 4. Installation
 
+## 4.1 General instructions and main steps
 
+## 4.2 Service Platform installation
 
-#### 4. Installation
+### 4.2.1 Pre-requisites
 
-##### 4.1 General instructions and main steps
+### 4.2.2 Installation options
 
-##### 4.2 Service Platform installation
+### 4.2.3 Installation instructions
 
-###### 4.2.1 Pre-requisites
+### 4.2.4 Installation Videos
 
-###### 4.2.2 Installation options
-
-###### 4.2.3 Installation instructions
-
-###### 4.2.4 Installation Videos
-
-##### 4.3 SDK
+## 4.3 SDK
 
 The goal of the SONATA SDK is to assist the developer in designing services and/or functions. The SDK is mainly composed by a set of CLI tools, each with a specific purpose following the development workflow.
 
-###### 4.3.1 Pre-requisites
+### 4.3.1 Pre-requisites
 
 The CLI tools have the following pre-requisites:
 
@@ -34,11 +30,11 @@ The CLI tools have the following pre-requisites:
 -   docker (used by son-monitor)
 -   docker-compose (used by son-monitor)
 
-###### 4.3.2 Installation options
+### 4.3.2 Installation options
 
 son-cli can be installed via the OS package distribution system or using setuptools. We currently provide repositories for Ubuntu Trusty (14.04), Ubuntu Xenial (16.04) and CentOS 7. For the remaining OS's please use python's setuptools.
 
-###### 4.3.3 Installation instructions
+### 4.3.3 Installation instructions
 
 **Ubuntu Trusty (14.04) and Xenial (16.04)**
 
@@ -83,17 +79,17 @@ gpgcheck=0
 
 `yum install sonata-cli`
 
-###### 4.3.4 Installation Videos
+### 4.3.4 Installation Videos
 
 -   Ubuntu installation: <https://youtu.be/Hk4j3NcnB4A>
 -   CentOS 7 installation: <https://youtu.be/f14ure7YTSY>
 -   Setuptools installation: <https://youtu.be/T73prkc7ONI>
 
-##### 4.4 Emulator
+### 4.4 Emulator
 
 SONATA's [emulation platform](https://github.com/sonata-nfv/son-emu) was created to support network service developers to locally prototype and test complete network service chains in realistic end-to-end multi-PoP scenarios. It allows the execution of real network functions, packaged as Docker containers, in emulated network topologies running locally on the network service developer's machine. The emulation platform is based on [Containernet](https://github.com/containernet/containernet).
 
-###### 4.4.1 Pre-requisites
+### 4.4.1 Pre-requisites
 
 The emulator requires a Ubuntu 16.04 LTS installation on a bare motel machine or a VM. The following packages need to be installed:
 
@@ -101,11 +97,11 @@ The emulator requires a Ubuntu 16.04 LTS installation on a bare motel machine or
 -   aptitude
 -   git
 
-###### 4.4.2 Installation options
+### 4.4.2 Installation options
 
 There are two ways to install and use son-emu. The simple one is to use [Vagrant] to create a VirtualBox-based VM on your machine that contains the pre-installed and configured emulator. The more complicated, but more flexible, installation is done using an [Ansible] playbook executed on a Ubuntu 16.04 LTS machine or VM as described in the following section.
 
-###### 4.4.3 Installation instructions
+### 4.4.3 Installation instructions
 
 -   Step 1: Install Ansible, etc,
     -   `sudo apt-get install ansible git aptitude`
@@ -122,7 +118,7 @@ There are two ways to install and use son-emu. The simple one is to use [Vagrant
 
 More details about installation alternatives can be found in the son-emu [GitHub wiki].
 
-###### 4.4.4 Installation Videos
+### 4.4.4 Installation Videos
 
 -   Installation video: [here]
 -   Demo video of son-emu year 1 version: [here][1]
