@@ -63,6 +63,7 @@ To deploy and test a network service on the emulation platform you can use the s
 
 The output will show you the running VNFs of the service and the emulated datacenters:
 
+<!--
 ```
 +--------------+-------------+--------------------------------+-------------------+-------------------------------------+
 | Datacenter   | Container   | Image                          | Interface list    | Datacenter interfaces               |
@@ -74,6 +75,7 @@ The output will show you the running VNFs of the service and the emulated datace
 | dc1          | server      | sonatanfv/sonata-iperf3-vnf    | server-eth0       | dc1.s1-eth3                         |
 +--------------+-------------+--------------------------------+-------------------+-------------------------------------+
 ```
+-->
 
 
 
