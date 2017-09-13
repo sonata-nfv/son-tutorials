@@ -243,7 +243,7 @@ With this last step concluded successfully, the service remains ready to be inst
 (In order to proceed with the network service instantiation, it's necessary the service catalogue contains at least one service)
 ```
 
-![BssServiceInstantiationStep0.png](figures/BssServiceInstantiationStep0.png)
+![BSSServiceInstantiationStep0.png](figures/BSSServiceInstantiationStep0.png)
 
 -   Step 2: Select the “Instantiate” button.
 
@@ -259,7 +259,7 @@ With this last step concluded successfully, the service remains ready to be inst
 
 -   Step 5: Check that the request is listed in the “Requests” section.
 
-![BssServiceInstantiationStep3.png](figures/BssServiceInstantiationStep3.png)
+![BssRequests.png](figures/BssRequests.png)
 
 
 
