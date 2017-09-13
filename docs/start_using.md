@@ -75,6 +75,16 @@ The output will show you the running VNFs of the service and the emulated datace
 +--------------+-------------+--------------------------------+-------------------+-------------------------------------+
 ```
 
+
+
+| Datacenter   | Container   | Image                          | Interface list    | Datacenter interfaces               |
+|--------------|-------------|--------------------------------|-------------------|-------------------------------------|
+| dc2          | snort_vnf   | sonatanfv/sonata-snort-ids-vnf | mgmt,input,output | dc2.s1-eth2,dc2.s1-eth3,dc2.s1-eth4 |
+| dc1          | client      | sonatanfv/sonata-iperf3-vnf    | client-eth0       | dc1.s1-eth2                         |
+| dc1          | server      | sonatanfv/sonata-iperf3-vnf    | server-eth0       | dc1.s1-eth3                         |
+
+
+
   [online]: https://github.com/sonata-nfv/son-tutorials/tree/master/upb-containernet-emulator-summerschool-demo
   
 ### 5.3.1 Monitoring a network service with the son-monitor
