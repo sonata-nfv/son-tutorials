@@ -297,7 +297,7 @@ GUI provides monitoring data related to the components comprising the Sonata ser
 
 -   Step 1: Login in GUI
 
-see \[<http://wiki.sonata-nfv.eu/index.php/SONATA_Release_3.0#5.4.1_Login_to_SONATA_Service_Platform_>. Login \]
+see [Login](#login-to-sonata-service-platform)
 
 -   Step 2: Select “Monitoring-&gt;VNFs” from the menu.
 
