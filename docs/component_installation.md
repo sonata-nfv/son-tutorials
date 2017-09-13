@@ -66,28 +66,27 @@ sudo apt-get install sonata-cli
 
 **CentOS 7**
 
-1. Install EPEL
+- Step 1: Install EPEL
 
-```bash
-yum install epel-release
-```
+ ```bash
+ yum install epel-release
+ ```
 
-2. Create a repository entry file in `/etc/yum.repo.d/sonata.repo` with the following content:
+- Step 2: Create a repository entry file in `/etc/yum.repo.d/sonata.repo` with the following content:
 
+ ```text
+ [sonata-repo]
+ name=SONATA Repository
+ baseurl=http://rpmrepo.sonata-nfv.eu/repo/
+ enabled=1
+ gpgcheck=0
+ ```
 
-```text
-[sonata-repo]
-name=SONATA Repository
-baseurl=http://rpmrepo.sonata-nfv.eu/repo/
-enabled=1
-gpgcheck=0
-```
+- Step 3: Install
 
-3. Install
-
-```
-yum install sonata-cli
-```
+ ```
+ yum install sonata-cli
+ ```
 
 ### 4.3.4 Installation Videos
 
