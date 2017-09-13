@@ -40,17 +40,23 @@ son-cli can be installed via the OS package distribution system or using setupto
 
 1. Add the GPG key
 
-`sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8EC0731023C1F15B`
+```bash
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8EC0731023C1F15B
+```
 
 2. Add a source entry for the repository
 
    2.1. Ubuntu Trusty (14.04)
 
-`echo "deb http://repo.sonata-nfv.eu ubuntu-trusty main" | sudo tee -a /etc/apt/sources.list`
+```bash
+echo "deb http://repo.sonata-nfv.eu ubuntu-trusty main" | sudo tee -a /etc/apt/sources.list
+```
 
    2.2. Ubuntu Xenial (16.04)
 
-`echo "deb http://repo.sonata-nfv.eu ubuntu-xenial main" | sudo tee -a /etc/apt/sources.list`
+```bash
+echo "deb http://repo.sonata-nfv.eu ubuntu-xenial main" | sudo tee -a /etc/apt/sources.list
+```
 
 3. Update and install
 
@@ -63,12 +69,14 @@ sudo apt-get install sonata-cli
 
 1. Install EPEL
 
-`yum install epel-release`
+```bash
+yum install epel-release
+```
 
 2. Create a repository entry file in `/etc/yum.repo.d/sonata.repo` with the following content:
 
 
-```
+```text
 [sonata-repo]
 name=SONATA Repository
 baseurl=http://rpmrepo.sonata-nfv.eu/repo/
@@ -78,7 +86,9 @@ gpgcheck=0
 
 3. Install
 
-`yum install sonata-cli`
+```
+yum install sonata-cli
+```
 
 ### 4.3.4 Installation Videos
 
@@ -105,17 +115,28 @@ There are two ways to install and use son-emu. The simple one is to use [Vagrant
 ### 4.4.3 Installation instructions
 
 -   Step 1: Install Ansible, etc,
-    -   `sudo apt-get install ansible git aptitude`
+
+```bash
+sudo apt-get install ansible git aptitude
+```
+
 -   Step 2: Install Containernet
-    -   `cd`
-    -   `git clone https://github.com/containernet/containernet.git`
-    -   `cd ~/containernet/ansible`
-    -   `sudo ansible-playbook -i "localhost," -c local install.yml`
+
+```bash
+cd
+git clone https://github.com/containernet/containernet.git
+cd ~/containernet/ansible
+sudo ansible-playbook -i "localhost," -c local install.yml
+```
+
 -   Step 3: Install the Emulator
-    -   `cd`
-    -   `git clone https://github.com/sonata-nfv/son-emu.git`
-    -   `cd ~/son-emu/ansible`
-    -   `sudo ansible-playbook -i "localhost," -c local install.yml`
+
+```bash
+cd
+git clone https://github.com/sonata-nfv/son-emu.git
+cd ~/son-emu/ansible
+sudo ansible-playbook -i "localhost," -c local install.yml
+```
 
 More details about installation alternatives can be found in the son-emu [GitHub wiki].
 
