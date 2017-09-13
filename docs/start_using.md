@@ -211,15 +211,94 @@ Package on-boarding in SONATA consists of a sequence of steps, performed before 
 
 With this last step concluded successfully, the service remains ready to be instantiated by any customer of the SP owner (see the following sub-section).
 
+
+
 ### 5.4.4 Login to SONATA Service Platform BSS
 
 -   Step 1: Fill the login form with your username and password and press the “Login” button:
 
 ![BSSUserLogin.png](figures/BSSUserLogin.png)
 
-<img src="BSSUserLogin.png" title="BSSUserLogin.png" alt="BSSUserLogin.png" width="600" />
-
 -   Step 2: After the authorization check you will be redirected to BSS's Available Network Services section:
 
 ![BSSServiceInstantiationStep0.png](figures/BSSServiceInstantiationStep0.png)
-<img src="BSSServiceInstantiationStep0.png" title="BSSServiceInstantiationStep0.png" alt="BSSServiceInstantiationStep0.png" width="600" />
+
+
+
+### 5.4.5 Instance a hello-world Network Service from BSS
+
+-   Step 1: Login and verify that the selected section is “Available Network Services”.
+
+```
+(In order to proceed with the network service instantiation, it's necessary the service catalogue contains at least one service)
+```
+
+![BssServiceInstantiationStep0.png](figures/BssServiceInstantiationStep0.png)
+
+-   Step 2: Select the “Instantiate” button.
+
+![BssServiceInstantiationStep1.png](figures/BssServiceInstantiationStep1.png)
+
+-   Step 3: Ingress and Egress fields can be filled to configure the network service at the infrastructure level (optional). Confirm the instantiation request pressing the “Yes” button.
+
+![BssServiceInstantiationStep2.png](figures/BssServiceInstantiationStep2.png)
+
+-   Step 4: A message with the request id is displayed.
+
+![BssServiceInstantiationStep3.png](figures/BssServiceInstantiationStep3.png)
+
+-   Step 5: Check that the request is listed in the “Requests” section.
+
+![BssServiceInstantiationStep3.png](figures/BssServiceInstantiationStep3.png)
+
+
+
+### 5.4.6 Monitoring a function
+
+#### 5.4.6.1 Install monitoring Probe
+
+The easiest way to deploy monitoring probe is as Docker container but it can be installed also as a service.
+
+-   Step 1: Build container
+
+```
+git clone https://github.com/sonata-nfv/son-monitor-probe.git
+cd son-monitor-probe
+sudo docker build -f vm_mon/Dockerfile -t son-vm-probe .
+```
+
+Alternately, you can pull the latest image from Sonata's repository in Docker Hub
+
+```
+sudo docker pull sonatanfv/son-monitor-probe:latest
+```
+
+-   Step 2: Run probe
+
+```
+sudo docker run -d --name son-vm-probe -e NODE_NAME=VNF_1 -e PROM_SRV=http://<service_platform_ip>:9091/metrics --net="host" --privileged=true  -v /proc:/myhost/proc -v /:/rootfs:ro son-vm-probe
+```
+
+More details about installation alternatives can be found in [GitHub wiki].
+
+#### 5.4.6.2 Retrieve monitoring data from GUI
+
+GUI provides monitoring data related to the components comprising the Sonata service platform and also the deployed VNFs. This information is organized in two views (named 'Service platform' and 'VNFs' ) under the Monitoring menu. Developers can access to monitoring data that are related with the VNFs of their NS using GUI.
+
+-   Step 1: Login in GUI
+
+see \[<http://wiki.sonata-nfv.eu/index.php/SONATA_Release_3.0#5.4.1_Login_to_SONATA_Service_Platform_>. Login \]
+
+-   Step 2: Select “Monitoring-&gt;VNFs” from the menu.
+
+![Vnf_mon_view.png](figures/Vnf_mon_view.png)
+
+-   Step 3: Select one of the deployed VNFs in order to view charts of the monitoring data.
+
+![Vnf_cpu.png](figures/Vnf_cpu.png)
+
+![Vnf_ram.png](figures/Vnf_ram.png)
+
+  [`https://github.com/sonata-nfv/son-monitor-probe.git`]: https://github.com/sonata-nfv/son-monitor-probe.git
+  [`http://`]: http://
+  [GitHub wiki]: https://github.com/sonata-nfv/son-monitor-probe/wiki/VNF-monitoring
