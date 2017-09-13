@@ -48,15 +48,14 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8EC0731023C1F15B
 
    2.1. Ubuntu Trusty (14.04)
 
-```bash
-echo "deb http://repo.sonata-nfv.eu ubuntu-trusty main" | sudo tee -a /etc/apt/sources.list
-```
-
+   ```bash
+   echo "deb http://repo.sonata-nfv.eu ubuntu-trusty main" | sudo tee -a /etc/apt/sources.list
+   ```
    2.2. Ubuntu Xenial (16.04)
 
-```bash
-echo "deb http://repo.sonata-nfv.eu ubuntu-xenial main" | sudo tee -a /etc/apt/sources.list
-```
+   ```bash
+   echo "deb http://repo.sonata-nfv.eu ubuntu-xenial main" | sudo tee -a /etc/apt/sources.list
+   ```
 
 3. Update and install
 
