@@ -38,20 +38,21 @@ son-cli can be installed via the OS package distribution system or using setupto
 
 **Ubuntu Trusty (14.04) and Xenial (16.04)**
 
--   1. Add the GPG key
+1. Add the GPG key
 
 `sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8EC0731023C1F15B`
 
--   2. Add a source entry for the repository
-    -   2.1. Ubuntu Trusty (14.04)
+2. Add a source entry for the repository
+
+   2.1. Ubuntu Trusty (14.04)
 
 `echo "deb http://repo.sonata-nfv.eu ubuntu-trusty main" | sudo tee -a /etc/apt/sources.list`
 
--   -   2.2. Ubuntu Xenial (16.04)
+   2.2. Ubuntu Xenial (16.04)
 
 `echo "deb http://repo.sonata-nfv.eu ubuntu-xenial main" | sudo tee -a /etc/apt/sources.list`
 
--   3. Update and install
+3. Update and install
 
 ```bash
 sudo apt-get update
@@ -60,11 +61,11 @@ sudo apt-get install sonata-cli
 
 **CentOS 7**
 
--   1. Install EPEL
+1. Install EPEL
 
 `yum install epel-release`
 
--   2. Create a repository entry file in `/etc/yum.repo.d/sonata.repo` with the following content:
+2. Create a repository entry file in `/etc/yum.repo.d/sonata.repo` with the following content:
 
 
 ```
@@ -75,7 +76,7 @@ enabled=1
 gpgcheck=0
 ```
 
--   3. Install
+3. Install
 
 `yum install sonata-cli`
 
