@@ -3,7 +3,8 @@ A VM can be automatically generated that has all SONATA SDK features installed,
 using [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/).
 
 These are the files for the IEEE SDN-NFV demo (Nov 2017).
-Publication: "A Network Service Development Kit Supporting the End-to-End Lifecycle of NFV-based Telecom Services", IEEE SDN-NFV 2017, 
+
+**Publication**: "A Network Service Development Kit Supporting the End-to-End Lifecycle of NFV-based Telecom Services", IEEE SDN-NFV 2017, 
 S. Van Rossem (Ghent University & iMinds – IBCN, Belgium); M. Peuster (Paderborn University, Germany); L. Conceição (Ubiwhere, Portugal); H. Razzaghi Kouchaksaraei (Paderborn University, Germany); W. Tavernier and D. Colle (IMEC – Ghent University, Belgium); M. Pickavet and P. Demeester (Ghent University – iMinds, Belgium)
 
 The VM (based on Ubuntu Server xenial) is built by executing: `vagrant up`
