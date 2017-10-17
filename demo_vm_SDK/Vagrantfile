@@ -63,6 +63,9 @@ Vagrant.configure(2) do |config|
   # disable shared folder
   config.vm.synced_folder '.', '/vagrant', disabled: true
 
+  # add one host-only interface so this VM has a fixed ip that we can access
+  # config.vm.network "private_network", ip: "192.168.56.100"
+
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
@@ -88,15 +91,16 @@ Vagrant.configure(2) do |config|
 
   # provision files from host, for later use during install
   config.vm.provision "file", source: "./motd_demo_sdk", destination: "/tmp/motd"
-  config.vm.provision "file", source: "./config.yaml", destination: "/tmp/config.yaml"
-  config.vm.provision "file", source: "./docker-compose.yml", destination: "/tmp/docker-compose.yml"
-  config.vm.provision "file", source: "./workspaces", destination: "/tmp/workspaces"
+  config.vm.provision "file", source: "./son-editor_files/config.yaml", destination: "/tmp/config.yaml"
+  config.vm.provision "file", source: "./son-editor_files/docker-compose.yml", destination: "/tmp/docker-compose.yml"
+  config.vm.provision "file", source: "./son-editor_files/workspaces", destination: "/tmp/workspaces"
+  config.vm.provision "file", source: "./son-editor_files/Dockerfile", destination: "/tmp/Dockerfile"
 
   config.vm.hostname = "sonata-sdk"
 
   # change default password of the VM
   # due to a bug in the ubuntu xenial vagrant box, password for vagrant user is not known...
-  # we add some new users ourselves 
+  # we add some new users ourselves, with elevated privileges and no need to type sudo password
   config.vm.provision "add_user", type: "shell", inline: <<-SHELL 
      apt-get install -y expect
      sudo useradd -m -s /bin/bash -U sonata
@@ -110,6 +114,7 @@ Vagrant.configure(2) do |config|
     ./add_sonata_user
 
     sudo adduser sonata sudo
+    sudo echo "sonata ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
   SHELL
 
 
@@ -129,15 +134,17 @@ Vagrant.configure(2) do |config|
 
      
      sudo apt-get update
-     sudo apt-get install -y git ansible terminator
+     sudo apt-get install -y git ansible terminator 
      sudo echo "localhost ansible_connection=local" >> /etc/ansible/hosts
 
 
      # install containernet
      cd /home/sonata
      git clone https://github.com/containernet/containernet.git
+     cd containernet
+     git reset --hard 3ccac3f1d0d86767263e230fd1f91940f1633571
      echo "Installing containernet (will take some time ~30 minutes) ..."
-     cd containernet/ansible
+     cd ansible
      sudo ansible-playbook install.yml
 
 
@@ -146,7 +153,9 @@ Vagrant.configure(2) do |config|
      echo "Installing son-emu (will take some time) ..."
      cd /home/sonata
      git clone https://github.com/sonata-nfv/son-emu.git
-     cd son-emu/ansible
+     cd son-emu
+     git reset --hard e435924ac4b840da2a042fb7032070aa60eb1060
+     cd ansible
      sudo ansible-playbook install.yml
 
      # execute son-emu installation
@@ -166,30 +175,39 @@ Vagrant.configure(2) do |config|
      sudo curl -L "https://github.com/docker/compose/releases/download/1.10.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
      sudo chmod +x /usr/local/bin/docker-compose
 
+     sudo apt-get install -y python3-tk
      sudo pip3 install setuptools==34.0.2 
      sudo pip3 install virtualenv 
      sudo pip3 install numpy
      sudo pip3 install scipy
      sudo pip3 install docker==2.0.2
+     sudo pip3 install Flask
+     sudo pip3 install flask-cache
+     sudo pip3 install matplotlib
      cd /home/sonata
      git clone https://github.com/sonata-nfv/son-cli.git
      cd son-cli
+     git reset --hard 1b665473f31011bab7a167f5311bb88239f32991
      python3 setup.py develop  
-
+     #son-workspace --init
+     #son-access config --platform_id emu --new --url http://127.0.0.1:5000 --default
      SHELL
 
 
   config.vm.provision "son-editor", type: "shell", inline: <<-SHELL
      cd /home/sonata
      # install editor
-     git clone https://github.com/stevenvanrossem/son-editor-backend
-     cd son-editor-backend/build-docker/ 
+     git clone https://github.com/sonata-nfv/son-editor-backend
+     cd son-editor-backend
+     git reset --hard 5f759dcbc8824b2e7110998d36d25e3cf325f788
+     cd build-docker/ 
      # copy the correct config file for son-editor
      # github user: sonatademo
      # github pass: s0natademo
      # github ClientID : fd2e6190d732fa3401b3
      # github ClientSecret : 104310705006d191f45771fdc721406cfe52d6c9
      sudo cp /tmp/config.yaml ./
+     sudo cp /tmp/Dockerfile ./
      # make son-editor startup on reboot
      sudo cp /tmp/docker-compose.yml ./
      # add the example wokspaces

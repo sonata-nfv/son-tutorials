@@ -1,0 +1,83 @@
+---
+descriptor_version: "1.0"
+
+vendor: "eu.sonata-nfv.service-descriptor"
+name: "demo-nsd"
+version: "0.1"
+author: "Manuel Peuster, Paderborn University <manuel.peuster@upb.de>"
+description: "Emulator demo service."
+
+##
+## The various network functions this service
+## is composed of.
+##
+network_functions:
+  - vnf_id: "vnf_proxy"
+    vnf_vendor: "eu.sonata-nfv"
+    vnf_name: "squid-vnf"
+    vnf_version: "0.1"
+  - vnf_id: "vnf_l4fw"
+    vnf_vendor: "eu.sonata-nfv"
+    vnf_name: "socat-vnf"
+    vnf_version: "0.1"
+  - vnf_id: "vnf_http"
+    vnf_vendor: "eu.sonata-nfv"
+    vnf_name: "apache-vnf"
+    vnf_version: "0.1"
+
+##
+## The NS connection points to the
+## outside world.
+##
+connection_points:
+  - id: "ns:mgmt"
+    interface: "ipv4"
+    type: "management"
+
+##
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "mgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vnf_l4fw:mgmt"
+      - "vnf_proxy:mgmt"
+      - "vnf_http:mgmt"
+      - "ns:mgmt"
+  - id: "data"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_l4fw:data"
+      - "vnf_http:data"
+      - "vnf_proxy:data"
+
+##
+## The forwarding graphss.
+##
+#forwarding_graphs:
+#  - fg_id: "ns:fg01"
+#    number_of_endpoints: 0
+#    number_of_virtual_links: 0
+#    constituent_virtual_links: 
+#      - "mgmt"
+#      - "data"
+#    constituent_vnfs:
+#      - "vnf_proxy"
+#      - "vnf_l4fw"
+#      - "vnf_http"
+#    network_forwarding_paths:
+#      - fp_id: "ns:fg01:fp01"
+#        policy: "none"
+#        connection_points:
+#          - connection_point_ref: "ns:input"
+#            position: 1
+#          - connection_point_ref: "snort_vnf:input"
+#            position: 2
+#          - connection_point_ref: "snort_vnf:output"
+#            position: 3
+#          - connection_point_ref: "ns:output"
+#            position: 4
+
+

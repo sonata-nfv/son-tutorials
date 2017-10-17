@@ -1,0 +1,28 @@
+##
+# Demo scenario:
+# - proxy
+# - l4fw
+# - http
+#
+# Copyright 2017 Paderborn University
+##
+---
+schema_version: 2
+scenario:
+  name: demo
+  description: Demo entwork scenario with three VNFs.
+  vnfs: 
+    vnf1:                   
+      vnf_name: http
+    vnf2:                   
+      vnf_name: proxy
+    vnf3:                   
+      vnf_name: l4fw
+  networks: 
+    default:                  
+      external: true
+      interfaces: 
+      - vnf1:  http0
+      - vnf2:  proxy0
+      - vnf3:  l4fw0
+

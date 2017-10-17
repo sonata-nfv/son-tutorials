@@ -1,0 +1,24 @@
+##
+# Apache HTTP server VNF
+# Copyright 2017 Paderbron University
+##
+---
+vnf:
+    name: http
+    description: Single-Container VNF.
+    external-connections:
+    -   name:              http0
+        type:              bridge
+        VNFC:              apache
+        local_iface_name:  http0
+        description:       A HTTP server
+    VNFC:
+    -   name:        apache
+        description: Apache webserver container
+        VNFC image: /home/sonata/demo/osm/image-http.qcow2
+        vcpus: 1
+        ram: 512
+        disk: 20
+        bridge-ifaces:
+        -   name: http0
+        numas: []

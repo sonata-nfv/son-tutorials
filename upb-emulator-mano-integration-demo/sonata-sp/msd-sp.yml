@@ -1,0 +1,86 @@
+
+---
+service_name: "mano-int-demo"
+version: "0.1"
+author: "Manuel Peuster <manuel.peuster@upb.de>"
+description: "MANO integration vCDN demo service"
+dashboard: "mano-int-demo-vcdn-service"
+
+
+##
+## Metrics for a single VNF
+##
+vnf_metrics:
+  - metric_type: "cpu"
+    description: "cpu load (%)"
+    vnf_ids:
+      - vnf: "http" 
+      - vnf: "l4fw" 
+      - vnf: "proxy"
+  - metric_type: "mem"
+    description: "memory usage (bytes)"
+    vnf_ids:
+      - vnf: "http" 
+      - vnf: "l4fw" 
+      - vnf: "proxy"
+  - metric_type: "packet_rate"
+    description: "packet rate (packets/sec)"
+    vnf_ids:
+      - vnf: "http:http-eth0"
+        direction: "tx"
+      - vnf: "l4fw:l4fw-eth0"
+        direction: "tx"
+      - vnf: "proxy:squid-vnf-0"
+        direction: "tx"
+      - vnf: "http:http-eth0"
+        direction: "rx"
+      - vnf: "l4fw:l4fw-eth0"
+        direction: "rx"
+      - vnf: "proxy:squid-vnf-0"
+        direction: "rx"
+
+
+##
+## Metrics for an NSD link
+##
+#nsd_links:
+#  - metric_type: "packet_count"
+#    description: "packet_count of links"
+#    link_ids:
+#      - description: "link0 tx packets"
+#        link_id: "link-port0"
+#        source: "ns_port0:port0"
+#        destination: "ovs1:port0"
+#        direction: "tx"
+#      - description: "link0 rx packets"
+#        link_id: "link-port0"
+#        source: "ns_port0:port0"
+#        destination: "ovs1:port0"
+#        direction: "rx"
+#      - description: "link1 tx packets" 
+#        link_id: "link-port1-b"
+#        source: "ovs1:port1"
+#        destination: "ns_port1:port1"
+#        direction: "tx"
+#      - description: "link1 rx packets" 
+#        link_id: "link-port1-b"
+#        source: "ovs1:port1"
+#        destination: "ns_port1:port1"
+#        direction: "rx"
+#      - description: "test traffic" 
+#        link_id: "link-port1-b"
+#        source: "ovs1:port1"
+#        destination: "ns_port1:port1"
+#        direction: "rx"
+#        match: "dl_type=0x0800,ip_proto=6,tcp_dst=5002"  
+#      - description: "icmpv4 ping echo messages" 
+#        link_id: "link-port1-b"
+#        source: "ovs1:port1"
+#        destination: "ns_port1:port1"
+#        direction: "rx"
+#        match: "dl_type=0x0800,ip_proto=1,icmpv4_type=0" 
+
+
+
+ 
+ 

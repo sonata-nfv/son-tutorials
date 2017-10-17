@@ -1,14 +1,14 @@
 # son-tutorials
 In this repository, dissemination material for the SONATA project is made available.
 
-### SDK Demo Virtual Machine
-A VM can be automatically generated that has all SONATA SDK features installed, 
-using [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/).
+## Demos
 
-The files for the SoftNetworking demo (April 2017) can be found in the folder `demo_vm_SDK`.
-The files for the IEEE SDN-NFV demo (Nov 2017) can be found in the folder `demo_SDK_IEEE_SDNNFV2017`.
 
-The VM is built by executing: `vagrant up`
+* [SONATA SDK demo/tutorial](https://github.com/sonata-nfv/son-tutorials/tree/master/demo_vm_SDK) (Softnetworking 2017, Venice, Italy)
+* [Containernet and SONATA Emulator demo/tutorial](https://github.com/sonata-nfv/son-tutorials/tree/master/upb-containernet-emulator-summerschool-demo) (Summerschool 2017, Karlstad, Sweden)
+* [SONATA Emulator to MANO integration demo](https://github.com/sonata-nfv/son-tutorials/tree/master/upb-emulator-mano-integration-demo) (IEEE NetSoft 2017, Bologna, Italy)
+* [SONATA SDK demo](https://github.com/sonata-nfv/son-tutorials/tree/master/demo_SDK_IEEE_SDNNFV2017) (IEEE SDN-NFV 2017, Berlin)
+
 
 The VM exposes several ports to the host machine to access several tools of the SONATA SDK:
 * 5000 # dummy gatekeeper
@@ -24,23 +24,9 @@ The VM exposes several ports to the host machine to access several tools of the 
 * SSH login: user: `sonata` password: `sonata` at port 2222 `ssh -p 2222 sonata@localhost`
 
 
-#### Demo VM example usage
+## Contributors (see individual demos for contact details)
+* Steven Van Rossem (https://github.com/stevenvanrossem)
+* Thomas Soenen (https://github.com/tsoenen)
+* Wouter Tavernier (https://github.com/wtaverni)
+* Manuel Peuster (https://github.com/mpeuster)
 
-After startup, SSH into the VM as sonata user.
-The following SONATA repositories are installed in /home/sonata :
-* son-emu
-* son-editor
-* son-cli
-* son-examples
-
-The son-editor should be started at boot and available when browsing to: 
-http://localhost:8080/index.html
-
-A dedicated GitHub account was made for this SONATA demo to login into the editor:  
-user: sonatademo password: s0natademo
-
-The son-emulator needs to be started up with a dedicated topology:  
-```
-cd son-emu
-sudo python src/emuvim/examples/demo_topo_1pop.py
-```

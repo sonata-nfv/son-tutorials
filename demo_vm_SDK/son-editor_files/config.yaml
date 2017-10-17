@@ -1,0 +1,30 @@
+# github auth for user: sonatademo  passw: s0natademo
+authentication:
+    ClientID: fd2e6190d732fa3401b3
+    ClientSecret: 104310705006d191f45771fdc721406cfe52d6c9
+
+
+session:
+    secretKey: randomSecretKeyHere
+
+frontend-redirect: "/loginRedirect.html"
+frontend-host: ""
+
+workspaces-location: "~/son-editor/workspaces/"
+
+allowed-hosts:
+  - "localhost"
+database:
+    location: "production.db"
+testing: False
+
+#uncomment and configure to enable web configuration
+#config:
+#  pwd: admin
+#  user: admin
+
+# URL to sonata schemas
+schemas:
+  - name: SONATA NFV
+    url: https://raw.githubusercontent.com/sonata-nfv/son-schema/master/
+

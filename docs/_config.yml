@@ -1,0 +1,6 @@
+title: SONATA Deployment Documentation
+description: This is the starting page for the deployment and usage documentation of SONATA Project. The page will guide you through the SONATA architecture and present the main building blocks of the SONATA Service Platform. Following it provides installations details and links to the SONATA Github repositories. Finally it provides some usage guidelines for the SONATA service platform. 
+show_downloads: true
+google_analytics: 
+theme: jekyll-theme-midnight
+

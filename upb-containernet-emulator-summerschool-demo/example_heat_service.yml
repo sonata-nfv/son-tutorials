@@ -1,0 +1,88 @@
+---
+heat_template_version: '2017-02-07'
+
+description: >
+  Demo service to be deployed with MeDICINE HEAT interfaces.
+
+resources:
+#
+# L4FW VNF
+#
+  l4fw-vnf:
+    type: OS::Nova::Server
+    properties:
+      flavor:
+        flavorName: m1.small
+        vcpu: 1
+        ram: 512
+        storage: 20
+      image: l4fw-socat-img
+      name: l4fw
+      networks:
+      - port:
+          get_resource: l4fw:cp01:net
+  l4fw:cp01:net:
+    type: OS::Neutron::Port
+    properties:
+      name: l4fw:cp01:net
+      network:
+        get_resource: demo:net
+#
+# PROXY VNF
+#
+  proxy-vnf:
+    type: OS::Nova::Server
+    properties:
+      flavor:
+        flavorName: m1.small
+        vcpu: 1
+        ram: 512
+        storage: 20
+      image: proxy-squid-img
+      name: proxy
+      networks:
+      - port:
+          get_resource: proxy:cp01:net
+  proxy:cp01:net:
+    type: OS::Neutron::Port
+    properties:
+      name: proxy:cp01:net
+      network:
+        get_resource: demo:net
+#
+# HTTP SERVER VNF
+#
+  http-vnf:
+    type: OS::Nova::Server
+    properties:
+      flavor:
+        flavorName: m1.small
+        vcpu: 1
+        ram: 512
+        storage: 20
+      image: http-apache-img
+      name: http
+      networks:
+      - port:
+          get_resource: http:cp01:net
+  http:cp01:net:
+    type: OS::Neutron::Port
+    properties:
+      name: http:cp01:net
+      network:
+        get_resource: demo:net
+#
+# NETWORK
+#
+  demo:net:
+    type: OS::Neutron::Net
+    properties:
+      name: demo:net
+  demo:net:subnet:
+    type: OS::Neutron::Subnet
+    properties:
+      cidr: 20.0.0.0/24
+      gateway_ip: 20.0.0.254
+      name: demo:net:subnet
+      network:
+        get_resource: demo:net
