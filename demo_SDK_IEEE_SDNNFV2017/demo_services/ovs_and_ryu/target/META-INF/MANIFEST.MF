@@ -1,0 +1,19 @@
+description: Example service with an ovs switch and ryu openflow controller
+descriptor_version: '1.0'
+entry_service_template: /service_descriptors/nsd.yml
+maintainer: Steven Van Rossem, Ghent University, steven.vanrossem@intec.ugent.be
+name: sonata-sdk-test-service
+package_content:
+- content-type: application/sonata.service_descriptors
+  md5: 2345db6d23db11188a54bf06ca978564
+  name: /service_descriptors/nsd.yml
+- content-type: application/sonata.function_descriptor
+  md5: c3440565d4d9850743eba6b86f5cd949
+  name: /function_descriptors/ctrl-vnf-vnfd.yml
+- content-type: application/sonata.function_descriptor
+  md5: 2840069bc920dd2273745067304145ca
+  name: /function_descriptors/ovs1-vnf-vnfd.yml
+schema: https://raw.githubusercontent.com/sonata-nfv/son-schema/master/package-descriptor/pd-schema.yml
+sealed: true
+vendor: eu.sonata-nfv.package
+version: '0.4'

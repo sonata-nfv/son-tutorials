@@ -1,0 +1,535 @@
+- input_metrics:
+  - CI_high: 1191120.687081599
+    CI_low: 1009911.026027336
+    average: 1100515.8565544675
+    desc: ovs1:port0:rx
+    name: rx_byte_rate@ovs1:port0
+    type: rx_byte_rate
+    unit: bytes/sec
+  - CI_high: .nan
+    CI_low: .nan
+    average: 0.0
+    desc: ctrl:ctrl-port:rx
+    name: rx_byte_rate@ctrl:ctrl-port
+    type: rx_byte_rate
+    unit: bytes/sec
+  - CI_high: 790.3282146367201
+    CI_low: 669.2965473504494
+    average: 729.8123809935847
+    desc: ovs1:port0:rx
+    name: rx_packet_rate@ovs1:port0
+    type: rx_packet_rate
+    unit: packets/sec
+  - CI_high: .nan
+    CI_low: .nan
+    average: 0.0
+    desc: ctrl:ctrl-port:rx
+    name: rx_packet_rate@ctrl:ctrl-port
+    type: rx_packet_rate
+    unit: packets/sec
+  name: service_throughput1
+  output_metrics:
+  - CI_high: 0.709358385814471
+    CI_low: 0.5761257396980233
+    average: 0.6427420627562471
+    desc: ns_port0
+    name: cpu@ns_port0
+    type: cpu
+    unit: '%'
+  - CI_high: 10.354348742316972
+    CI_low: 8.668240832551952
+    average: 9.511294787434462
+    desc: ovs1
+    name: cpu@ovs1
+    type: cpu
+    unit: '%'
+  - CI_high: 3.719209854664508
+    CI_low: 2.6802613616481037
+    average: 3.1997356081563058
+    desc: ns_port1
+    name: cpu@ns_port1
+    type: cpu
+    unit: '%'
+  - CI_high: 0.7624586725536684
+    CI_low: -0.04715802534869967
+    average: 0.3576503236024844
+    desc: ctrl
+    name: cpu@ctrl
+    type: cpu
+    unit: '%'
+  - CI_high: 3.79387180857855
+    CI_low: 3.791335048564309
+    average: 3.7926034285714296
+    desc: ns_port0
+    name: mem@ns_port0
+    type: mem
+    unit: MB
+  - CI_high: 6.488565887195261
+    CI_low: 6.471470684233305
+    average: 6.480018285714283
+    desc: ovs1
+    name: mem@ovs1
+    type: mem
+    unit: MB
+  - CI_high: 12.831994411683239
+    CI_low: 12.774734731173899
+    average: 12.803364571428569
+    desc: ns_port1
+    name: mem@ns_port1
+    type: mem
+    unit: MB
+  - CI_high: 33.82482885660231
+    CI_low: 33.80832314339766
+    average: 33.81657599999998
+    desc: ctrl
+    name: mem@ctrl
+    type: mem
+    unit: MB
+  - CI_high: 9.036219376622963
+    CI_low: 8.328780623377039
+    average: 8.682500000000001
+    desc: ns_port1
+    name: throughput@ns_port1
+    type: throughput
+    unit: Mbits/sec
+  resource_alloc:
+    ns_port0:
+      cpu_bw: 0.2
+      cpu_cores: 1
+      mem_limit: 512m
+    ns_port1:
+      cpu_bw: 0.2
+      cpu_cores: 1
+      mem_limit: 512m
+    ovs1:
+      cpu_bw: '0.1'
+      cpu_cores: 1
+      mem_limit: 256m
+- input_metrics:
+  - CI_high: 2643799.7573372363
+    CI_low: 2241564.1964591746
+    average: 2442681.9768982055
+    desc: ovs1:port0:rx
+    name: rx_byte_rate@ovs1:port0
+    type: rx_byte_rate
+    unit: bytes/sec
+  - CI_high: .nan
+    CI_low: .nan
+    average: 0.0
+    desc: ctrl:ctrl-port:rx
+    name: rx_byte_rate@ctrl:ctrl-port
+    type: rx_byte_rate
+    unit: bytes/sec
+  - CI_high: 1742.1298155276606
+    CI_low: 1478.030808022855
+    average: 1610.0803117752578
+    desc: ovs1:port0:rx
+    name: rx_packet_rate@ovs1:port0
+    type: rx_packet_rate
+    unit: packets/sec
+  - CI_high: .nan
+    CI_low: .nan
+    average: 0.0
+    desc: ctrl:ctrl-port:rx
+    name: rx_packet_rate@ctrl:ctrl-port
+    type: rx_packet_rate
+    unit: packets/sec
+  name: service_throughput2
+  output_metrics:
+  - CI_high: 0.7376860921382491
+    CI_low: 0.5851459367610907
+    average: 0.6614160144496699
+    desc: ns_port0
+    name: cpu@ns_port0
+    type: cpu
+    unit: '%'
+  - CI_high: 19.964648333070002
+    CI_low: 15.448705247036665
+    average: 17.706676790053333
+    desc: ovs1
+    name: cpu@ovs1
+    type: cpu
+    unit: '%'
+  - CI_high: 4.717448844770078
+    CI_low: 3.908886265394167
+    average: 4.3131675550821225
+    desc: ns_port1
+    name: cpu@ns_port1
+    type: cpu
+    unit: '%'
+  - CI_high: 0.06990342284570397
+    CI_low: -0.011604098109233487
+    average: 0.029149662368235244
+    desc: ctrl
+    name: cpu@ctrl
+    type: cpu
+    unit: '%'
+  - CI_high: 3.900197772856173
+    CI_low: 3.814618227143826
+    average: 3.8574079999999995
+    desc: ns_port0
+    name: mem@ns_port0
+    type: mem
+    unit: MB
+  - CI_high: 6.520832000000005
+    CI_low: 6.520832000000003
+    average: 6.520832000000004
+    desc: ovs1
+    name: mem@ovs1
+    type: mem
+    unit: MB
+  - CI_high: 12.864848805005664
+    CI_low: 12.812975194994344
+    average: 12.838912000000004
+    desc: ns_port1
+    name: mem@ns_port1
+    type: mem
+    unit: MB
+  - CI_high: 33.837056
+    CI_low: 33.83705599999998
+    average: 33.83705599999998
+    desc: ctrl
+    name: mem@ctrl
+    type: mem
+    unit: MB
+  - CI_high: 19.750966855273933
+    CI_low: 17.046890287583214
+    average: 18.398928571428574
+    desc: ns_port1
+    name: throughput@ns_port1
+    type: throughput
+    unit: Mbits/sec
+  resource_alloc:
+    ns_port0:
+      cpu_bw: 0.2
+      cpu_cores: 1
+      mem_limit: 512m
+    ns_port1:
+      cpu_bw: 0.2
+      cpu_cores: 1
+      mem_limit: 512m
+    ovs1:
+      cpu_bw: '0.2'
+      cpu_cores: 1
+      mem_limit: 256m
+- input_metrics:
+  - CI_high: 3869432.6169304475
+    CI_low: 3264214.602711128
+    average: 3566823.609820788
+    desc: ovs1:port0:rx
+    name: rx_byte_rate@ovs1:port0
+    type: rx_byte_rate
+    unit: bytes/sec
+  - CI_high: .nan
+    CI_low: .nan
+    average: 0.0
+    desc: ctrl:ctrl-port:rx
+    name: rx_byte_rate@ctrl:ctrl-port
+    type: rx_byte_rate
+    unit: bytes/sec
+  - CI_high: 2581.931252060639
+    CI_low: 2215.8695057256346
+    average: 2398.900378893137
+    desc: ovs1:port0:rx
+    name: rx_packet_rate@ovs1:port0
+    type: rx_packet_rate
+    unit: packets/sec
+  - CI_high: .nan
+    CI_low: .nan
+    average: 0.0
+    desc: ctrl:ctrl-port:rx
+    name: rx_packet_rate@ctrl:ctrl-port
+    type: rx_packet_rate
+    unit: packets/sec
+  name: service_throughput3
+  output_metrics:
+  - CI_high: 0.7283345822789006
+    CI_low: 0.625572377956536
+    average: 0.6769534801177183
+    desc: ns_port0
+    name: cpu@ns_port0
+    type: cpu
+    unit: '%'
+  - CI_high: 30.242280834108755
+    CI_low: 23.742036251211474
+    average: 26.992158542660114
+    desc: ovs1
+    name: cpu@ovs1
+    type: cpu
+    unit: '%'
+  - CI_high: 7.125939132060498
+    CI_low: 5.417823673596674
+    average: 6.271881402828586
+    desc: ns_port1
+    name: cpu@ns_port1
+    type: cpu
+    unit: '%'
+  - CI_high: 0.7193601229155417
+    CI_low: -0.04051528498779239
+    average: 0.33942241896387465
+    desc: ctrl
+    name: cpu@ctrl
+    type: cpu
+    unit: '%'
+  - CI_high: 3.8755843930183826
+    CI_low: 3.848008749838758
+    average: 3.8617965714285702
+    desc: ns_port0
+    name: mem@ns_port0
+    type: mem
+    unit: MB
+  - CI_high: 6.524927999999998
+    CI_low: 6.5249279999999965
+    average: 6.524927999999997
+    desc: ovs1
+    name: mem@ovs1
+    type: mem
+    unit: MB
+  - CI_high: 13.157187923627196
+    CI_low: 12.06598007637279
+    average: 12.611583999999993
+    desc: ns_port1
+    name: mem@ns_port1
+    type: mem
+    unit: MB
+  - CI_high: 33.86883892088592
+    CI_low: 33.85910622197122
+    average: 33.86397257142857
+    desc: ctrl
+    name: mem@ctrl
+    type: mem
+    unit: MB
+  - CI_high: 28.976474793960584
+    CI_low: 27.786488169002382
+    average: 28.381481481481483
+    desc: ns_port1
+    name: throughput@ns_port1
+    type: throughput
+    unit: Mbits/sec
+  resource_alloc:
+    ns_port0:
+      cpu_bw: 0.2
+      cpu_cores: 1
+      mem_limit: 512m
+    ns_port1:
+      cpu_bw: 0.2
+      cpu_cores: 1
+      mem_limit: 512m
+    ovs1:
+      cpu_bw: '0.30000000000000004'
+      cpu_cores: 1
+      mem_limit: 256m
+- input_metrics:
+  - CI_high: 4940059.918766949
+    CI_low: 4171372.320423458
+    average: 4555716.119595204
+    desc: ovs1:port0:rx
+    name: rx_byte_rate@ovs1:port0
+    type: rx_byte_rate
+    unit: bytes/sec
+  - CI_high: .nan
+    CI_low: .nan
+    average: 0.0
+    desc: ctrl:ctrl-port:rx
+    name: rx_byte_rate@ctrl:ctrl-port
+    type: rx_byte_rate
+    unit: bytes/sec
+  - CI_high: 3263.0173413712555
+    CI_low: 2755.279087387892
+    average: 3009.148214379574
+    desc: ovs1:port0:rx
+    name: rx_packet_rate@ovs1:port0
+    type: rx_packet_rate
+    unit: packets/sec
+  - CI_high: .nan
+    CI_low: .nan
+    average: 0.0
+    desc: ctrl:ctrl-port:rx
+    name: rx_packet_rate@ctrl:ctrl-port
+    type: rx_packet_rate
+    unit: packets/sec
+  name: service_throughput4
+  output_metrics:
+  - CI_high: 0.8373741420555062
+    CI_low: 0.5806245430455944
+    average: 0.7089993425505503
+    desc: ns_port0
+    name: cpu@ns_port0
+    type: cpu
+    unit: '%'
+  - CI_high: 39.941442327940635
+    CI_low: 31.955240860278206
+    average: 35.94834159410942
+    desc: ovs1
+    name: cpu@ovs1
+    type: cpu
+    unit: '%'
+  - CI_high: 8.37182079046136
+    CI_low: 6.856997799179975
+    average: 7.614409294820668
+    desc: ns_port1
+    name: cpu@ns_port1
+    type: cpu
+    unit: '%'
+  - CI_high: 1.1000747758001546
+    CI_low: 0.02902700002703995
+    average: 0.5645508879135972
+    desc: ctrl
+    name: cpu@ctrl
+    type: cpu
+    unit: '%'
+  - CI_high: 3.9379310375450443
+    CI_low: 3.844468962454952
+    average: 3.891199999999998
+    desc: ns_port0
+    name: mem@ns_port0
+    type: mem
+    unit: MB
+  - CI_high: 6.533119999999998
+    CI_low: 6.533119999999998
+    average: 6.533119999999998
+    desc: ovs1
+    name: mem@ovs1
+    type: mem
+    unit: MB
+  - CI_high: 12.902172194511476
+    CI_low: 12.842856546229253
+    average: 12.872514370370364
+    desc: ns_port1
+    name: mem@ns_port1
+    type: mem
+    unit: MB
+  - CI_high: 33.87344624782991
+    CI_low: 33.87196649291082
+    average: 33.872706370370366
+    desc: ctrl
+    name: mem@ctrl
+    type: mem
+    unit: MB
+  - CI_high: 37.880544778737764
+    CI_low: 34.49723299904
+    average: 36.18888888888888
+    desc: ns_port1
+    name: throughput@ns_port1
+    type: throughput
+    unit: Mbits/sec
+  resource_alloc:
+    ns_port0:
+      cpu_bw: 0.2
+      cpu_cores: 1
+      mem_limit: 512m
+    ns_port1:
+      cpu_bw: 0.2
+      cpu_cores: 1
+      mem_limit: 512m
+    ovs1:
+      cpu_bw: '0.4'
+      cpu_cores: 1
+      mem_limit: 256m
+- input_metrics:
+  - CI_high: 5231836.49637593
+    CI_low: 4204481.451675694
+    average: 4718158.974025812
+    desc: ovs1:port0:rx
+    name: rx_byte_rate@ovs1:port0
+    type: rx_byte_rate
+    unit: bytes/sec
+  - CI_high: .nan
+    CI_low: .nan
+    average: 0.0
+    desc: ctrl:ctrl-port:rx
+    name: rx_byte_rate@ctrl:ctrl-port
+    type: rx_byte_rate
+    unit: bytes/sec
+  - CI_high: 3455.6806439265238
+    CI_low: 2777.203170877722
+    average: 3116.441907402123
+    desc: ovs1:port0:rx
+    name: rx_packet_rate@ovs1:port0
+    type: rx_packet_rate
+    unit: packets/sec
+  - CI_high: .nan
+    CI_low: .nan
+    average: 0.0
+    desc: ctrl:ctrl-port:rx
+    name: rx_packet_rate@ctrl:ctrl-port
+    type: rx_packet_rate
+    unit: packets/sec
+  name: service_throughput5
+  output_metrics:
+  - CI_high: 0.8175934252888144
+    CI_low: 0.5429143700759789
+    average: 0.6802538976823966
+    desc: ns_port0
+    name: cpu@ns_port0
+    type: cpu
+    unit: '%'
+  - CI_high: 49.12966390313585
+    CI_low: 37.03506718468887
+    average: 43.08236554391236
+    desc: ovs1
+    name: cpu@ovs1
+    type: cpu
+    unit: '%'
+  - CI_high: 9.019647701584494
+    CI_low: 7.34451900663151
+    average: 8.182083354108002
+    desc: ns_port1
+    name: cpu@ns_port1
+    type: cpu
+    unit: '%'
+  - CI_high: 1.0538419508249939
+    CI_low: -0.05257400560795267
+    average: 0.5006339726085206
+    desc: ctrl
+    name: cpu@ctrl
+    type: cpu
+    unit: '%'
+  - CI_high: 3.9165390973842396
+    CI_low: 3.8361269766898394
+    average: 3.8763330370370395
+    desc: ns_port0
+    name: mem@ns_port0
+    type: mem
+    unit: MB
+  - CI_high: 6.537215999999999
+    CI_low: 6.537215999999999
+    average: 6.537216
+    desc: ovs1
+    name: mem@ovs1
+    type: mem
+    unit: MB
+  - CI_high: 12.890529630774626
+    CI_low: 12.829923109966106
+    average: 12.860226370370366
+    desc: ns_port1
+    name: mem@ns_port1
+    type: mem
+    unit: MB
+  - CI_high: .nan
+    CI_low: .nan
+    average: 33.882112
+    desc: ctrl
+    name: mem@ctrl
+    type: mem
+    unit: MB
+  - CI_high: 40.311658329629715
+    CI_low: 33.58760092962955
+    average: 36.949629629629634
+    desc: ns_port1
+    name: throughput@ns_port1
+    type: throughput
+    unit: Mbits/sec
+  resource_alloc:
+    ns_port0:
+      cpu_bw: 0.2
+      cpu_cores: 1
+      mem_limit: 512m
+    ns_port1:
+      cpu_bw: 0.2
+      cpu_cores: 1
+      mem_limit: 512m
+    ovs1:
+      cpu_bw: '0.5'
+      cpu_cores: 1
+      mem_limit: 256m
