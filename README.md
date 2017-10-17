@@ -5,7 +5,8 @@ In this repository, dissemination material for the SONATA project is made availa
 A VM can be automatically generated that has all SONATA SDK features installed, 
 using [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/).
 
-The files can be found in the folder `demo_vm_SDK`.
+The files for the SoftNetworking demo (April 2017) can be found in the folder `demo_vm_SDK`.
+The files for the IEEE SDN-NFV demo (Nov 2017) can be found in the folder `demo_SDK_IEEE_SDNNFV2017`.
 
 The VM is built by executing: `vagrant up`
 
@@ -17,9 +18,10 @@ The VM exposes several ports to the host machine to access several tools of the 
 * 9091 # Prometheus push gateway 
 * 3000 # Grafana
 * 8080 # Editor, browse to: http://localhost:8080/index.html
+* 9080 # son-validate-gui, browse to: http://localhost:9080 (only in IEEE SDN-NFV demo)
+* 5050 # son-validate-api service (only in IEEE SDN-NFV demo)
 * The emulator has a dashboard at: http://localhost:5001/dashboard/index.html
-* SSH login: user: `sonata` password: `sonata` at port 2222  
-  `ssh -p 2222 sonata@localhost`
+* SSH login: user: `sonata` password: `sonata` at port 2222 `ssh -p 2222 sonata@localhost`
 
 
 #### Demo VM example usage
