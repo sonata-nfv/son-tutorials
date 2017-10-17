@@ -163,6 +163,7 @@ Vagrant.configure(2) do |config|
      # install son-cli
      echo "Installing son-cli (will take some time) ..."
      cd /home/sonata
+     rm -r son-cli
      git clone https://github.com/sonata-nfv/son-cli.git
      cd son-cli/ansible
      sudo ansible-playbook install.yml
