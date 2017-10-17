@@ -187,12 +187,16 @@ Vagrant.configure(2) do |config|
         
      sudo rm -r /root/.son-workspace 
      son-workspace --init
+
+     # add env var
+     echo "export VAPI_CACHE_TYPE=simple" >> ~/.profile  
+     echo "export VAPI_CACHE_TYPE=simple" >> /home/sonata/.profile  
      SHELL
 
   # run son-validate services, needs to be restarted at every reboot
   config.vm.provision "son-validate-start", run: "always", type: "shell", inline: <<-SHELL  
      # add env var
-     echo "export VAPI_CACHE_TYPE=simple" >> ~/.profile  
+     #echo "export VAPI_CACHE_TYPE=simple" >> ~/.profile  
      export VAPI_CACHE_TYPE=simple
      # start son-validate service locally
      son-validate-api --mode local &
