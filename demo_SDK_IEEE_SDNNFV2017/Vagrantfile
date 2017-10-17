@@ -162,20 +162,11 @@ Vagrant.configure(2) do |config|
 
      # install son-cli
      echo "Installing son-cli (will take some time) ..."
-     # needed to build pyYAML (libyaml is optional but recommended)
-     sudo apt-get install -y python3.4 python3-dev python3-pip libyaml-dev build-essential libyaml-dev libffi-dev libssl-dev gfortran libopenblas-dev liblapack-dev
-     # install docker-compose
-     sudo curl -L "https://github.com/docker/compose/releases/download/1.10.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-     sudo chmod +x /usr/local/bin/docker-compose
-
-     sudo pip3 install setuptools==34.0.2 
-     sudo pip3 install virtualenv 
-     sudo pip3 install numpy
-     sudo pip3 install scipy
-     sudo pip3 install docker==2.0.2
      cd /home/sonata
      git clone https://github.com/sonata-nfv/son-cli.git
-     cd son-cli
+     cd son-cli/ansible
+     sudo ansible-playbook install.yml
+     cd /home/sonata/son-cli
      python3 setup.py develop  
 
      SHELL
