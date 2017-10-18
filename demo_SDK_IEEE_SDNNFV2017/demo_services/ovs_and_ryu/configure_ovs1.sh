@@ -11,8 +11,8 @@ ovs-vsctl set-controller $NAME $CONTROLLER
 
 echo "set flow entries"
 #test flow entries
-PORT0_IP="10.30.2.2"
-PORT1_IP="10.30.4.2"
+PORT0_IP="10.30.1.2"
+PORT1_IP="10.30.3.2"
 ovs-ofctl add-flow $NAME "dl_type=0x0800,nw_dst=$PORT1_IP,actions=output:2"
 ovs-ofctl add-flow $NAME "dl_type=0x0800,nw_dst=$PORT0_IP,actions=output:1"
 ovs-ofctl add-flow $NAME "dl_type=0x0806,actions=flood"

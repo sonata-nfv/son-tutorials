@@ -74,7 +74,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 3000, host: 3000 # Grafana
   config.vm.network "forwarded_port", guest: 80, host: 8080 # Editor
   config.vm.network "forwarded_port", guest: 5050, host: 5050 # son-validate-api service
-  config.vm.network "forwarded_port", guest: 8080, host: 9080 # son-validate-gui
+  config.vm.network "forwarded_port", guest: 8082, host: 9080 # son-validate-gui
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -86,6 +86,7 @@ Vagrant.configure(2) do |config|
     vb.cpus = "2"
   end
 
+  # fix for apt-get install issue
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
 
   # provision files from host, for later use during install
@@ -159,6 +160,21 @@ Vagrant.configure(2) do |config|
      
      SHELL
 
+   config.vm.provision "son-emu-config", type: "shell", inline: <<-SHELL
+      # add son-exec and X-server config
+      echo 'function son-exec(){
+      docker cp $2 mn.$1:/
+      docker exec -it mn.$1 bash $2
+      }' >> ~/.bashrc
+      
+      echo 'function son-exec(){
+      docker cp $2 mn.$1:/
+      docker exec -it mn.$1 bash $2
+      }' >> /home/sonata/.bashrc
+
+      cp /home/sonata/.Xauthority ~/
+     SHELL
+
 
    config.vm.provision "son-cli", type: "shell", inline: <<-SHELL
 
@@ -203,7 +219,7 @@ Vagrant.configure(2) do |config|
      # start son-validate service locally
      cd /home/sonata/son-cli/src/son/validate/gui
      son-validate-api --mode local &
-     http-server dist/ &
+     http-server -p 8082 dist/ &
      SHELL
 
   config.vm.provision "son-editor", type: "shell", inline: <<-SHELL
@@ -251,6 +267,7 @@ Vagrant.configure(2) do |config|
 
      # copy demo examples
      sudo cp -r /tmp/demo_services /demo_services
+     chmod -R +w /demo_services
 
     SHELL
 
