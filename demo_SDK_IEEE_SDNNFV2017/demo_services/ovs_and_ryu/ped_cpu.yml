@@ -50,11 +50,11 @@ service_experiments:
         cpu_cores: 1
         #mem_limit: "${256, 512}m"
         mem_limit: 256m
-      - function: "ns_port0"
+      - function: "port0"
         cpu_bw: 0.2
         cpu_cores: 1
         mem_limit: 512m
-      - function: "ns_port1"
+      - function: "port1"
         cpu_bw: 0.2
         cpu_cores: 1
         mem_limit: 512m
