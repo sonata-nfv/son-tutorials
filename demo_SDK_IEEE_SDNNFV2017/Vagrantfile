@@ -172,7 +172,8 @@ Vagrant.configure(2) do |config|
       docker exec -it mn.$1 bash $2
       }' >> /home/sonata/.bashrc
 
-      cp /home/sonata/.Xauthority ~/
+      cp /home/sonata/.Xauthority ~/ || true
+      echo 'cp /home/sonata/.Xauthority ~/ || true' >> ~/.bashrc
      SHELL
 
 
