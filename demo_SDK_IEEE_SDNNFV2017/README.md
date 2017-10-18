@@ -80,7 +80,9 @@ An xterm can be started for a VNF by double-clicking the VNF node on the graph i
 cd demo_services/ovs_and_ryu/
 son-profile -p ped_cpu.yml --mode passive --no-display
 ```
-Grafana can be opened on the host: http://localhost:3000  (Grafana default login is admin, admin)
+Grafana can be opened on the host: http://localhost:3000  (Grafana default login is admin, admin).
+In the browser, Grafana shows tthe measured metrics.
+If the X11 settings are correct, a plot figure will show the ongoing profiling measurements.
 
 #### Demo VM example services
 
