@@ -15,6 +15,6 @@ service_platforms:
     credentials: {token_file: empty}
     url: http://172.17.0.1:5000
 validate_watchers:
-  /root/son-editor/workspaces/sonatademo/demo/projects: {integrity: true, syntax: true,
+  /home/sonata/son-editor-backend/workspaces/sonatademo/demo/projects/ovs_and_ryu: {integrity: true, syntax: true,
     topology: true, type: project}
 version: '0.05'
