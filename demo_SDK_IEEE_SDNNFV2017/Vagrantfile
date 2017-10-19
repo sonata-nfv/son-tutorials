@@ -94,7 +94,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "file", source: "./config.yaml", destination: "/tmp/config.yaml"
   config.vm.provision "file", source: "./docker-compose.yml", destination: "/tmp/docker-compose.yml"
   config.vm.provision "file", source: "./workspaces", destination: "/tmp/workspaces"
-  #config.vm.provision "file", source: "./demo_services", destination: "/tmp/demo_services"
+  config.vm.provision "file", source: "./demo_services", destination: "/tmp/demo_services"
 
   config.vm.hostname = "sonata-sdk"
 
@@ -266,6 +266,10 @@ Vagrant.configure(2) do |config|
      # latest version of Grafana is not working now...
      sudo docker pull grafana/grafana:3.1.1
      sudo docker tag grafana/grafana:3.1.1 grafana/grafana:latest
+
+     # copy demo examples
+     sudo cp -r /tmp/demo_services /demo_services
+     chmod -R +w /demo_services
 
     SHELL
 
