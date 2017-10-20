@@ -72,6 +72,7 @@ cd demo_services/ovs_and_ryu/
 son-exec ovs1 configure_ovs1.sh
 ```
 The `son-exec` script executes the script inside the specified VNF. This is the same action as woul have been done by the configuration-ssm. So this is a way of testing this script.
+
 An xterm can be started for a VNF by double-clicking the VNF node on the graph in the dashboard (more info [here](https://github.com/sonata-nfv/son-emu/wiki/VNF-configuration-terminal)).
 
 #### Step 4: Execute profiling checks
@@ -81,8 +82,10 @@ cd demo_services/ovs_and_ryu/
 son-profile -p ped_cpu.yml --mode passive --no-display
 ```
 Grafana can be opened on the host: http://localhost:3000  (Grafana default login is admin, admin).
-In the browser, Grafana shows tthe measured metrics.
+In the browser, Grafana shows the measured metrics.
+
 If the X11 settings are correct, a plot figure will show the ongoing profiling measurements.
+(After 30 secs the window will show up and will refreshed every 30 secs as ddefined in the `ped_cpu.yml` file)
 
 #### Demo VM example services
 
