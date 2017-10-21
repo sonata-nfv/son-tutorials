@@ -1,0 +1,111 @@
+author: Steven Van Rossem, Janos Elek, Thomas Soenen
+connection_points:
+- id: S1-MME
+  interface: ethernet
+  type: external
+- id: S1-U
+  interface: ethernet
+  type: external
+- id: SGi
+  interface: ethernet
+  type: internal
+- id: mgmt
+  interface: ethernet
+  type: management
+description: vEPC service based on https://github.com/networkedsystemsIITB/NFV_LTE_EPC
+descriptor_version: '2.0'
+forwarding_graphs: []
+name: sonata-vepc-service
+network_functions:
+- vnf_id: mme1
+  vnf_name: mme
+  vnf_vendor: eu.sonata-nfv
+  vnf_version: '0.1'
+- vnf_id: hss1
+  vnf_name: hss
+  vnf_vendor: eu.sonata-nfv
+  vnf_version: '0.1'
+- vnf_id: sgw1
+  vnf_name: sgw
+  vnf_vendor: eu.sonata-nfv
+  vnf_version: '0.1'
+- vnf_id: pgw1
+  vnf_name: pgw
+  vnf_vendor: eu.sonata-nfv
+  vnf_version: '0.1'
+vendor: eu.sonata-nfv
+version: '0.1'
+virtual_links:
+- connection_points_reference:
+  - mme1:mgmt
+  - hss1:mgmt
+  - pgw1:mgmt
+  - sgw1:mgmt
+  - mgmt
+  connectivity_type: E-LAN
+  id: mgmt-LAN
+- connection_points_reference:
+  - mme1:S6a
+  - hss1:S6a
+  connectivity_type: E-Line
+  id: S6a-a
+- connection_points_reference:
+  - hss1:S6a
+  - mme1:S6a
+  connectivity_type: E-Line
+  id: S6a-b
+- connection_points_reference:
+  - mme1:S11
+  - sgw1:S11
+  connectivity_type: E-Line
+  id: S11-a
+- connection_points_reference:
+  - sgw1:S11
+  - mme1:S11
+  connectivity_type: E-Line
+  id: S11-b
+- connection_points_reference:
+  - S1-MME
+  - mme1:S1-MME
+  connectivity_type: E-Line
+  id: S1-MME-a
+- connection_points_reference:
+  - mme1:S1-MME
+  - S1-MME
+  connectivity_type: E-Line
+  id: S1-MME-b
+- connection_points_reference:
+  - S1-U
+  - sgw1:S1-U
+  connectivity_type: E-Line
+  id: S1-U-a
+- connection_points_reference:
+  - sgw1:S1-U
+  - S1-U
+  connectivity_type: E-Line
+  id: S1-U-b
+- connection_points_reference:
+  - sgw1:S5
+  - pgw1:S5
+  connectivity_type: E-Line
+  id: S5-a
+- connection_points_reference:
+  - pgw1:S5
+  - sgw1:S5
+  connectivity_type: E-Line
+  id: S5-b
+- connection_points_reference:
+  - SGi
+  - pgw1:SGi
+  connectivity_type: E-Line
+  id: SGi-a
+- connection_points_reference:
+  - pgw1:SGi
+  - SGi
+  connectivity_type: E-Line
+  id: SGI-b
+vnf_depedency:
+- eu.sonata-nfv:mme:0.1
+- eu.sonata-nfv:hss:0.1
+- eu.sonata-nfv:sgw:0.1
+- eu.sonata-nfv:pgw:0.1

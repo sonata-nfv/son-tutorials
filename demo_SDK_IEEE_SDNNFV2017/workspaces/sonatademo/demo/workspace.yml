@@ -17,4 +17,6 @@ service_platforms:
 validate_watchers:
   /home/sonata/son-editor-backend/workspaces/sonatademo/demo/projects/ovs_and_ryu: {integrity: true, syntax: true,
     topology: true, type: project}
+  /home/sonata/son-editor-backend/workspaces/sonatademo/demo/projects/vepc: {integrity: true, syntax: true,
+    topology: true, type: project}
 version: '0.05'

@@ -1,0 +1,66 @@
+author: Steven Van Rossem, Janos Elek, Thomas Soenen
+connection_points:
+- id: S1-U
+  interface: ipv4
+  type: external
+- id: S11
+  interface: ipv4
+  type: external
+- id: S5
+  interface: ipv4
+  type: external
+- id: mgmt
+  interface: ipv4
+  type: management
+description: SGW VNF of vEPC
+descriptor_version: vnfd-schema-01
+name: sgw
+vendor: eu.sonata-nfv
+version: '0.1'
+virtual_deployment_units:
+- connection_points:
+  - id: cp01
+    interface: ipv4
+    type: external
+  - id: cp02
+    interface: ipv4
+    type: external
+  - id: cp03
+    interface: ipv4
+    type: external
+  - id: cp04
+    interface: ipv4
+    type: management
+  id: vdu01
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 1
+      size_unit: GB
+    storage:
+      size: 1
+      size_unit: GB
+  vm_image: sgw:v3
+  vm_image_format: docker
+virtual_links:
+- connection_points_reference:
+  - vdu01:cp01
+  - S1-U
+  connectivity_type: E-Line
+  id: S1-U
+- connection_points_reference:
+  - vdu01:cp02
+  - S11
+  connectivity_type: E-Line
+  id: S11
+- connection_points_reference:
+  - vdu01:cp03
+  - S5
+  connectivity_type: E-Line
+  id: S5
+- connection_points_reference:
+  - vdu01:cp04
+  - mgmt
+  connectivity_type: E-Line
+  id: mgmt
