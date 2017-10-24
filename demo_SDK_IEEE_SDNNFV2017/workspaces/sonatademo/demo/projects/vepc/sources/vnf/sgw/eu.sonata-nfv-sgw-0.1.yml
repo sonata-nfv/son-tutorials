@@ -9,9 +9,6 @@ connection_points:
 - id: S5
   interface: ipv4
   type: external
-- id: mgmt
-  interface: ipv4
-  type: management
 description: SGW VNF of vEPC
 descriptor_version: vnfd-schema-01
 name: sgw
@@ -28,9 +25,6 @@ virtual_deployment_units:
   - id: cp03
     interface: ipv4
     type: external
-  - id: cp04
-    interface: ipv4
-    type: management
   id: vdu01
   resource_requirements:
     cpu:
@@ -59,8 +53,4 @@ virtual_links:
   - S5
   connectivity_type: E-Line
   id: S5
-- connection_points_reference:
-  - vdu01:cp04
-  - mgmt
-  connectivity_type: E-Line
-  id: mgmt
+

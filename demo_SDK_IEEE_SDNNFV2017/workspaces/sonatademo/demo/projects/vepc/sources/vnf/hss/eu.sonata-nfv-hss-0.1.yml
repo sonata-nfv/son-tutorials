@@ -3,9 +3,6 @@ connection_points:
 - id: S6a
   interface: ipv4
   type: external
-- id: mgmt
-  interface: ipv4
-  type: management
 description: HSS VNF of vEPC
 descriptor_version: vnfd-schema-01
 name: hss
@@ -37,8 +34,4 @@ virtual_links:
   - S6a
   connectivity_type: E-LAN
   id: S6a
-- connection_points_reference:
-  - vdu01:cp02
-  - mgmt
-  connectivity_type: E-Line
-  id: mgmt
+

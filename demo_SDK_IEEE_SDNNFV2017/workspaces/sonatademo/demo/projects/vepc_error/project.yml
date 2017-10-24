@@ -1,0 +1,4 @@
+descriptor_extension: yml
+package: {description: Some description about this sample, maintainer: 'Name, Company,
+    Contact', name: vepc_error, vendor: eu.sonata-nfv.package, version: '0.1'}
+version: '0.5'

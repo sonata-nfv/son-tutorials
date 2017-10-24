@@ -1,0 +1,112 @@
+author: Steven Van Rossem, Janos Elek, Thomas Soenen
+connection_points:
+- id: S5
+  interface: ipv4
+  type: external
+- id: SGi
+  interface: ipv4
+  type: external
+- id: mgmt
+  interface: ipv4
+  type: management
+description: PGW VNF of vEPC
+descriptor_version: vnfd-schema-01
+name: pgw
+vendor: eu.sonata-nfv
+version: '0.2'
+virtual_deployment_units:
+- connection_points:
+  - id: pgw
+    interface: ipv4
+    type: external
+  - id: mgmt
+    interface: ipv4
+    type: management
+  id: pgw01
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 1
+      size_unit: GB
+    storage:
+      size: 1
+      size_unit: GB
+  vm_image: pgw:v3
+  vm_image_format: docker
+- connection_points:
+  - id: pgw
+    interface: ipv4
+    type: external
+  - id: mgmt
+    interface: ipv4
+    type: management
+  id: pgw02
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 1
+      size_unit: GB
+    storage:
+      size: 1
+      size_unit: GB
+  vm_image: pgw:v3
+  vm_image_format: docker
+- connection_points:
+  - id: pgwlb
+    interface: ipv4
+    type: external
+  - id: mgmt
+    interface: ipv4
+    type: management
+  id: load-balancer
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 1
+      size_unit: GB
+    storage:
+      size: 1
+      size_unit: GB
+  vm_image: lb:v1
+  vm_image_format: docker
+- connection_points:
+  - id: ds
+    interface: ipv4
+    type: external
+  - id: mgmt
+    interface: ipv4
+    type: management
+  id: datastore
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 1
+      size_unit: GB
+    storage:
+      size: 1
+      size_unit: GB
+  vm_image: ds:v1
+  vm_image_format: docker
+virtual_links:
+- connection_points_reference:
+  - pgw01:pgw
+  - pgw02:pgw
+  - datastore:ds
+  - load-balancer:pgwlb
+  - SGi
+  - S5
+  connectivity_type: E-LAN
+  id: pgw-LAN
+- connection_points_reference:
+  - pgw01:mgmt
+  - pgw02:mgmt
+  - load-balancer:mgmt
+  - datastore:mgmt
+  - mgmt
+  connectivity_type: E-LAN
+  id: mgmt-LAN
+

@@ -19,4 +19,10 @@ validate_watchers:
     topology: true, type: project}
   /home/sonata/son-editor-backend/workspaces/sonatademo/demo/projects/vepc: {integrity: true, syntax: true,
     topology: true, type: project}
+  /home/sonata/son-editor-backend/workspaces/sonatademo/demo/projects/vepc_scaled: {integrity: true, syntax: true,
+    topology: true, type: project}
+  /home/sonata/son-editor-backend/workspaces/sonatademo/demo/projects/vepc_scaled_mgmt: {integrity: true, syntax: true,
+    topology: true, type: project}
+  /home/sonata/son-editor-backend/workspaces/sonatademo/demo/projects/vepc_error: {integrity: true, syntax: true,
+    topology: true, type: project}
 version: '0.05'

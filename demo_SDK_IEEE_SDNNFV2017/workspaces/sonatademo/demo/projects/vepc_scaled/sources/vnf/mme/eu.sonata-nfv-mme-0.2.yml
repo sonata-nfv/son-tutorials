@@ -1,0 +1,93 @@
+author: Steven Van Rossem, Janos Elek, Thomas Soenen
+connection_points:
+- id: S1-MME
+  interface: ipv4
+  type: external
+- id: S11
+  interface: ipv4
+  type: external
+- id: S6a
+  interface: ipv4
+  type: external
+description: MME VNF of vEPC
+descriptor_version: vnfd-schema-01
+name: mme
+vendor: eu.sonata-nfv
+version: '0.2'
+virtual_deployment_units:
+- connection_points:
+  - id: mme
+    interface: ipv4
+    type: internal
+  id: mme01
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 1
+      size_unit: GB
+    storage:
+      size: 1
+      size_unit: GB
+  vm_image: mme:v3
+  vm_image_format: docker
+- connection_points:
+  - id: mme
+    interface: ipv4
+    type: internal
+  id: mme02
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 1
+      size_unit: GB
+    storage:
+      size: 1
+      size_unit: GB
+  vm_image: mme:v3
+  vm_image_format: docker
+- connection_points:
+  - id: mmelb
+    interface: ipv4
+    type: external
+  id: load-balancer
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 1
+      size_unit: GB
+    storage:
+      size: 1
+      size_unit: GB
+  vm_image: lb:v1
+  vm_image_format: docker
+- connection_points:
+  - id: ds
+    interface: ipv4
+    type: external
+  id: datastore
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 1
+      size_unit: GB
+    storage:
+      size: 1
+      size_unit: GB
+  vm_image: ds:v1
+  vm_image_format: docker
+virtual_links:
+- connection_points_reference:
+  - mme01:mme
+  - mme02:mme
+  - load-balancer:mmelb
+  - datastore:ds
+  - S11
+  - S6a
+  - S1-MME
+  connectivity_type: E-LAN
+  id: mme-LAN
+

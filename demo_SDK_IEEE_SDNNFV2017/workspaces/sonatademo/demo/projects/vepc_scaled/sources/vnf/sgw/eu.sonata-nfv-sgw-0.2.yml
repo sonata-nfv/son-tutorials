@@ -1,0 +1,93 @@
+author: Steven Van Rossem, Janos Elek, Thomas Soenen
+connection_points:
+- id: S1-U
+  interface: ipv4
+  type: external
+- id: S5
+  interface: ipv4
+  type: management
+- id: S11
+  interface: ipv4
+  type: management
+description: SGW VNF of vEPC
+descriptor_version: vnfd-schema-01
+name: sgw
+vendor: eu.sonata-nfv
+version: '0.2'
+virtual_deployment_units:
+- connection_points:
+  - id: sgw
+    interface: ipv4
+    type: external
+  id: sgw01
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 1
+      size_unit: GB
+    storage:
+      size: 1
+      size_unit: GB
+  vm_image: sgw:v3
+  vm_image_format: docker
+- connection_points:
+  - id: sgw
+    interface: ipv4
+    type: external
+  id: sgw02
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 1
+      size_unit: GB
+    storage:
+      size: 1
+      size_unit: GB
+  vm_image: sgw:v3
+  vm_image_format: docker
+- connection_points:
+  - id: sgwlb
+    interface: ipv4
+    type: external
+  id: load-balancer
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 1
+      size_unit: GB
+    storage:
+      size: 1
+      size_unit: GB
+  vm_image: lb:v1
+  vm_image_format: docker
+- connection_points:
+  - id: ds
+    interface: ipv4
+    type: external
+  id: datastore
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 1
+      size_unit: GB
+    storage:
+      size: 1
+      size_unit: GB
+  vm_image: ds:v1
+  vm_image_format: docker
+virtual_links:
+- connection_points_reference:
+  - sgw01:sgw
+  - sgw02:sgw
+  - load-balancer:sgwlb
+  - datastore:ds
+  - S1-U
+  - S11
+  - S5
+  connectivity_type: E-LAN
+  id: sgw-LAN
+

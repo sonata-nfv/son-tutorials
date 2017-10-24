@@ -6,9 +6,6 @@ connection_points:
 - id: SGi
   interface: ipv4
   type: external
-- id: mgmt
-  interface: ipv4
-  type: management
 description: PGW VNF of vEPC
 descriptor_version: vnfd-schema-01
 name: pgw
@@ -22,9 +19,6 @@ virtual_deployment_units:
   - id: cp02
     interface: ipv4
     type: external
-  - id: cp03
-    interface: ipv4
-    type: management
   id: vdu01
   resource_requirements:
     cpu:
@@ -48,8 +42,4 @@ virtual_links:
   - SGi
   connectivity_type: E-Line
   id: SGi
-- connection_points_reference:
-  - vdu01:cp03
-  - mgmt
-  connectivity_type: E-Line
-  id: mgmt
+
