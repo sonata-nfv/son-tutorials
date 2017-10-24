@@ -32,6 +32,6 @@ virtual_links:
 - connection_points_reference:
   - vdu01:cp01
   - S6a
-  connectivity_type: E-LAN
+  connectivity_type: E-Line
   id: S6a
 
