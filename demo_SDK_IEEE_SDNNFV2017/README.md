@@ -90,5 +90,9 @@ If the X11 settings are correct, a plot figure will show the ongoing profiling m
 #### Demo VM example services
 
 * ovs_and_ryu: Openflow switch VNF (ovs) with a controller VNF (Ryu)
-* vEPC: to be added
+* vEPC: to illustrate the editor and validator tools, different versions of a vEPC service are demonstrated. The increased complexity of the service graphs shows the added value of a formal validation tool.
+** **vepc**: The normal vEPC service, with MME, HSS, SGW, PGW and one VDU per VNF
+** **vepc_scaled**: The scaled version of the vEPC, where the VNF (MME, SGW, PGW) is scaled out with multiple VDUs (including a load-balancer and a datastore). The scaled VNFs are seen in the validator web gui, when opening VDU view.
+** **vepc_scaled_mgmt**: A management network is added to the previous vEPC service, to show the increased complexity and difficulty for graph validation.
+** **vepc_error**: An error is introduced in the previous vEPC version, the errors/warnings are listed in the validator web gui.
 * vCDN: to be added
