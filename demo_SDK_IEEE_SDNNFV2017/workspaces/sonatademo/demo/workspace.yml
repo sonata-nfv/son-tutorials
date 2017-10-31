@@ -25,4 +25,6 @@ validate_watchers:
     topology: true, type: project}
   /home/sonata/son-editor-backend/workspaces/sonatademo/demo/projects/vepc_error: {integrity: true, syntax: true,
     topology: true, type: project}
+  /home/sonata/son-editor-backend/workspaces/sonatademo/demo/projects/vcdn: {integrity: true, syntax: true,
+    topology: true, type: project}
 version: '0.05'
