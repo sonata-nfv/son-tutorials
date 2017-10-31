@@ -13,7 +13,7 @@ vnf_metrics:
       - vnf: "vCDN-SAP1" 
       - vnf: "squid1" 
       - vnf: "vCDN-SAP2" 
-      - vnf: "webserver" 
+      - vnf: "webserver1" 
   - metric_type: "byte_rate"
     description: "byte rate (bytes/sec)"
     vnf_ids:

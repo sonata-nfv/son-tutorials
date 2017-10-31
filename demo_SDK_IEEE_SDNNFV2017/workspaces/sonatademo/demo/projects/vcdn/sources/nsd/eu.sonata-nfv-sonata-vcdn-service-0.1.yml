@@ -9,7 +9,7 @@ network_functions:
     vnf_vendor: "eu.sonata-nfv"
     vnf_name: "squid-vnf"
     vnf_version: "0.1"
-  - vnf_id: "webserver"
+  - vnf_id: "webserver1"
     vnf_vendor: "eu.sonata-nfv"
     vnf_name: "webserver"
     vnf_version: "0.1"
@@ -30,7 +30,7 @@ virtual_links:
   - id: "webserver-LAN"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "webserver:port0"
+      - "webserver1:port0"
       - "squid1:port1"
 forwarding_graphs: []
 vnf_depedency:

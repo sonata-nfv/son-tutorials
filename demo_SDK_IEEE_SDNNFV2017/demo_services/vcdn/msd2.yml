@@ -14,7 +14,7 @@ vnf_metrics:
       - vnf: "squid1" 
       - vnf: "squid2" 
       - vnf: "vCDN-SAP2" 
-      - vnf: "webserver" 
+      - vnf: "webserver1" 
   - metric_type: "byte_rate_cadv"
     description: "byte rate (bytes/sec)"
     vnf_ids:
@@ -30,6 +30,6 @@ vnf_metrics:
         direction: "rx"
       - vnf: "vCDN-SAP2:vCDN-SAP2"
         direction: "rx"
-      - vnf: "webserver:port0"
+      - vnf: "webserver1:port0"
         direction: "tx"
 
