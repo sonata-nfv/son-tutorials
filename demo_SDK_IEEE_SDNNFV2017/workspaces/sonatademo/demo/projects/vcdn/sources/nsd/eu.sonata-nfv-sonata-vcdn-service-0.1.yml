@@ -1,0 +1,39 @@
+descriptor_version: "2.0"
+vendor: "eu.sonata-nfv"
+name: "vcdn"
+version: "0.1"
+author: "Steven Van Rossem, Ghent University, steven.vanrossem@intec.ugent.be"
+description: "Example vCDN service with Squid Proxy"
+network_functions:
+  - vnf_id: "squid1"
+    vnf_vendor: "eu.sonata-nfv"
+    vnf_name: "squid-vnf"
+    vnf_version: "0.1"
+  - vnf_id: "webserver"
+    vnf_vendor: "eu.sonata-nfv"
+    vnf_name: "webserver"
+    vnf_version: "0.1"
+connection_points:
+  - id: "vCDN-SAP1"
+    interface: "ipv4"
+    type: "internal"
+  - id: "vCDN-SAP2"
+    interface: "ipv4"
+    type: "internal"
+virtual_links:
+  - id: "SAP-LAN"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vCDN-SAP1"
+      - "vCDN-SAP2"
+      - "squid1:port0"
+  - id: "webserver-LAN"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "webserver:port0"
+      - "squid1:port1"
+forwarding_graphs: []
+vnf_depedency:
+- eu.sonata-nfv:webserver:0.1
+- eu.sonata-nfv:squid-vnf:0.1
+

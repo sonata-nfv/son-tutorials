@@ -1,0 +1,31 @@
+author: Steven Van Rossem, Ghent University, steven.vanrossem@intec.ugent.be
+connection_points:
+- id: ctrl-port
+  type: interface
+description: An Openflow controller VNF based on Ryu
+descriptor_version: vnfd-schema-01
+name: ctrl-vnf
+vendor: eu.sonata-nfv
+version: '0.1'
+virtual_deployment_units:
+- connection_points:
+  - id: vdu01:cp01
+    type: interface
+  id: '1'
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 1
+      size_unit: GB
+    storage:
+      size: 1
+      size_unit: GB
+  vm_image: sonatanfv/sonata-ryu-vnf
+  vm_image_format: docker
+virtual_links:
+- connection_points_reference:
+  - vdu01:cp01
+  - ctrl-port
+  connectivity_type: E-LAN
+  id: ctrl-port

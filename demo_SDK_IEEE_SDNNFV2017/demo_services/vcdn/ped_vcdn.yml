@@ -1,0 +1,47 @@
+---
+#
+# This is an example for a profiling experiment descriptor (PED).
+# It defines profiling experiments for the vcdn service.
+#
+descriptor_version: 0.10
+# SONATA-like identifier (just in case we need it)
+vendor: "eu.sonata-nfv"
+name: "vcdn-test"
+version: "0.1"
+author: "steven.vanrossem@ugent.be"
+description: "This is an example profiling experiment descriptor (PED)."
+
+# path to the package of the service we want to profile
+service_package: "./vcdn.son"
+
+#
+# First type of experiments: Service level experiments
+#
+service_experiments:
+  - name: "cache_test"
+    description: "start a number of cached and non-cached downloads in parallel"
+    repetitions: 1
+    time_limit: "20"
+    # NSD to be used (SONATA-like vendor.name.version reference)
+    service: "eu.sonata-nfv.sonata-fw-vtc-service.0.1"
+    # additional containers for traffic generation/measurements (like SAPs)
+    measurement_points:
+      - name: "vCDN-SAP1"
+        connection_point: "vCDN-SAP1"
+        container: "sonata-son-emu-sap:latest"
+        #configuration:
+        #  - bash -c "echo 'export http_proxy=10.30.3.1:3128' >> ~/.bashrc"
+        cmd: python squid_client.py 1 1 'http://10.20.1.1:8888/file/5' '10.20.0.3:3128'
+        cmd_order: 1
+    input_metrics: "msd_input.yml"
+    output_metrics: "msd_output.yml"
+    profile_calculations:
+      - name: "squid_profile"
+        output_metric: "tx_byte_rate@squid1:port0"
+        input_metric: "cpu@squid1"
+    resource_limitations:
+      - function: "squid1"
+        cpu_bw: "${0.1 to 0.4 step 0.1}"
+        cpu_cores: 1
+        mem_limit: 512m
+

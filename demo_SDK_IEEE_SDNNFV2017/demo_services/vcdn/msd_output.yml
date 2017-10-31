@@ -1,0 +1,19 @@
+
+---
+service_name: "vcdn"
+version: "0.1"
+author: "Steven Van Rossem, Ghent University, steven.vanrossem@intec.ugent.be"
+description: "Monitor descriptor for squid test"
+dashboard: "son-monitor-squid-test"
+
+##
+## Metrics for a single VNF
+##
+vnf_metrics:
+  - metric_type: "byte_rate"
+    description: "byte rate (bytes/sec)"
+    vnf_ids:
+      - vnf: "squid1:port0"
+        direction: "tx"
+      - vnf: "squid1:port1"
+        direction: "rx"

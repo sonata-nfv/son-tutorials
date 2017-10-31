@@ -1,0 +1,22 @@
+FROM ubuntu:14.04
+MAINTAINER steven.vanrossem@intec.ugent.be
+
+RUN apt-get update && apt-get clean
+RUN apt-get install -y squid3 && apt-get clean
+ADD squid.conf /etc/squid3/squid.conf 
+RUN mkdir /var/cache/squid
+RUN chown proxy:proxy /var/cache/squid
+RUN /usr/sbin/squid3 -N -z -F
+
+ADD start.sh start.sh
+RUN chmod +x start.sh
+
+EXPOSE 3128
+
+# set entry point for emulator gatekeeper
+#ENV SON_EMU_CMD "/usr/sbin/squid3 -d 5"
+ENV SON_EMU_CMD "./start.sh"
+
+#CMD /usr/sbin/squid3 -N -d 0
+CMD /bin/bash
+

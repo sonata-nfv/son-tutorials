@@ -1,0 +1,35 @@
+
+---
+service_name: "vcdn"
+version: "0.1"
+author: "Steven Van Rossem, Ghent University, steven.vanrossem@intec.ugent.be"
+description: "Monitor descriptor for an example vCDN service with two SAPs"
+dashboard: "vCDN-service"
+
+vnf_metrics:
+  - metric_type: "cpu"
+    description: "cpu load (%)"
+    vnf_ids:
+      - vnf: "vCDN-SAP1" 
+      - vnf: "squid1" 
+      - vnf: "squid2" 
+      - vnf: "vCDN-SAP2" 
+      - vnf: "webserver" 
+  - metric_type: "byte_rate_cadv"
+    description: "byte rate (bytes/sec)"
+    vnf_ids:
+      - vnf: "squid1:port0"
+        direction: "tx"
+      - vnf: "squid2:port0"
+        direction: "tx"
+      - vnf: "squid1:port1"
+        direction: "rx"
+      - vnf: "squid2:port1"
+        direction: "rx"
+      - vnf: "vCDN-SAP1:vCDN-SAP1"
+        direction: "rx"
+      - vnf: "vCDN-SAP2:vCDN-SAP2"
+        direction: "rx"
+      - vnf: "webserver:port0"
+        direction: "tx"
+

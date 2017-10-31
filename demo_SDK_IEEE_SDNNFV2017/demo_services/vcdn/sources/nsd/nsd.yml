@@ -1,0 +1,78 @@
+
+---
+descriptor_version: "1.0"
+
+vendor: "eu.sonata-nfv"
+name: "vcdn"
+version: "0.1"
+author: "Steven Van Rossem, Ghent University, steven.vanrossem@intec.ugent.be"
+description: "Example vCDN service with Squid Proxy"
+
+##
+## The various network functions this service
+## is composed of.
+##
+network_functions:
+  - vnf_id: "squid1"
+    vnf_vendor: "eu.sonata-nfv"
+    vnf_name: "squid-vnf"
+    vnf_version: "0.1"
+  - vnf_id: "webserver"
+    vnf_vendor: "eu.sonata-nfv"
+    vnf_name: "webserver"
+    vnf_version: "0.1"
+##
+## The NS connection points to the 
+## outside world.
+##
+connection_points:
+  - id: "vCDN-SAP1"
+    interface: "ipv4"
+    type: "internal"
+  - id: "vCDN-SAP2"
+    interface: "ipv4"
+    type: "internal"
+
+##
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "SAP-LAN"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vCDN-SAP1"
+      - "vCDN-SAP2"
+      - "squid1:port0"
+  - id: "webserver-LAN"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "webserver:port0"
+      - "squid1:port1"
+
+
+##
+## The forwarding graphs.
+##
+forwarding_graphs:
+  - fg_id: "ns:fg01"
+    number_of_endpoints: 1
+    number_of_virtual_links: 0
+    constituent_virtual_links: 
+      - "link-port0"
+    constituent_vnfs:
+      - "squid"
+      - "webserver"
+    network_forwarding_paths:
+      - fp_id: "ns:fg01:fp01"
+        policy: "none"
+        connection_points:
+          - connection_point_ref: "vCDN-SAP1"
+            position: 1
+          - connection_point_ref: "squid1:port0"
+            position: 2
+          - connection_point_ref: "webserver:port0"
+            position: 3
+          - connection_point_ref: "squid1:port1"
+            position: 4
+
