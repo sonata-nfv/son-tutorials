@@ -14,7 +14,7 @@ description: "Squid Proxy Server"
 ## The virtual deployment unit.
 ##
 virtual_deployment_units:
-  - id: "1"
+  - id: "cache1"
     vm_image: "squid-vnf"
     vm_image_format: "docker"
     resource_requirements:
@@ -27,10 +27,10 @@ virtual_deployment_units:
         size: 1
         size_unit: "GB"
     connection_points:
-      - id: "vdu01:cp01"
+      - id: "port0"
         interface: "ipv4"
         type: "internal"
-      - id: "vdu01:cp02"
+      - id: "port1"
         interface: "ipv4"
         type: "internal"
 ##
@@ -41,12 +41,12 @@ virtual_links:
   - id: "port0"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vdu01:cp01"
+      - "cache1:port0"
       - "port0"
   - id: "port1"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vdu01:cp02"
+      - "cache1:port1"
       - "port1"
 
 ##

@@ -14,7 +14,7 @@ description: "Dummy webserver to test a vCDN"
 ## The virtual deployment unit.
 ##
 virtual_deployment_units:
-  - id: "webserver"
+  - id: "webserver1"
     vm_image: "webserver"
     vm_image_format: "docker"
     resource_requirements:
@@ -39,7 +39,7 @@ virtual_links:
   - id: "port0"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "webserver:cp01"
+      - "webserver1:cp01"
       - "port0"
 
 
