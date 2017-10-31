@@ -164,12 +164,12 @@ Vagrant.configure(2) do |config|
       # add son-exec and X-server config
       echo 'function son-exec(){
       docker cp $2 mn.$1:/
-      docker exec -it mn.$1 bash $2
+      docker exec -d mn.$1 bash $2
       }' >> ~/.bashrc
       
       echo 'function son-exec(){
       docker cp $2 mn.$1:/
-      docker exec -it mn.$1 bash $2
+      docker exec -d mn.$1 bash $2
       }' >> /home/sonata/.bashrc
 
       cp /home/sonata/.Xauthority ~/ || true
