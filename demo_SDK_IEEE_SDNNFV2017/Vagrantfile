@@ -140,7 +140,8 @@ Vagrant.configure(2) do |config|
 
      # install containernet
      cd /home/sonata
-     git clone https://github.com/containernet/containernet.git
+     #git clone https://github.com/containernet/containernet.git
+     git clone https://github.com/stevenvanrossem/containernet.git
      echo "Installing containernet (will take some time ~30 minutes) ..."
      cd containernet/ansible
      sudo ansible-playbook install.yml
