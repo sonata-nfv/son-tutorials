@@ -118,6 +118,10 @@ cd /demo_services/vcdn
 curl --fail -i -X POST -F package=@vcdn.son http://127.0.0.1:5000/packages
 # or push from the editor at http://localhost:8080
 
+# Optionally execute a profiling test for the vCache (squid) VNF
+cd /demo_services/vcdn
+sudo son-profile -p ped_vcdn.yml --mode passive --no-display
+
 # configure the VNFs
 cd /demo_services/vcdn
 son-exec vCDN-SAP1 configure_sap1_start.sh
