@@ -106,7 +106,7 @@ This illustrates the SDK ability to:
 The scripts needed for the SSM/FSM (for service or VNF configuration or scaling can be tested this way)
 
 Some slides on the vCDN service are included in `documentation/`.
-Check the deployment movie [on youtube](https://youtu.be/CjBhz2f31as)
+Check the deployment movie [on youtube](https://youtu.be/n-On-yGdWJw)
 
 The commands to be used for the vCDN service:
 ```
