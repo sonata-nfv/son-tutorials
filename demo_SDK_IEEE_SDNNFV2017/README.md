@@ -89,10 +89,51 @@ If the X11 settings are correct, a plot figure will show the ongoing profiling m
 
 #### Demo VM example services
 
-* **ovs_and_ryu**: Openflow switch VNF (ovs) with a controller VNF (Ryu)
-* vEPC: to illustrate the editor and validator tools, different versions of a vEPC service are demonstrated. The increased complexity of the service graphs shows the added value of a formal validation tool.
+* **ovs_and_ryu**: Openflow switch VNF (ovs) with a controller VNF (Ryu).
+Check the deployment movie [on youtube](https://www.youtube.com/watch?v=J14mb79Fwmc&t=445s)
+
+* **vEPC**: to illustrate the editor and validator tools, different versions of a vEPC service are demonstrated. The increased complexity of the service graphs shows the added value of a formal validation tool.
   * **vepc**: The normal vEPC service, with MME, HSS, SGW, PGW and one VDU per VNF
   * **vepc_scaled**: The scaled version of the vEPC, where the VNF (MME, SGW, PGW) is scaled out with multiple VDUs (including a load-balancer and a datastore). The scaled VNFs are seen in the validator web gui, when opening VDU view.
   * **vepc_scaled_mgmt**: A management network is added to the previous vEPC service, to show the increased complexity and difficulty for graph validation.
   * **vepc_error**: An error is introduced in the previous vEPC version, the errors/warnings are listed in the validator web gui.
-* vCDN: to be added
+
+* **vCDN**: This example service deploys a 3 pop topology.  The vCDN service consists out of a webserver and multiple vCaches (squid VNFs). The emulated service can be manipulated to deploy vCache VNFs closer to the users if needed.
+This illustrates the SDK ability to:
+  * Test different placement strategies
+  * Manipulate the chaining (SFC) of the deployed service
+  * Test different scaling strategies and monitor their effects
+The scripts needed for the SSM/FSM (for service or VNF configuration or scaling can be tested this way)
+
+The commands to be used for the vCDN service:
+```
+# deploy the test topology in the emulator (use a different terminal)
+sudo python src/emuvim/examples/demo_topo_3pop_vcdn.py
+
+# push the package for deployment (directly via the REST api)
+cd /demo_services/vcdn
+curl --fail -i -X POST -F package=@vcdn.son http://127.0.0.1:5000/packages
+# or push from the editor at http://localhost:8080
+
+# configure the VNFs
+cd /demo_services/vcdn
+son-exec vCDN-SAP1 configure_sap1_start.sh
+son-exec vCDN-SAP2 configure_sap2_start.sh
+
+# start monitoring (check Grafana at: http://localhost:3000 )
+sudo son-monitor msd -f msd2.yml
+
+# check the dashboard at: http://localhost:5001/dashboard/index.html
+
+# add another vCache VNF (squid), closer to the vCDN-users2
+source scale_out.sh
+
+# check the dashboard if a second VNF (squid2) has been placed
+# check Grafana if traffic is routed to squid2
+
+# scale back in
+source scale_in.sh
+
+# check the dashboard if a second VNF (squid2) has been removed
+# check Grafana if traffic is routed back to squid1
+```
