@@ -105,6 +105,9 @@ This illustrates the SDK ability to:
   * Test different scaling strategies and monitor their effects
 The scripts needed for the SSM/FSM (for service or VNF configuration or scaling can be tested this way)
 
+Some slides on the vCDN service are included in `documentation/`.
+Check the deployment movie [on youtube](https://youtu.be/GJSHDfOm99o)
+
 The commands to be used for the vCDN service:
 ```
 # deploy the test topology in the emulator (use a different terminal)
@@ -125,15 +128,15 @@ sudo son-monitor msd -f msd2.yml
 
 # check the dashboard at: http://localhost:5001/dashboard/index.html
 
-# add another vCache VNF (squid), closer to the vCDN-users2
+# add another vCache VNF (squid2), closer to the vCDN-users2
 source scale_out.sh
 
-# check the dashboard if a second VNF (squid2) has been placed
-# check Grafana if traffic is routed to squid2
+# check on the dashboard (refresh browser) if a second VNF (squid2) has been placed
+# check in Grafana if traffic is routed to squid2
 
 # scale back in
 source scale_in.sh
 
-# check the dashboard if a second VNF (squid2) has been removed
-# check Grafana if traffic is routed back to squid1
+# check on the dashboard if a second VNF (squid2) has been removed
+# check in Grafana if traffic is routed back to squid1
 ```
