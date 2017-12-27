@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="type" attr.type="string" for="edge" id="d8" />
+  <key attr.name="label" attr.type="string" for="edge" id="d7" />
+  <key attr.name="level" attr.type="long" for="edge" id="d6" />
+  <key attr.name="label" attr.type="string" for="node" id="d5" />
+  <key attr.name="parent_id" attr.type="string" for="node" id="d4" />
+  <key attr.name="level" attr.type="long" for="node" id="d3" />
+  <key attr.name="node_id" attr.type="string" for="node" id="d2" />
+  <key attr.name="node_label" attr.type="string" for="node" id="d1" />
+  <key attr.name="type" attr.type="string" for="node" id="d0" />
+  <graph edgedefault="undirected">
+    <node id="vnf_fne:cpctrl">
+      <data key="d0">iface</data>
+      <data key="d1">fne-vnf</data>
+      <data key="d2">keynetic.fne-vnf.0.1</data>
+      <data key="d3">1</data>
+      <data key="d4">keynetic.service-descriptor.keynetic.0.1</data>
+      <data key="d5">cpctrl</data>
+    </node>
+    <node id="vnf_fnu:cpuser">
+      <data key="d0">iface</data>
+      <data key="d1">fnu-vnf</data>
+      <data key="d2">keynetic.fnu-vnf.0.1</data>
+      <data key="d3">1</data>
+      <data key="d4">keynetic.service-descriptor.keynetic.0.1</data>
+      <data key="d5">cpuser</data>
+    </node>
+    <node id="vnf_fne:cpdata">
+      <data key="d0">iface</data>
+      <data key="d1">fne-vnf</data>
+      <data key="d2">keynetic.fne-vnf.0.1</data>
+      <data key="d3">1</data>
+      <data key="d4">keynetic.service-descriptor.keynetic.0.1</data>
+      <data key="d5">cpdata</data>
+    </node>
+    <node id="vnf_fne:cpuser">
+      <data key="d0">iface</data>
+      <data key="d1">fne-vnf</data>
+      <data key="d2">keynetic.fne-vnf.0.1</data>
+      <data key="d3">1</data>
+      <data key="d4">keynetic.service-descriptor.keynetic.0.1</data>
+      <data key="d5">cpuser</data>
+    </node>
+    <node id="vnf_fnc:cpctrl">
+      <data key="d0">iface</data>
+      <data key="d1">fnc-vnf</data>
+      <data key="d2">keynetic.fnc-vnf.0.1</data>
+      <data key="d3">1</data>
+      <data key="d4">keynetic.service-descriptor.keynetic.0.1</data>
+      <data key="d5">cpctrl</data>
+    </node>
+    <node id="vnf_fnd:cpdata">
+      <data key="d0">iface</data>
+      <data key="d1">fnd-vnf</data>
+      <data key="d2">keynetic.fnd-vnf.0.1</data>
+      <data key="d3">1</data>
+      <data key="d4">keynetic.service-descriptor.keynetic.0.1</data>
+      <data key="d5">cpdata</data>
+    </node>
+    <node id="vnf_fnc:cpauth">
+      <data key="d0">iface</data>
+      <data key="d1">fnc-vnf</data>
+      <data key="d2">keynetic.fnc-vnf.0.1</data>
+      <data key="d3">1</data>
+      <data key="d4">keynetic.service-descriptor.keynetic.0.1</data>
+      <data key="d5">cpauth</data>
+    </node>
+    <node id="vnf_fne:cpauth">
+      <data key="d0">iface</data>
+      <data key="d1">fne-vnf</data>
+      <data key="d2">keynetic.fne-vnf.0.1</data>
+      <data key="d3">1</data>
+      <data key="d4">keynetic.service-descriptor.keynetic.0.1</data>
+      <data key="d5">cpauth</data>
+    </node>
+    <edge source="vnf_fne:cpctrl" target="vnf_fne:cpdata">
+      <data key="d6">1</data>
+      <data key="d7">vnf_fne:cpdata-vnf_fne:cpctrl</data>
+      <data key="d8">iface</data>
+    </edge>
+    <edge source="vnf_fne:cpctrl" target="vnf_fne:cpuser">
+      <data key="d6">1</data>
+      <data key="d7">vnf_fne:cpuser-vnf_fne:cpctrl</data>
+      <data key="d8">iface</data>
+    </edge>
+    <edge source="vnf_fne:cpctrl" target="vnf_fnc:cpctrl">
+      <data key="d6">1</data>
+      <data key="d7">vlctrl</data>
+      <data key="d8">iface</data>
+    </edge>
+    <edge source="vnf_fne:cpctrl" target="vnf_fne:cpauth">
+      <data key="d6">1</data>
+      <data key="d7">vnf_fne:cpauth-vnf_fne:cpctrl</data>
+      <data key="d8">iface</data>
+    </edge>
+    <edge source="vnf_fnu:cpuser" target="vnf_fne:cpuser">
+      <data key="d6">1</data>
+      <data key="d7">vluser</data>
+      <data key="d8">iface</data>
+    </edge>
+    <edge source="vnf_fne:cpdata" target="vnf_fnd:cpdata">
+      <data key="d6">1</data>
+      <data key="d7">vldata</data>
+      <data key="d8">iface</data>
+    </edge>
+    <edge source="vnf_fne:cpdata" target="vnf_fne:cpuser">
+      <data key="d6">1</data>
+      <data key="d7">vnf_fne:cpuser-vnf_fne:cpdata</data>
+      <data key="d8">iface</data>
+    </edge>
+    <edge source="vnf_fne:cpdata" target="vnf_fne:cpauth">
+      <data key="d6">1</data>
+      <data key="d7">vnf_fne:cpauth-vnf_fne:cpdata</data>
+      <data key="d8">iface</data>
+    </edge>
+    <edge source="vnf_fne:cpuser" target="vnf_fne:cpauth">
+      <data key="d6">1</data>
+      <data key="d7">vnf_fne:cpauth-vnf_fne:cpuser</data>
+      <data key="d8">iface</data>
+    </edge>
+    <edge source="vnf_fnc:cpctrl" target="vnf_fnc:cpauth">
+      <data key="d6">1</data>
+      <data key="d7">vnf_fnc:cpauth-vnf_fnc:cpctrl</data>
+      <data key="d8">iface</data>
+    </edge>
+    <edge source="vnf_fnc:cpauth" target="vnf_fne:cpauth">
+      <data key="d6">1</data>
+      <data key="d7">vlauth</data>
+      <data key="d8">iface</data>
+    </edge>
+  </graph>
+</graphml>

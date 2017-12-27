@@ -1,0 +1,8 @@
+descriptor_extension: yml
+package:
+  description: ETSI Plugtest KEYNETIC
+  maintainer: Felipe Vicens, ATOS, felipe.vicens@atos.net
+  name: "etsi-keynetic"
+  vendor: "keynetic"
+  version: "0.5"
+version: '0.5'

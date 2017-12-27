@@ -1,0 +1,28 @@
+catalogues_dir: catalogues
+configuration_dir: configuration
+default_descriptor_extension: yml
+default_service_platform: sp1
+log_level: INFO
+name: SONATA Workspace
+platforms_dir: platforms
+projects_dir: projects
+schemas_local_master: /home/a622328/.son-schema
+schemas_remote_master: https://raw.githubusercontent.com/sonata-nfv/son-schema/master/
+service_platforms:
+  sp1:
+    credentials:
+      password: s0n@t@
+      signature:
+        cert: ''
+        prv_key: ''
+        pub_key: ''
+      token_file: token.txt
+      username: sonata
+    url: http://sp.int3.sonata-nfv.eu:32001
+validate_watchers:
+  test_ws/projects:
+    integrity: true
+    syntax: true
+    topology: true
+    type: project
+version: '0.05'

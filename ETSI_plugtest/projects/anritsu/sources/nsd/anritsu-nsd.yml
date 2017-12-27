@@ -1,0 +1,43 @@
+descriptor_version: "1.0"
+vendor: "anritsu.service-descriptor"
+name: "anritsu"
+version: "0.1"
+author: "Felipe Vicens"
+description: "Descriptor to package Anritsu Virtual Probe VNF"
+##
+## The various network functions this service
+## is composed of.
+##
+network_functions:
+  - vnf_id: "vnf_avp"
+    vnf_vendor: "anritsu"
+    vnf_name: "avp-vnf"
+    vnf_version: "0.1"
+
+##
+## The NS connection points to the
+## outside world.
+##
+connection_points:
+  - id: "nscpmgmt"
+    interface: "ipv4"
+    type: "management"
+  - id: "nscpinput"
+    interface: "ipv4"
+    type: "external"
+
+##
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "vlmgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vnf_avp:cpmgmt"
+      - "nscpmgmt"
+  - id: "vlinput"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "nscpinput"
+      - "vnf_avp:cpinput"

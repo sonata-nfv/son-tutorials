@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="type" attr.type="string" for="edge" id="d2" />
+  <key attr.name="label" attr.type="string" for="edge" id="d1" />
+  <key attr.name="level" attr.type="long" for="edge" id="d0" />
+  <graph edgedefault="undirected">
+    <node id="vnf_fnd" />
+    <node id="vnf_fnu" />
+    <node id="vnf_fne" />
+    <node id="vnf_fnc" />
+    <edge source="vnf_fnd" target="vnf_fne">
+      <data key="d0">0</data>
+      <data key="d1">vldata</data>
+      <data key="d2">iface</data>
+    </edge>
+    <edge source="vnf_fnu" target="vnf_fne">
+      <data key="d0">0</data>
+      <data key="d1">vluser</data>
+      <data key="d2">iface</data>
+    </edge>
+    <edge source="vnf_fne" target="vnf_fnc">
+      <data key="d0">0</data>
+      <data key="d1">vlctrl</data>
+      <data key="d2">iface</data>
+    </edge>
+  </graph>
+</graphml>

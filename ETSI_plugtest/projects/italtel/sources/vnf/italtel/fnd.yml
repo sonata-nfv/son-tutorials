@@ -1,0 +1,61 @@
+##
+## Some general information regarding this
+## VNF descriptor.
+##
+descriptor_version: "vnfd-schema-01"
+vendor: "keynetic"
+name: "fnd-vnf"
+version: "0.1"
+author: "Felipe Vicens :@ ATOS"
+description: "Keynetic Data Service"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "vdu01"
+    vm_image: "http://172.22.1.1/VNFs/Keynetic/Keynetic-TestData.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: '5de149cbd1253395a34aca1312d10413'
+    resource_requirements:
+      cpu:
+        vcpus: 1
+      memory:
+        size: 1
+        size_unit: "GB"
+      storage:
+        size: 4
+        size_unit: "GB"
+    connection_points:
+      - id: "eth0"
+        interface: "ipv4"
+        type: "management"
+      - id: "eth1"
+        interface: "ipv4"
+        type: "external"
+
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "mgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:eth0"
+      - "cpmgmt"
+  - id: "data"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:eth1"
+      - "cpdata"
+
+##
+## The VNF connection points to the
+## outside world.
+##
+connection_points:
+  - id: "cpmgmt"
+    interface: "ipv4"
+    type: "management"
+  - id: "cpdata"
+    interface: "ipv4"
+    type: "external"

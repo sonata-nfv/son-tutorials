@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="type" attr.type="string" for="edge" id="d8" />
+  <key attr.name="label" attr.type="string" for="edge" id="d7" />
+  <key attr.name="level" attr.type="long" for="edge" id="d6" />
+  <key attr.name="label" attr.type="string" for="node" id="d5" />
+  <key attr.name="parent_id" attr.type="string" for="node" id="d4" />
+  <key attr.name="level" attr.type="long" for="node" id="d3" />
+  <key attr.name="node_id" attr.type="string" for="node" id="d2" />
+  <key attr.name="node_label" attr.type="string" for="node" id="d1" />
+  <key attr.name="type" attr.type="string" for="node" id="d0" />
+  <graph edgedefault="undirected">
+    <node id="vnf_fnu" />
+    <node id="vnf_fne" />
+    <node id="vnf_fnc" />
+    <node id="nscpmgmt">
+      <data key="d0">br-iface</data>
+      <data key="d1">keynetic</data>
+      <data key="d2">keynetic.service-descriptor.keynetic.0.1</data>
+      <data key="d3">0</data>
+      <data key="d4" />
+      <data key="d5">nscpmgmt</data>
+    </node>
+    <node id="vnf_fnd" />
+    <node id="br-vlmgmt">
+      <data key="d4">keynetic.service-descriptor.keynetic.0.1</data>
+      <data key="d3">1</data>
+      <data key="d0">bridge</data>
+      <data key="d5">br-vlmgmt</data>
+    </node>
+    <edge source="vnf_fnu" target="br-vlmgmt">
+      <data key="d6">0</data>
+      <data key="d7">vlmgmt</data>
+      <data key="d8">br-iface</data>
+    </edge>
+    <edge source="vnf_fnu" target="vnf_fne">
+      <data key="d6">0</data>
+      <data key="d7">vluser</data>
+      <data key="d8">iface</data>
+    </edge>
+    <edge source="vnf_fne" target="vnf_fnc">
+      <data key="d6">0</data>
+      <data key="d7">vlctrl</data>
+      <data key="d8">iface</data>
+    </edge>
+    <edge source="vnf_fne" target="vnf_fnd">
+      <data key="d6">0</data>
+      <data key="d7">vldata</data>
+      <data key="d8">iface</data>
+    </edge>
+    <edge source="vnf_fne" target="br-vlmgmt">
+      <data key="d6">0</data>
+      <data key="d7">vlmgmt</data>
+      <data key="d8">br-iface</data>
+    </edge>
+    <edge source="vnf_fnc" target="br-vlmgmt">
+      <data key="d6">0</data>
+      <data key="d7">vlmgmt</data>
+      <data key="d8">br-iface</data>
+    </edge>
+    <edge source="nscpmgmt" target="br-vlmgmt">
+      <data key="d6">0</data>
+      <data key="d7">vlmgmt</data>
+      <data key="d8">br-iface</data>
+    </edge>
+    <edge source="vnf_fnd" target="br-vlmgmt">
+      <data key="d6">0</data>
+      <data key="d7">vlmgmt</data>
+      <data key="d8">br-iface</data>
+    </edge>
+  </graph>
+</graphml>

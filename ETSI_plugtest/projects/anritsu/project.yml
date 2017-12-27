@@ -1,0 +1,8 @@
+descriptor_extension: yml
+package:
+  description: ETSI Plugtest ANRITSU
+  maintainer: Felipe Vicens, ATOS, felipe.vicens@atos.net
+  name: "etsi-anritsu"
+  vendor: "anritsu"
+  version: "0.5"
+version: '0.5'

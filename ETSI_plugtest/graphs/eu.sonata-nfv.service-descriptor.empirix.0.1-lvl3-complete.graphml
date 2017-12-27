@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="type" attr.type="string" for="edge" id="d8" />
+  <key attr.name="level" attr.type="long" for="edge" id="d7" />
+  <key attr.name="label" attr.type="string" for="edge" id="d6" />
+  <key attr.name="type" attr.type="string" for="node" id="d5" />
+  <key attr.name="label" attr.type="string" for="node" id="d4" />
+  <key attr.name="parent_id" attr.type="string" for="node" id="d3" />
+  <key attr.name="node_id" attr.type="string" for="node" id="d2" />
+  <key attr.name="node_label" attr.type="string" for="node" id="d1" />
+  <key attr.name="level" attr.type="long" for="node" id="d0" />
+  <graph edgedefault="undirected">
+    <node id="vnf_empirix:vdu01:input">
+      <data key="d0">2</data>
+      <data key="d1">vdu01</data>
+      <data key="d2">vdu01</data>
+      <data key="d3">eu.sonata-nfv.empirix-vnf.0.1</data>
+      <data key="d4">input</data>
+      <data key="d5">br-iface</data>
+    </node>
+    <node id="vnf_empirix:br-input">
+      <data key="d0">2</data>
+      <data key="d4">br-input</data>
+      <data key="d3">eu.sonata-nfv.empirix-vnf.0.1</data>
+      <data key="d5">bridge</data>
+    </node>
+    <node id="nscpinput">
+      <data key="d0">0</data>
+      <data key="d1">empirix</data>
+      <data key="d2">eu.sonata-nfv.service-descriptor.empirix.0.1</data>
+      <data key="d3" />
+      <data key="d4">nscpinput</data>
+      <data key="d5">iface</data>
+    </node>
+    <node id="vnf_empirix:br-mgmt">
+      <data key="d0">2</data>
+      <data key="d4">br-mgmt</data>
+      <data key="d3">eu.sonata-nfv.empirix-vnf.0.1</data>
+      <data key="d5">bridge</data>
+    </node>
+    <node id="vnf_empirix:vdu01:eth0">
+      <data key="d0">2</data>
+      <data key="d1">vdu01</data>
+      <data key="d2">vdu01</data>
+      <data key="d3">eu.sonata-nfv.empirix-vnf.0.1</data>
+      <data key="d4">eth0</data>
+      <data key="d5">br-iface</data>
+    </node>
+    <node id="vnf_empirix:cpinput">
+      <data key="d0">1</data>
+      <data key="d1">empirix-vnf</data>
+      <data key="d2">eu.sonata-nfv.empirix-vnf.0.1</data>
+      <data key="d3">eu.sonata-nfv.service-descriptor.empirix.0.1</data>
+      <data key="d4">cpinput</data>
+      <data key="d5">br-iface</data>
+    </node>
+    <node id="vnf_empirix:cpmgmt">
+      <data key="d0">1</data>
+      <data key="d1">empirix-vnf</data>
+      <data key="d2">eu.sonata-nfv.empirix-vnf.0.1</data>
+      <data key="d3">eu.sonata-nfv.service-descriptor.empirix.0.1</data>
+      <data key="d4">cpmgmt</data>
+      <data key="d5">br-iface</data>
+    </node>
+    <node id="br-vlmgmt">
+      <data key="d0">1</data>
+      <data key="d4">br-vlmgmt</data>
+      <data key="d3">eu.sonata-nfv.service-descriptor.empirix.0.1</data>
+      <data key="d5">bridge</data>
+    </node>
+    <node id="nscpmgmt">
+      <data key="d0">0</data>
+      <data key="d1">empirix</data>
+      <data key="d2">eu.sonata-nfv.service-descriptor.empirix.0.1</data>
+      <data key="d3" />
+      <data key="d4">nscpmgmt</data>
+      <data key="d5">br-iface</data>
+    </node>
+    <edge source="vnf_empirix:vdu01:input" target="vnf_empirix:br-input">
+      <data key="d6">input</data>
+    </edge>
+    <edge source="vnf_empirix:br-input" target="vnf_empirix:cpinput">
+      <data key="d6">input</data>
+    </edge>
+    <edge source="nscpinput" target="vnf_empirix:cpinput">
+      <data key="d7">1</data>
+      <data key="d6">vlinput</data>
+      <data key="d8">iface</data>
+    </edge>
+    <edge source="vnf_empirix:br-mgmt" target="vnf_empirix:vdu01:eth0">
+      <data key="d6">mgmt</data>
+    </edge>
+    <edge source="vnf_empirix:br-mgmt" target="vnf_empirix:cpmgmt">
+      <data key="d6">mgmt</data>
+    </edge>
+    <edge source="vnf_empirix:cpmgmt" target="br-vlmgmt">
+      <data key="d7">1</data>
+      <data key="d6">vlmgmt</data>
+      <data key="d8">br-iface</data>
+    </edge>
+    <edge source="br-vlmgmt" target="nscpmgmt">
+      <data key="d7">1</data>
+      <data key="d6">vlmgmt</data>
+      <data key="d8">br-iface</data>
+    </edge>
+  </graph>
+</graphml>
