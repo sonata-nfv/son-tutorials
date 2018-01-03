@@ -16,7 +16,7 @@ service_platforms:
         cert: ''
         prv_key: ''
         pub_key: ''
-      token_file: 'token.txt'
+      token_file: token.1514994159.5862567
       username: sonata
     url: http://172.22.25.59:32001
   sp1:

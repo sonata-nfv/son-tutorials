@@ -90,3 +90,12 @@ connection_points:
   - id: "cpinput"
     interface: "ipv4"
     type: "internal"
+
+
+function_specific_managers:
+  - id: "sonfsmplugtestempirixcss1"
+    description: "FSM to do a first FSM test"
+    image: "sonatanfv/plugtest-empirix-fsm-css"
+    options:
+      - key: "type"
+    value: "start"

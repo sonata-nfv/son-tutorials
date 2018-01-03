@@ -1,5 +1,5 @@
 upb-emulator-mano-integration-demo/sonata-dk/sonata-demo-service.son
 *~
-ETSI_plugtest/graphs
-ETSI_plugtest/test_ws
+**/ETSI_plugtest/graphs
+**/ETSI_plugtest/test_ws
 
