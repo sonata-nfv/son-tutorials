@@ -178,7 +178,7 @@ class CssFSM(sonSMbase):
             ips.append(conf_ip)
         # Configuring the monitoring probe
         LOG.info('Mon Config: Create new conf file')
-        self.createConf(ips, 4, 'vtu-vnf')
+        self.createConf(ips, 4, 'empirix-vnf')
         ssh_client.sendFile('node.conf')
         ssh_client.sendCommand('ls /tmp/')
         ssh_client.sendCommand('sudo mv /tmp/node.conf /opt/Monitoring/node.conf')
@@ -189,14 +189,6 @@ class CssFSM(sonSMbase):
         # else:
         #     LOG.error("Couldn't obtain SP IP address. Monitoring configuration aborted")
 
-        #Configuring vTU docker container
-        LOG.info('vTU Start: Start the vTU docker container')
-        ssh_client = Client(mgmt_ip,'sonata','sonata',LOG)
-        command = 'sed -i "s/API_IP=.*/API_IP=%s/g" .env' %(mgmt_ip)
-        ssh_client.sendCommand(command)
-        ssh_client.sendCommand('sudo docker-compose up -d')
-        ssh_client.close()
-        LOG.info('vTU Service Config: Completed')
         # Create a response for the FLM
         response = {}
         response['status'] = 'COMPLETED'
