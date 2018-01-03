@@ -24,7 +24,7 @@ connection_points:
     type: "management"
   - id: "nscpinput"
     interface: "ipv4"
-    type: "external"
+    type: "internal"
 
 ##
 ## The virtual links that interconnect

@@ -31,10 +31,10 @@ virtual_deployment_units:
         type: "management"
       - id: "eth1"
         interface: "ipv4"
-        type: "external"
+        type: "internal"
       - id: "eth2"
         interface: "ipv4"
-        type: "external"
+        type: "internal"
 
 
 ## The virtual links that interconnect
@@ -67,7 +67,7 @@ connection_points:
     type: "management"
   - id: "cpauth"
     interface: "ipv4"
-    type: "external"
+    type: "internal"
   - id: "cpctrl"
     interface: "ipv4"
-    type: "external"
+    type: "internal"

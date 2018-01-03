@@ -37,10 +37,10 @@ virtual_deployment_units:
         type: "external"
       - id: "eth3"
         interface: "ipv4"
-        type: "external"
+        type: "internal"
       - id: "eth4"
         interface: "ipv4"
-        type: "external"
+        type: "internal"
 
 
 ## The virtual links that interconnect

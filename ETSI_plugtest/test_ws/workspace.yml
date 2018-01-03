@@ -1,7 +1,7 @@
 catalogues_dir: catalogues
 configuration_dir: configuration
 default_descriptor_extension: yml
-default_service_platform: sp1
+default_service_platform: ETSI
 log_level: INFO
 name: SONATA Workspace
 platforms_dir: platforms
@@ -9,6 +9,16 @@ projects_dir: projects
 schemas_local_master: /home/a622328/.son-schema
 schemas_remote_master: https://raw.githubusercontent.com/sonata-nfv/son-schema/master/
 service_platforms:
+  ETSI:
+    credentials:
+      password: '1234'
+      signature:
+        cert: ''
+        prv_key: ''
+        pub_key: ''
+      token_file: 'token.txt'
+      username: sonata
+    url: http://172.22.25.59:32001
   sp1:
     credentials:
       password: s0n@t@
