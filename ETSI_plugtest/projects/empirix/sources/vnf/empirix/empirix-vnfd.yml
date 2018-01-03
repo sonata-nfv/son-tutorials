@@ -98,4 +98,4 @@ function_specific_managers:
     image: "sonatanfv/plugtest-empirix-fsm-css"
     options:
       - key: "type"
-    value: "start"
+        value: "start"
