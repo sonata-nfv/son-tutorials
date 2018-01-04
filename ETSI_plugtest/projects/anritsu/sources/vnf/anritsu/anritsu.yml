@@ -64,7 +64,7 @@ connection_points:
 function_specific_managers:
   - id: "sonfsmplugtestanritsucss1"
     description: "FSM to do a first FSM test"
-    image: "sonatanfv/plugtest-antirsu-fsm-css"
+    image: "sonatanfv/plugtest-anritsu-fsm-css"
     options:
       - key: "type"
         value: "start"
