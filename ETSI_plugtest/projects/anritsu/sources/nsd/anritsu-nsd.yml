@@ -41,11 +41,3 @@ virtual_links:
     connection_points_reference:
       - "nscpinput"
       - "vnf_avp:cpinput"
-
-function_specific_managers:
-  - id: "sonfsmplugtestanritsucss1"
-    description: "FSM to do a first FSM test"
-    image: "sonatanfv/plugtest-antirsu-fsm-css"
-    options:
-      - key: "type"
-        value: "start"
