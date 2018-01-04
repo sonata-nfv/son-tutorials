@@ -26,10 +26,11 @@ acknowledge the contributions of their colleagues of the SONATA
 partner consortium (www.sonata-nfv.eu).
 """
 
+import os
 import logging
-import yaml
 import configparser
 import json
+import yaml
 from sonsmbase.smbase import sonSMbase
 from .ssh import Client
 
@@ -61,7 +62,7 @@ class CssFSM(sonSMbase):
 
         self.specific_manager_type = 'fsm'
         self.service_name = 'plugtest'
-        self.function_name = 'empirix'
+        self.function_name = 'anritsu'
         self.specific_manager_name = 'css'
         self.id_number = '1'
         self.version = 'v0.1'
@@ -149,7 +150,7 @@ class CssFSM(sonSMbase):
         LOG.info("content: " + str(content.keys()))
 
         # Extracting the ip of the management interface from the vnfr
-        vm_image = "empirix-vnf"
+        vm_image = "anritsu-vnf"
         vnfr = content["vnfr"]
 
         if (content['vnfd']['name']) == vm_image:
@@ -160,8 +161,10 @@ class CssFSM(sonSMbase):
             return
         
         # Setting up ssh connection with the VNF
-        '''
-        ssh_client = Client(mgmt_ip, 'sonata', 'sonata', LOG, retries=10)
+        ssh_key=os.environ.get['PRIVATE_KEY']
+        LOG.info(ssh_key)
+
+        ssh_client = Client(mgmt_ip, 'root', 'anritsu', LOG, retries=10)
         sp_ip = ssh_client.sendCommand("echo $SSH_CLIENT | awk '{ print $1}'")
         LOG.info("extracted sp_ip from ssh client: " + str(sp_ip))
         if not self.validIP(sp_ip):
@@ -176,20 +179,28 @@ class CssFSM(sonSMbase):
             conf_ip = fl.split('=')[1].rstrip()
         if conf_ip != sp_ip:
             ips.append(conf_ip)
+        
+        #Create a file to transfer
+        LOG.info(' Config: Create new conf file')
+        createSelfReg()
+        ssh_client.sendFile('')
+        ssh_client.sendCommand('ls /tmp/')
+
         # Configuring the monitoring probe
         LOG.info('Mon Config: Create new conf file')
-        self.createConf(ips, 4, 'empirix-vnf')
+        self.createConf(ips, 4, 'anritsu-vnf')
         ssh_client.sendFile('node.conf')
         ssh_client.sendCommand('ls /tmp/')
-        ssh_client.sendCommand('sudo mv /tmp/node.conf /opt/Monitoring/node.conf')
-        ssh_client.sendCommand('sudo service mon-probe restart')
+        #ssh_client.sendCommand('sudo mv /tmp/node.conf /opt/Monitoring/node.conf')
+        #ssh_client.sendCommand('sudo service mon-probe restart')
         ssh_client.close()
         LOG.info('Mon Config: Completed')
+
+
 
         # else:
         #     LOG.error("Couldn't obtain SP IP address. Monitoring configuration aborted")
 
-        '''
         # Create a response for the FLM
         response = {}
         response['status'] = 'COMPLETED'
@@ -279,6 +290,25 @@ class CssFSM(sonSMbase):
         f = open('node.conf', 'r')
         LOG.debug('Mon Config-> '+"\n"+f.read())
         f.close()
+
+    def createSelfReg():
+        file = open(“self_reg.sh”,”w”) 
+        file.write('#!/bin/bash') 
+        file.write('f="/etc/anritsu/platform/mc_registration')
+        file.write('echo -e "mcdomain=default.masterclaw\nserverurl=https://172.22.10.11:8033/mcregserver" > $f')
+        file.close()
+        file.open('self_reg.sh','r')
+        LOG.debug('Self_Registry-> '+"\n"+file.read())
+        file.close()
+
+    def saveSSHKey(ssh_key):
+        file = open('~/.ssh/id_rsa','w') 
+        file.write(ssh_key) 
+        file.close()
+        file.open('~/.ssh/id_rsa','r')
+        LOG.debug('SSH_KEY-> '+"\n"+file.read())
+        file.close()
+
 
     def validIP(self, address):
         parts = str(address).split(".")
