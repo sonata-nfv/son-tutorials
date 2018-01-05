@@ -25,11 +25,11 @@ the Horizon 2020 and 5G-PPP programmes. The authors would like to
 acknowledge the contributions of their colleagues of the SONATA
 partner consortium (www.sonata-nfv.eu).
 """
-
+import os, sys, stat
 import logging
-import yaml
 import configparser
 import json
+import yaml
 from sonsmbase.smbase import sonSMbase
 from .ssh import Client
 
@@ -153,15 +153,24 @@ class CssFSM(sonSMbase):
         vnfr = content["vnfr"]
 
         if (content['vnfd']['name']) == vm_image:
-            mgmt_ip = content['vnfr']['virtual_deployment_units'][0]['vnfc_instance'] [0]['connection_points'][0]['interface']['address']
+            mgmt_ipA = content['vnfr']['virtual_deployment_units'][0]['vnfc_instance'] [0]['connection_points'][0]['interface']['address']
+            mgmt_ipB = content['vnfr']['virtual_deployment_units'][1]['vnfc_instance'] [0]['connection_points'][0]['interface']['address']
        
-        if not mgmt_ip:
-            LOG.error("Couldn't obtain IP address from VNFR")
+        if not mgmt_ipA:
+            LOG.error("Couldn't obtain IP address of VMA from VNFR")
             return
-        
+       
+        if not mgmt_ipB:
+            LOG.error("Couldn't obtain IP address of VMB from VNFR")
+            return
+
         # Setting up ssh connection with the VNF
-        '''
-        ssh_client = Client(mgmt_ip, 'sonata', 'sonata', LOG, retries=10)
+        ssh_key = os.environ.get('PRIVATE_KEY')
+        self.saveSSHKey(ssh_key)
+        LOG.info(ssh_key)
+
+        # Configuring VMA
+        ssh_client = Client(mgmt_ipA, 'root', 'empirix', LOG, retries=10)
         sp_ip = ssh_client.sendCommand("echo $SSH_CLIENT | awk '{ print $1}'")
         LOG.info("extracted sp_ip from ssh client: " + str(sp_ip))
         if not self.validIP(sp_ip):
@@ -176,20 +185,90 @@ class CssFSM(sonSMbase):
             conf_ip = fl.split('=')[1].rstrip()
         if conf_ip != sp_ip:
             ips.append(conf_ip)
+        
+        # Configuring the VMA
+        LOG.info('Config: Create new conf file')
+        self.createConfigFile('VF-CAPTURE')
+        ssh_client.sendFile('system.cfg')
+        ssh_client.sendCommand('ls /tmp/')
+        ssh_client.sendCommand('sudo mv /tmp/system.cfg /home/hammer/system.cfg')
+        LOG.info('Config self_register: Completed')
+
+        # Installing software
+        LOG.info('Installing Software')
+        ssh_client.sendCommand('yum -y install /opt/emp-data/exms-kernel-*.rpm')
+        ssh_client.sendCommand('yum -y install /opt/emp-data/exms-nfv-system-configurator-*.rpm')
+        ssh_client.sendCommand('yum -y install /opt/emp-data/exms-nfv-esaxplorer-*.rpm')
+        ssh_client.sendCommand('yum -y install /opt/emp-data/exms-toolchain-*.rpm')
+        ssh_client.sendCommand('yum -y install /opt/emp-data/exms-nfv-common-*.rpm')
+        ssh_client.sendCommand('yum -y install /opt/emp-data/exms-nfv-capture-*.rpm')  
+        LOG.info('Software Installation: Completed')
+
         # Configuring the monitoring probe
         LOG.info('Mon Config: Create new conf file')
-        self.createConf(ips, 4, 'empirix-vnf')
+        self.createConf(ips, 4, 'vma-vnf')
         ssh_client.sendFile('node.conf')
         ssh_client.sendCommand('ls /tmp/')
-        ssh_client.sendCommand('sudo mv /tmp/node.conf /opt/Monitoring/node.conf')
-        ssh_client.sendCommand('sudo service mon-probe restart')
+        ssh_client.sendCommand('git clone https://github.com/sonata-nfv/son-monitor-probe.git')
+        ssh_client.sendCommand('mkdir -p /opt/Monitoring')
+        ssh_client.sendCommand('cp son-monitor-probe/vm_mon/* /opt/Monitoring/')
+        ssh_client.sendCommand('chmod 0755 /opt/Monitoring/run.sh')
+        ssh_client.sendCommand('mv /tmp/node.conf /opt/Monitoring/node.conf')
+        ssh_client.sendCommand('yum -y install screen')
+        ssh_client.sendCommand('screen -dmS probe bash -c "bash /opt/Monitoring/run.sh"')
         ssh_client.close()
         LOG.info('Mon Config: Completed')
 
-        # else:
-        #     LOG.error("Couldn't obtain SP IP address. Monitoring configuration aborted")
+        # Configuring VMB
+        ssh_client = Client(mgmt_ipB, 'root', 'empirix', LOG, retries=10)
+        sp_ip = ssh_client.sendCommand("echo $SSH_CLIENT | awk '{ print $1}'")
+        LOG.info("extracted sp_ip from ssh client: " + str(sp_ip))
+        if not self.validIP(sp_ip):
+            LOG.error("Couldn't obtain SP IP address from ssh_client. Monitoring configuration aborted")
+            sp_ip = '10.30.0.112'
+        ips=[]
+        ips.append(sp_ip)
+        
+        fl_exist = ssh_client.sendCommand('[ -f /etc/sonata_sp_address.conf ] && echo "True" || echo "False"')
+        if fl_exist == "True":
+            fl = ssh_client.sendCommand('cat /etc/sonata_sp_address.conf')
+            conf_ip = fl.split('=')[1].rstrip()
+        if conf_ip != sp_ip:
+            ips.append(conf_ip)
+        
+        # Configuring the VMB
+        LOG.info('Config: Create new conf file')
+        self.createConfigFile('VF-STATE-MACHINE')
+        ssh_client.sendFile('system.cfg')
+        ssh_client.sendCommand('ls /tmp/')
+        ssh_client.sendCommand('sudo mv /tmp/system.cfg /home/hammer/system.cfg')
+        LOG.info('Configuration: Completed')
 
-        '''
+        # Installing software
+        LOG.info('Installing Software')
+        ssh_client.sendCommand('yum -y install /opt/emp-data/exms-kernel-*.rpm')
+        ssh_client.sendCommand('yum -y install /opt/emp-data/exms-nfv-system-configurator-*.rpm')
+        ssh_client.sendCommand('yum -y install /opt/emp-data/exms-nfv-esaxplorer-*.rpm')
+        ssh_client.sendCommand('yum -y install /opt/emp-data/exms-toolchain-*.rpm')
+        ssh_client.sendCommand('yum -y install /opt/emp-data/exms-nfv-common-*.rpm')
+        ssh_client.sendCommand('yum -y install /opt/emp-data/exms-nfv-statemachine-*.rpm')  
+        LOG.info('Software Installation: Completed')
+
+        # Configuring the monitoring probe
+        LOG.info('Mon Config: Create new conf file')
+        self.createConf(ips, 4, 'vmb-vnf')
+        ssh_client.sendFile('node.conf')
+        ssh_client.sendCommand('ls /tmp/')
+        ssh_client.sendCommand('git clone https://github.com/sonata-nfv/son-monitor-probe.git')
+        ssh_client.sendCommand('mkdir -p /opt/Monitoring')
+        ssh_client.sendCommand('cp son-monitor-probe/vm_mon/* /opt/Monitoring/')
+        ssh_client.sendCommand('chmod 0755 /opt/Monitoring/run.sh')
+        ssh_client.sendCommand('mv /tmp/node.conf /opt/Monitoring/node.conf')
+        ssh_client.sendCommand('yum -y install screen')
+        ssh_client.sendCommand('screen -dmS probe bash -c "bash /opt/Monitoring/run.sh"')
+        ssh_client.close()
+        LOG.info('Mon Config: Completed')
+
         # Create a response for the FLM
         response = {}
         response['status'] = 'COMPLETED'
@@ -292,6 +371,26 @@ class CssFSM(sonSMbase):
                 return False
         return True
 
+    def saveSSHKey(self, ssh_key):
+        directory = "/root/.ssh/"
+        if not os.path.exists(directory):
+            os.makedirs(directory)     
+
+        file = open('/root/.ssh/id_rsa','w+') 
+        file.write(ssh_key) 
+        file.close()
+        file = open('/root/.ssh/id_rsa','r')
+        LOG.debug('SSH_KEY-> '+"\n"+file.read())
+        file.close()
+        os.chmod('/root/.ssh/id_rsa',stat.S_IREAD)
+
+    def createConfigFile(self, content):
+        file = open('system.cfg','w+') 
+        file.write(content) 
+        file.close()
+        file = open('system.cfg','r')
+        LOG.debug('Configuration-> '+"\n"+file.read())
+        file.close()
 
 def main():
     CssFSM()
