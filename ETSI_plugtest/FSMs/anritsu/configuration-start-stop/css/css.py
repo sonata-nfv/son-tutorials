@@ -26,7 +26,7 @@ acknowledge the contributions of their colleagues of the SONATA
 partner consortium (www.sonata-nfv.eu).
 """
 
-import os
+import os, sys, stat
 import logging
 import configparser
 import json
@@ -150,7 +150,7 @@ class CssFSM(sonSMbase):
         LOG.info("content: " + str(content.keys()))
 
         # Extracting the ip of the management interface from the vnfr
-        vm_image = "anritsu-vnf"
+        vm_image = "avp-vnf"
         vnfr = content["vnfr"]
 
         if (content['vnfd']['name']) == vm_image:
@@ -161,7 +161,8 @@ class CssFSM(sonSMbase):
             return
         
         # Setting up ssh connection with the VNF
-        ssh_key=os.environ.get['PRIVATE_KEY']
+        ssh_key = os.environ.get('PRIVATE_KEY')
+        self.saveSSHKey(ssh_key)
         LOG.info(ssh_key)
 
         ssh_client = Client(mgmt_ip, 'root', 'anritsu', LOG, retries=10)
@@ -182,21 +183,28 @@ class CssFSM(sonSMbase):
         
         #Create a file to transfer
         LOG.info(' Config: Create new conf file')
-        createSelfReg()
-        ssh_client.sendFile('')
+        self.createSelfReg()
+        ssh_client.sendFile('self_reg.sh')
         ssh_client.sendCommand('ls /tmp/')
+        ssh_client.sendCommand('sudo mv /tmp/self_reg.sh /root/self_reg.sh')
+        ssh_client.sendCommand('chmod +x /root/self_reg.sh')
+        ssh_client.sendCommand('bash /root/self_reg.sh')     
+        LOG.info('Config self_register: Completed')
 
         # Configuring the monitoring probe
         LOG.info('Mon Config: Create new conf file')
-        self.createConf(ips, 4, 'anritsu-vnf')
+        self.createConf(ips, 4, 'avp-vnf')
         ssh_client.sendFile('node.conf')
         ssh_client.sendCommand('ls /tmp/')
-        #ssh_client.sendCommand('sudo mv /tmp/node.conf /opt/Monitoring/node.conf')
-        #ssh_client.sendCommand('sudo service mon-probe restart')
+        ssh_client.sendCommand('yum install -y git')
+        ssh_client.sendCommand('git clone https://github.com/sonata-nfv/son-monitor-probe.git')
+        ssh_client.sendCommand('mkdir -p /opt/Monitoring')
+        ssh_client.sendCommand('cp son-monitor-probe/vm_mon/* /opt/Monitoring/')
+        ssh_client.sendCommand('chmod 0755 /opt/Monitoring/run.sh')
+        ssh_client.sendCommand('mv /tmp/node.conf /opt/Monitoring/node.conf')
+        ssh_client.sendCommand('bash /opt/Monitoring/run.sh')
         ssh_client.close()
         LOG.info('Mon Config: Completed')
-
-
 
         # else:
         #     LOG.error("Couldn't obtain SP IP address. Monitoring configuration aborted")
@@ -291,23 +299,28 @@ class CssFSM(sonSMbase):
         LOG.debug('Mon Config-> '+"\n"+f.read())
         f.close()
 
-    def createSelfReg():
-        file = open(“self_reg.sh”,”w”) 
-        file.write('#!/bin/bash') 
-        file.write('f="/etc/anritsu/platform/mc_registration')
+    def createSelfReg(self):
+        file = open('self_reg.sh','w+') 
+        file.write('#!/bin/bash\n') 
+        file.write('f="/etc/anritsu/platform/mc_registration\n')
         file.write('echo -e "mcdomain=default.masterclaw\nserverurl=https://172.22.10.11:8033/mcregserver" > $f')
         file.close()
-        file.open('self_reg.sh','r')
+        file = open('self_reg.sh','r')
         LOG.debug('Self_Registry-> '+"\n"+file.read())
         file.close()
 
-    def saveSSHKey(ssh_key):
-        file = open('~/.ssh/id_rsa','w') 
+    def saveSSHKey(self, ssh_key):
+        directory = "/root/.ssh/"
+        if not os.path.exists(directory):
+            os.makedirs(directory)     
+
+        file = open('/root/.ssh/id_rsa','w+') 
         file.write(ssh_key) 
         file.close()
-        file.open('~/.ssh/id_rsa','r')
+        file = open('/root/.ssh/id_rsa','r')
         LOG.debug('SSH_KEY-> '+"\n"+file.read())
         file.close()
+        os.chmod('/root/.ssh/id_rsa',stat.S_IREAD)
 
 
     def validIP(self, address):
