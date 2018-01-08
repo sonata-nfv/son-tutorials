@@ -202,7 +202,9 @@ class CssFSM(sonSMbase):
         ssh_client.sendCommand('cp son-monitor-probe/vm_mon/* /opt/Monitoring/')
         ssh_client.sendCommand('chmod 0755 /opt/Monitoring/run.sh')
         ssh_client.sendCommand('mv /tmp/node.conf /opt/Monitoring/node.conf')
-        ssh_client.sendCommand('bash /opt/Monitoring/run.sh')
+        ssh_client.sendCommand('yum -y install screen')
+        ssh_client.sendCommand('echo "screen -dmS probe bash -c \"bash /opt/Monitoring/run.sh\"" >> /etc/rc.local ')
+        ssh_client.sendCommand('init 6')
         ssh_client.close()
         LOG.info('Mon Config: Completed')
 
@@ -302,8 +304,8 @@ class CssFSM(sonSMbase):
     def createSelfReg(self):
         file = open('self_reg.sh','w+') 
         file.write('#!/bin/bash\n') 
-        file.write('f="/etc/anritsu/platform/mc_registration\n')
-        file.write('echo -e "mcdomain=default.masterclaw\nserverurl=https://172.22.10.11:8033/mcregserver" > $f')
+        file.write('f="/etc/anritsu/platform/mc_registration"\n')
+        file.write('echo -e "mcdomain=default.masterclaw\\nserverurl=https://172.22.10.11:8033/mcregserver" > $f')
         file.close()
         file = open('self_reg.sh','r')
         LOG.debug('Self_Registry-> '+"\n"+file.read())
