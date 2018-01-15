@@ -3,35 +3,38 @@
 ## VNF descriptor.
 ##
 descriptor_version: "vnfd-schema-01"
-vendor: "keynetic"
-name: "fnd-vnf"
+vendor: "a10networks"
+name: "vth-vnf"
 version: "0.1"
 author: "Felipe Vicens :@ ATOS"
-description: "Keynetic Data Service"
+description: "a10networks vthunder"
 ##
 ## The virtual deployment unit.
 ##
 virtual_deployment_units:
   - id: "vdu01"
-    vm_image: "http://172.22.1.1/VNFs/Keynetic/Keynetic-TestData.qcow2"
+    vm_image: "http://172.22.1.1/VNFs/A10Networks/ACOS_vThunder4_1_1_P6-10G.qcow2"
     vm_image_format: "qcow2"
-    vm_image_md5: '5de149cbd1253395a34aca1312d10413'
+    vm_image_md5: 'f5092c05358c9bb0c0cadbc62f0d23b9'
     resource_requirements:
       cpu:
         vcpus: 1
       memory:
-        size: 1
-        size_unit: "GB"
-      storage:
         size: 4
         size_unit: "GB"
+      storage:
+        size: 12
+        size_unit: "GB"
     connection_points:
-      - id: "eth0"
+      - id: "mgmt"
         interface: "ipv4"
         type: "management"
-      - id: "eth1"
+      - id: "west"
         interface: "ipv4"
-        type: "external"
+        type: "internal"
+      - id: "east"
+        interface: "ipv4"
+        type: "internal"
 
 ## The virtual links that interconnect
 ## the different connections points.
@@ -40,13 +43,18 @@ virtual_links:
   - id: "mgmt"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vdu01:eth0"
+      - "vdu01:mgmt"
       - "cpmgmt"
-  - id: "data"
+  - id: "west"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vdu01:eth1"
-      - "cpdata"
+      - "vdu01:west"
+      - "cpwest"
+  - id: "east"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:east"
+      - "cpeast"
 
 ##
 ## The VNF connection points to the
@@ -56,6 +64,17 @@ connection_points:
   - id: "cpmgmt"
     interface: "ipv4"
     type: "management"
-  - id: "cpdata"
+  - id: "cpwest"
     interface: "ipv4"
     type: "external"
+  - id: "cpeast"
+    interface: "ipv4"
+    type: "external"
+
+#function_specific_managers:
+#  - id: "sonfsmplugtesta10networkscss1"
+#    description: "FSM to do a first FSM test"
+#    image: "sonatanfv/plugtest-a10networks-fsm-css"
+#    options:
+#      - key: "type"
+#        value: "start"

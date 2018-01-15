@@ -1,8 +1,8 @@
 descriptor_extension: yml
 package:
-  description: ETSI Plugtest KEYNETIC
+  description: ETSI Plugtest SPIRENT
   maintainer: Felipe Vicens, ATOS, felipe.vicens@atos.net
-  name: "etsi-keynetic"
-  vendor: "keynetic"
+  name: "etsi-spirent"
+  vendor: "spirent"
   version: "0.5"
 version: '0.5'

@@ -1,0 +1,55 @@
+descriptor_version: "1.0"
+vendor: "eu.sonata.service-descriptor"
+name: "a10networks-spirentstcv"
+version: "0.1"
+author: "Felipe Vicens"
+description: "Descriptor to package a10networks vThunder and Spirent STCv"
+##
+## The various network functions this service
+## is composed of.
+##
+network_functions:
+  - vnf_id: "vnf_vth"
+    vnf_vendor: "a10networks"
+    vnf_name: "vth-vnf"
+    vnf_version: "0.1"
+  - vnf_id: "vnf_stcv0"
+    vnf_vendor: "spirent"
+    vnf_name: "stcv0-vnf"
+    vnf_version: "0.1"
+  - vnf_id: "vnf_stcv1"
+    vnf_vendor: "spirent"
+    vnf_name: "stcv1-vnf"
+    vnf_version: "0.1"
+
+##
+## The NS connection points to the
+## outside world.
+##
+connection_points:
+  - id: "nscpmgmt"
+    interface: "ipv4"
+    type: "management"
+
+##
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "vlmgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vnf_vth:cpmgmt"
+      - "vnf_stcv0:cpmgmt"
+      - "vnf_stcv1:cpmgmt"
+      - "nscpmgmt"
+  - id: "vlwest"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_vth:cpwest"
+      - "vnf_stcv0:cpoutput"
+  - id: "vleast"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_vth:cpeast"
+      - "vnf_stcv1:cpoutput"

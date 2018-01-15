@@ -1,8 +1,8 @@
 descriptor_extension: yml
 package:
-  description: ETSI Plugtest ITALTEL
+  description: ETSI Plugtest A10NETWORKS
   maintainer: Felipe Vicens, ATOS, felipe.vicens@atos.net
-  name: "etsi-italtel"
-  vendor: "italtel"
+  name: "etsi-a10networks"
+  vendor: "a10networks"
   version: "0.5"
 version: '0.5'

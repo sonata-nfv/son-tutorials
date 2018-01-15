@@ -3,33 +3,30 @@
 ## VNF descriptor.
 ##
 descriptor_version: "vnfd-schema-01"
-vendor: "keynetic"
-name: "fnu-vnf"
+vendor: "spirent"
+name: "cs0-vnf"
 version: "0.1"
 author: "Felipe Vicens :@ ATOS"
-description: "Keynetic User"
+description: "Spirent TestCenter virtual"
 ##
 ## The virtual deployment unit.
 ##
 virtual_deployment_units:
   - id: "vdu01"
-    vm_image: "http://172.22.1.1/VNFs/Keynetic/Keynetic-TestUser.qcow2"
+    vm_image: "http://172.22.1.1/VNFs/Spirent/stcv-4.80.2426.qcow2"
     vm_image_format: "qcow2"
-    vm_image_md5: '6afa3d929e18bd9fa64524a84e77a476'
+    vm_image_md5: '16dd12fb8ca246cfca2259d2df435640'
     resource_requirements:
       cpu:
         vcpus: 1
       memory:
-        size: 1
-        size_unit: "GB"
-      storage:
         size: 4
         size_unit: "GB"
+      storage:
+        size: 12
+        size_unit: "GB"
     connection_points:
-      - id: "eth0"
-        interface: "ipv4"
-        type: "management"
-      - id: "eth1"
+      - id: "output"
         interface: "ipv4"
         type: "external"
 
@@ -37,25 +34,25 @@ virtual_deployment_units:
 ## the different connections points.
 ##
 virtual_links:
-  - id: "mgmt"
-    connectivity_type: "E-LAN"
-    connection_points_reference:
-      - "vdu01:eth0"
-      - "cpmgmt"
-  - id: "user"
+  - id: "output"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vdu01:eth1"
-      - "cpuser"
+      - "vdu01:output"
+      - "cpoutput"
 
 ##
 ## The VNF connection points to the
 ## outside world.
 ##
 connection_points:
-  - id: "cpmgmt"
-    interface: "ipv4"
-    type: "management"
-  - id: "cpuser"
+  - id: "cpoutput"
     interface: "ipv4"
     type: "external"
+
+#function_specific_managers:
+#  - id: "sonfsmplugtestspirentcss1"
+#    description: "FSM to do a first FSM test"
+#    image: "sonatanfv/plugtest-spirent-fsm-css"
+#    options:
+#      - key: "type"
+#        value: "start"

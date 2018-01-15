@@ -169,6 +169,9 @@ class CssFSM(sonSMbase):
         self.saveSSHKey(ssh_key)
         LOG.info(ssh_key)
 
+        # Creating ifcfg-eth1
+        self.createInterfaceFile()
+
         # Configuring VMA
         ssh_client = Client(mgmt_ipA, 'root', 'empirix', LOG, retries=10)
         sp_ip = ssh_client.sendCommand("echo $SSH_CLIENT | awk '{ print $1}'")
@@ -193,6 +196,14 @@ class CssFSM(sonSMbase):
         ssh_client.sendCommand('ls /tmp/')
         ssh_client.sendCommand('sudo mv /tmp/system.cfg /home/hammer/system.cfg')
         LOG.info('Config self_register: Completed')
+
+        # Adding configuration of interface eth1
+        LOG.info('Config: Adding configuration of interface eth1')
+        ssh_client.sendFile('ifcfg-eth1')
+        ssh_client.sendCommand('ls /tmp/')
+        ssh_client.sendCommand('sudo mv /tmp/ifcfg-eth1 /etc/sysconfig/network-scripts/ifcfg-eth1')
+        ssh_client.sendCommand('ifup eth1')
+        LOG.info('Config eth1: Completed')
 
         # Installing software
         LOG.info('Installing Software')
@@ -390,6 +401,19 @@ class CssFSM(sonSMbase):
         file.close()
         file = open('system.cfg','r')
         LOG.debug('Configuration-> '+"\n"+file.read())
+        file.close()
+
+    def createInterfaceFile(self):
+        file = open('ifcfg-eth1','w+') 
+        file.write('DEVICE=eth1') 
+        file.write('BOOTPROTO=dhcp') 
+        file.write('ONBOOT=yes') 
+        file.write('TYPE=Ethernet') 
+        file.write('USERCTL=no') 
+        file.write('DEFROUTE=no') 
+        file.close()
+        file = open('ifcfg-eth1','r')
+        LOG.debug('Configuration ifcfg-eth1-> '+"\n"+file.read())
         file.close()
 
 def main():
