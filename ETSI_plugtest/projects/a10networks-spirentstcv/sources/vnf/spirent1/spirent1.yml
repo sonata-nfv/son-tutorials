@@ -4,7 +4,7 @@
 ##
 descriptor_version: "vnfd-schema-01"
 vendor: "spirent"
-name: "stcv0-vnf"
+name: "stcv1-vnf"
 version: "0.1"
 author: "Felipe Vicens :@ ATOS"
 description: "Spirent TestCenter virtual"
@@ -20,10 +20,10 @@ virtual_deployment_units:
       cpu:
         vcpus: 1
       memory:
-        size: 4
+        size: 1
         size_unit: "GB"
       storage:
-        size: 12
+        size: 10
         size_unit: "GB"
     connection_points:
       - id: "mgmt"

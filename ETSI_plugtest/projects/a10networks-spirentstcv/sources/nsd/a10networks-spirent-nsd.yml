@@ -43,13 +43,13 @@ virtual_links:
       - "vnf_stcv0:cpmgmt"
       - "vnf_stcv1:cpmgmt"
       - "nscpmgmt"
-  - id: "vlwest"
+  - id: "vlinput"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vnf_vth:cpwest"
-      - "vnf_stcv0:cpoutput"
-  - id: "vleast"
+      - "vnf_vth:cpinput"
+      - "vnf_stcv0:cpinput"
+  - id: "vloutput"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vnf_vth:cpeast"
+      - "vnf_vth:cpoutput"
       - "vnf_stcv1:cpoutput"

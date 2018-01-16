@@ -3,33 +3,33 @@
 ## VNF descriptor.
 ##
 descriptor_version: "vnfd-schema-01"
-vendor: "spirent"
-name: "stcv1-vnf"
+vendor: "alphanetworks"
+name: "enb-vnf"
 version: "0.1"
 author: "Felipe Vicens :@ ATOS"
-description: "Spirent TestCenter virtual"
+description: "Alpha Networks eNB"
 ##
 ## The virtual deployment unit.
 ##
 virtual_deployment_units:
   - id: "vdu01"
-    vm_image: "http://172.22.1.1/VNFs/Spirent/stcv-4.80.2426.qcow2"
+    vm_image: "http://172.22.1.1/VNFs/AlphaNetworks/AlphaNetworks_VNF_Plugtest_v1.qcow2"
     vm_image_format: "qcow2"
-    vm_image_md5: '16dd12fb8ca246cfca2259d2df435640'
+    vm_image_md5: '975b07e1e31fb8de6370c860681db8c2'
     resource_requirements:
       cpu:
-        vcpus: 1
+        vcpus: 2
       memory:
-        size: 4
+        size: 1
         size_unit: "GB"
       storage:
-        size: 12
+        size: 20
         size_unit: "GB"
     connection_points:
-      - id: "mgmt"
+      - id: "eth0"
         interface: "ipv4"
         type: "management"
-      - id: "output"
+      - id: "input"
         interface: "ipv4"
         type: "internal"
 
@@ -38,15 +38,15 @@ virtual_deployment_units:
 ##
 virtual_links:
   - id: "mgmt"
-    connectivity_type: "E-LAN"
-    connection_points_reference:
-      - "vdu01:mgmt"
-      - "cpmgmt"
-  - id: "output"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vdu01:output"
-      - "cpoutput"
+      - "vdu01:eth0"
+      - "cpmgmt"
+  - id: "input"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:input"
+      - "cpinput"
 
 ##
 ## The VNF connection points to the
@@ -56,14 +56,14 @@ connection_points:
   - id: "cpmgmt"
     interface: "ipv4"
     type: "management"
-  - id: "cpoutput"
+  - id: "cpinput"
     interface: "ipv4"
     type: "internal"
 
-#function_specific_managers:
-#  - id: "sonfsmplugtestspirentcss1"
-#    description: "FSM to do a first FSM test"
-#    image: "sonatanfv/plugtest-spirent-fsm-css"
-#    options:
-#      - key: "type"
-#        value: "start"
+function_specific_managers:
+  - id: "sonfsmplugtestalphanetworkscss1"
+    description: "FSM to do a first FSM test"
+    image: "sonatanfv/plugtest-enb-fsm-css"
+    options:
+      - key: "type"
+        value: "start"

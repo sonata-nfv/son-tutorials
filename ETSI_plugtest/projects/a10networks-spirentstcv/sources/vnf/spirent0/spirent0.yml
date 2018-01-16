@@ -3,36 +3,33 @@
 ## VNF descriptor.
 ##
 descriptor_version: "vnfd-schema-01"
-vendor: "a10networks"
-name: "vth-vnf"
+vendor: "spirent"
+name: "stcv0-vnf"
 version: "0.1"
 author: "Felipe Vicens :@ ATOS"
-description: "a10networks vthunder"
+description: "Spirent TestCenter virtual"
 ##
 ## The virtual deployment unit.
 ##
 virtual_deployment_units:
   - id: "vdu01"
-    vm_image: "http://172.22.1.1/VNFs/A10Networks/ACOS_vThunder4_1_2_P_2-poll-10G.qcow2"
+    vm_image: "http://172.22.1.1/VNFs/Spirent/stcv-4.80.2426.qcow2"
     vm_image_format: "qcow2"
-    vm_image_md5: 'df942aa9105a055ee95a814da644972f'
+    vm_image_md5: '16dd12fb8ca246cfca2259d2df435640'
     resource_requirements:
       cpu:
         vcpus: 1
       memory:
-        size: 4
+        size: 1
         size_unit: "GB"
       storage:
-        size: 12
+        size: 10
         size_unit: "GB"
     connection_points:
       - id: "mgmt"
         interface: "ipv4"
         type: "management"
       - id: "input"
-        interface: "ipv4"
-        type: "internal"
-      - id: "output"
         interface: "ipv4"
         type: "internal"
 
@@ -50,11 +47,6 @@ virtual_links:
     connection_points_reference:
       - "vdu01:input"
       - "cpinput"
-  - id: "output"
-    connectivity_type: "E-Line"
-    connection_points_reference:
-      - "vdu01:output"
-      - "cpoutput"
 
 ##
 ## The VNF connection points to the
@@ -67,14 +59,11 @@ connection_points:
   - id: "cpinput"
     interface: "ipv4"
     type: "internal"
-  - id: "cpoutput"
-    interface: "ipv4"
-    type: "internal"
 
 #function_specific_managers:
-#  - id: "sonfsmplugtesta10networkscss1"
+#  - id: "sonfsmplugtestspirentcss1"
 #    description: "FSM to do a first FSM test"
-#    image: "sonatanfv/plugtest-a10networks-fsm-css"
+#    image: "sonatanfv/plugtest-spirent-fsm-css"
 #    options:
 #      - key: "type"
 #        value: "start"
