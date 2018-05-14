@@ -1,0 +1,69 @@
+##
+## Some general information regarding this
+## VNF descriptor.
+##
+descriptor_version: "vnfd-schema-01"
+vendor: "alphanetworks"
+name: "enbt-vnf"
+version: "0.1"
+author: "Felipe Vicens :@ ATOS"
+description: "Alpha Networks eNB"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "vdu01"
+    vm_image: "http://172.22.1.1/VNFs/AlphaNetworks/AlphaNetworks_VNF_Plugtest_v1.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: '975b07e1e31fb8de6370c860681db8c2'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 1
+        size_unit: "GB"
+      storage:
+        size: 20
+        size_unit: "GB"
+    connection_points:
+      - id: "eth0"
+        interface: "ipv4"
+        type: "management"
+      - id: "input"
+        interface: "ipv4"
+        type: "internal"
+
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "mgmt"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:eth0"
+      - "cpmgmt"
+  - id: "input"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:input"
+      - "cpinput"
+
+##
+## The VNF connection points to the
+## outside world.
+##
+connection_points:
+  - id: "cpmgmt"
+    interface: "ipv4"
+    type: "management"
+  - id: "cpinput"
+    interface: "ipv4"
+    type: "internal"
+
+function_specific_managers:
+  - id: "sonfsmplugtestalphanetworkstcss1"
+    description: "FSM to do a first FSM test"
+    image: "sonatanfv/plugtest-enbt-fsm-css"
+    options:
+      - key: "type"
+        value: "start"

@@ -1,0 +1,8 @@
+descriptor_extension: yml
+package:
+  description: ETSI Plugtest Alpha Networks and TestVNF
+  maintainer: Felipe Vicens, ATOS, felipe.vicens@atos.net
+  name: "etsi-alpha-test"
+  vendor: "eu.sonata"
+  version: "0.5"
+version: '0.5'

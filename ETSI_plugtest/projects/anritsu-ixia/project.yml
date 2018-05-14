@@ -1,0 +1,8 @@
+descriptor_extension: yml
+package:
+  description: ETSI Plugtest ANRITSU IXIA
+  maintainer: Felipe Vicens, ATOS, felipe.vicens@atos.net
+  name: "etsi-anritsu-ixia"
+  vendor: "eu.sonata"
+  version: "0.5"
+version: '0.5'

@@ -1,0 +1,87 @@
+##
+## Some general information regarding this
+## VNF descriptor.
+##
+descriptor_version: "vnfd-schema-01"
+vendor: "ng4t"
+name: "ng4t-vnf"
+version: "0.1"
+author: "Felipe Vicens :@ ATOS"
+description: "ng4t NG40 ETSI VNF"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "vdu01"
+    vm_image: "http://172.22.1.1/VNFs/ng4t/ng40etsicloudvnf_v1.2_13012018.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: '3ff6ab367b9d1b2518db8af4bdba6acd'
+    resource_requirements:
+      cpu:
+        vcpus: 4
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 100
+        size_unit: "GB"
+    connection_points:
+      - id: "ens3"
+        interface: "ipv4"
+        type: "management"
+      - id: "ens4"
+        interface: "ipv4"
+        type: "internal"
+      - id: "ens5"
+        interface: "ipv4"
+        type: "internal"    
+      - id: "ens6"
+        interface: "ipv4"
+        type: "internal"
+      - id: "ens7"
+        interface: "ipv4"
+        type: "internal"
+      - id: "ens8"
+        interface: "ipv4"
+        type: "internal"
+      - id: "ens9"
+        interface: "ipv4"
+        type: "internal"
+      - id: "ens10"
+        interface: "ipv4"
+        type: "internal"
+    
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "mgmt"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:ens3"
+      - "cpmgmt"
+  - id: "s1mme"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:ens6"
+      - "cps1mme"
+
+##
+## The VNF connection points to the
+## outside world.
+##
+connection_points:
+  - id: "cpmgmt"
+    interface: "ipv4"
+    type: "management"
+  - id: "cps1mme"
+    interface: "ipv4"
+    type: "internal"
+
+#function_specific_managers:
+#  - id: "sonfsmplugtestalphanetworkscss1"
+#    description: "FSM to do a first FSM test"
+#    image: "sonatanfv/plugtest-enb-fsm-css"
+#    options:
+#      - key: "type"
+#        value: "start"

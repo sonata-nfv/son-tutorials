@@ -18,7 +18,7 @@ service_platforms:
         pub_key: ''
       token_file: token.1514994159.5862567
       username: sonata
-    url: http://172.22.25.59:32001
+    url: http://sp.demo.sonata-nfv.eu:32001
   sp1:
     credentials:
       password: s0n@t@

@@ -1,52 +1,50 @@
 <?xml version='1.0' encoding='utf-8'?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
-  <key attr.name="label" attr.type="string" for="edge" id="d8" />
+  <key attr.name="type" attr.type="string" for="edge" id="d8" />
   <key attr.name="level" attr.type="long" for="edge" id="d7" />
-  <key attr.name="type" attr.type="string" for="edge" id="d6" />
-  <key attr.name="node_id" attr.type="string" for="node" id="d5" />
+  <key attr.name="label" attr.type="string" for="edge" id="d6" />
+  <key attr.name="type" attr.type="string" for="node" id="d5" />
   <key attr.name="node_label" attr.type="string" for="node" id="d4" />
-  <key attr.name="parent_id" attr.type="string" for="node" id="d3" />
+  <key attr.name="level" attr.type="long" for="node" id="d3" />
   <key attr.name="label" attr.type="string" for="node" id="d2" />
-  <key attr.name="level" attr.type="long" for="node" id="d1" />
-  <key attr.name="type" attr.type="string" for="node" id="d0" />
+  <key attr.name="parent_id" attr.type="string" for="node" id="d1" />
+  <key attr.name="node_id" attr.type="string" for="node" id="d0" />
   <graph edgedefault="undirected">
     <node id="nscpmgmt">
-      <data key="d0">br-iface</data>
-      <data key="d1">0</data>
+      <data key="d0">anritsu.service-descriptor.anritsu.0.1</data>
+      <data key="d1" />
       <data key="d2">nscpmgmt</data>
-      <data key="d3" />
+      <data key="d3">0</data>
       <data key="d4">anritsu</data>
-      <data key="d5">anritsu.service-descriptor.anritsu.0.1</data>
-    </node>
-    <node id="br-vlmgmt">
-      <data key="d0">bridge</data>
-      <data key="d1">1</data>
-      <data key="d2">br-vlmgmt</data>
-      <data key="d3">anritsu.service-descriptor.anritsu.0.1</data>
+      <data key="d5">br-iface</data>
     </node>
     <node id="vnf_avp" />
-    <node id="nscpinput">
-      <data key="d0">iface</data>
-      <data key="d1">0</data>
-      <data key="d2">nscpinput</data>
-      <data key="d3" />
-      <data key="d4">anritsu</data>
-      <data key="d5">anritsu.service-descriptor.anritsu.0.1</data>
+    <node id="vnf_ixload" />
+    <node id="br-vlmgmt">
+      <data key="d1">anritsu.service-descriptor.anritsu.0.1</data>
+      <data key="d2">br-vlmgmt</data>
+      <data key="d3">1</data>
+      <data key="d5">bridge</data>
     </node>
     <edge source="nscpmgmt" target="br-vlmgmt">
-      <data key="d6">br-iface</data>
+      <data key="d6">vlmgmt</data>
       <data key="d7">0</data>
-      <data key="d8">vlmgmt</data>
+      <data key="d8">br-iface</data>
     </edge>
-    <edge source="br-vlmgmt" target="vnf_avp">
-      <data key="d6">br-iface</data>
+    <edge source="vnf_avp" target="vnf_ixload">
+      <data key="d6">vlexternal</data>
       <data key="d7">0</data>
-      <data key="d8">vlmgmt</data>
+      <data key="d8">iface</data>
     </edge>
-    <edge source="vnf_avp" target="nscpinput">
-      <data key="d6">iface</data>
+    <edge source="vnf_avp" target="br-vlmgmt">
+      <data key="d6">vlmgmt</data>
       <data key="d7">0</data>
-      <data key="d8">vlinput</data>
+      <data key="d8">br-iface</data>
+    </edge>
+    <edge source="vnf_ixload" target="br-vlmgmt">
+      <data key="d6">vlmgmt</data>
+      <data key="d7">0</data>
+      <data key="d8">br-iface</data>
     </edge>
   </graph>
 </graphml>

@@ -1,0 +1,61 @@
+##
+## Some general information regarding this
+## VNF descriptor.
+##
+descriptor_version: "vnfd-schema-01"
+vendor: "ixia"
+name: "ixload-vnf"
+version: "0.1"
+author: "Felipe Vicens :@ ATOS"
+description: "Ixia load generator"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "vdu01"
+    vm_image: "http://172.22.1.1/VNFs/IXIA/Ixia_Virtual_Test_Appliance_8.40_EA_KVM.qcow2.tar.bz2"
+    vm_image_format: "qcow2"
+    vm_image_md5: '00898e43557d1af7837b486322e2c7f6'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 8
+        size_unit: "GB"
+    connection_points:
+      - id: "eth0"
+        interface: "ipv4"
+        type: "management"
+      - id: "external"
+        interface: "ipv4"
+        type: "external"
+
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "mgmt"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:eth0"
+      - "cpmgmt"
+  - id: "external"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:external"
+      - "cpexternal"
+
+##
+## The VNF connection points to the
+## outside world.
+##
+connection_points:
+  - id: "cpmgmt"
+    interface: "ipv4"
+    type: "management"
+  - id: "cpexternal"
+    interface: "ipv4"
+    type: "external"

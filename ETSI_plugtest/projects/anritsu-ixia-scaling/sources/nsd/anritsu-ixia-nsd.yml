@@ -1,0 +1,57 @@
+descriptor_version: "1.0"
+vendor: "anritsu.service-descriptor"
+name: "anritsu"
+version: "0.2"
+author: "Felipe Vicens"
+description: "Descriptor to package Anritsu Virtual Probe VNF and Ixia Load generator"
+##
+## The various network functions this service
+## is composed of.
+##
+network_functions:
+  - vnf_id: "vnf_avp"
+    vnf_vendor: "anritsu"
+    vnf_name: "avp-vnf"
+    vnf_version: "0.2"
+  - vnf_id: "vnf_avp1"
+    vnf_vendor: "anritsu"
+    vnf_name: "avp1-vnf"
+    vnf_version: "0.2"
+  - vnf_id: "vnf_ixload"
+    vnf_vendor: "ixia"
+    vnf_name: "ixload-vnf"
+    vnf_version: "0.2"
+
+
+##
+## The NS connection points to the
+## outside world.
+##
+connection_points:
+  - id: "nscpmgmt"
+    interface: "ipv4"
+    type: "management"
+
+##
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "vlmgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vnf_avp:cpmgmt"
+      - "vnf_avp1:cpmgmt"
+      - "vnf_ixload:cpmgmt"
+      - "nscpmgmt"
+  - id: "vlinput"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vnf_avp:cpinput"
+      - "vnf_ixload:cpinput"
+  - id: "vlinput1"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_avp1:cpinput"
+      - "vnf_ixload:cpinput"
+

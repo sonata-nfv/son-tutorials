@@ -1,0 +1,44 @@
+descriptor_version: "1.0"
+vendor: "alphanetworks.service-descriptor"
+name: "alphanetworks-ng4t"
+version: "0.1"
+author: "Felipe Vicens"
+description: "Descriptor to package Alpha Networks eNB and ng4T"
+##
+## The various network functions this service
+## is composed of.
+##
+network_functions:
+  - vnf_id: "vnf_enb"
+    vnf_vendor: "alphanetworks"
+    vnf_name: "enb-vnf"
+    vnf_version: "0.1"
+  - vnf_id: "vnf_ng4t"
+    vnf_vendor: "ng4t"
+    vnf_name: "ng4t-vnf"
+    vnf_version: "0.1"
+
+##
+## The NS connection points to the
+## outside world.
+##
+connection_points:
+  - id: "nscpmgmt"
+    interface: "ipv4"
+    type: "management"
+
+##
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "vlmgmt1"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_enb:cpmgmt"
+      - "nscpmgmt"
+  - id: "vlmgmt2"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_ng4t:cpmgmt"
+      - "nscpmgmt"
