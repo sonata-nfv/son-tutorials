@@ -24,7 +24,7 @@ tng-validate -h
 tng-package -h
 ```
 
-For the last part of the demo, you will also need the *vim-emu* prototyping platform. Follow the install instructions for the [bare-metal installation](https://osm.etsi.org/wikipub/index.php/VIM_emulator#Option_1:_Bare-metal_installation):
+For the last part of the demo, you will also need the *vim-emu* prototyping platform. You should install it using Python 2, installing it globally (with `sudo`). Follow the install instructions for the [bare-metal installation](https://osm.etsi.org/wikipub/index.php/VIM_emulator#Option_1:_Bare-metal_installation):
 
 ```bash
 # package requirements
@@ -196,3 +196,79 @@ As you can see, the packager automatically validates the project again to make s
 
 ### Emulation
 
+Now, it's time to on-board and instantiate our developed service.
+
+#### Preparation
+
+##### Build VNFs
+
+On the machine, where you installed vim-emu, build the VNFs that we use in our service. For this, copy the VNFs from the `vnfs` folder of this repo and execute the following command (from within the `vnfs` folder) to build the three Docker images of the VNFs:
+
+```bash
+sudo ./build.sh
+```
+
+Depending on your connection, this will take a while.
+
+##### Start vim-emu
+
+On the machine, where `vim-emu` is installed, navigate to the cloned `vim-emu` repository and start the emulator using the following command:
+
+```bash
+sudo python examples/tango_default_cli_topology_2_pop.py
+```
+
+This will start a dummy topology with two emulated PoPs. Keep this terminal window (let's call it `containernet` terminal) open and continue the tutorial in a *new* terminal.
+
+#### Package on-boarding
+
+On-board the packaged service using the provided script in the repo:
+
+```bash
+./onboard.sh
+```
+
+You should see some updates on the `containernet` terminal and receive a positive response similar to this one (with different UUID etc of course):
+
+```
+HTTP/1.0 201 CREATED
+Content-Type: application/json
+Content-Length: 159
+Server: Werkzeug/0.14.1 Python/2.7.12
+Date: Wed, 23 Jan 2019 16:27:05 GMT
+
+{
+    "error": null,
+    "service_uuid": "f2fd806f-9002-494e-830c-32109efce048",
+    "sha1": "01433c28329786fc76d8bab250bd3ba16a70f799",
+    "size": 6207
+}
+```
+
+*Note:* This will only work if you are running vim-emu locally and if you didn't change the package name. Otherwise, you'll have to use `curl`  (possibly in combination with a VPN if you're trying to reach a remote host):
+
+```bash
+curl -i -X POST -F package=@<package-name> <remote-emulator-host>:5000/packages
+```
+
+#### Instantiation
+
+After on-boarding, you can now instantiate the service. But first, let's check that it is not yet running. On the vim-emu machine, call:
+
+```bash
+vim-emu compute list
+```
+
+This should show an empty table with now VNFs/containers running. Now call the provided script to instantiate the service:
+
+```bash
+./instantiate.sh
+```
+
+As before, you may also use `curl` instead:
+
+```bash
+curl -X POST <remote-host>:5000/instantiations -d '{"service_name": "demo-service"}'
+```
+
+This should start the services and return the `service_instance_uuid` of the started service. Call `vim-emu compute list` again, and you'll see the three containers of our three VNFs started.
