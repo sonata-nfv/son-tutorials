@@ -272,3 +272,11 @@ curl -X POST <remote-host>:5000/instantiations -d '{"service_name": "demo-servic
 ```
 
 This should start the services and return the `service_instance_uuid` of the started service. Call `vim-emu compute list` again, and you'll see the three containers of our three VNFs started.
+
+#### Termination
+
+To stop the vim-emu emulator, type `exit` in the `containernet` terminal. You may need to press "Enter" a couple of times before seeing the `containernet>` prompt.
+
+
+
+**Congratulations, you successfully completed the 5GTANGO SDK tutorial!**
