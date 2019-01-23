@@ -159,5 +159,40 @@ Now it is easy to identify and fix the error again.
 
 ### Packaging
 
+Next, you'll package the created and validated project (without bugs!) into a single package file. Thanks to its generic, standard-conformant design, this package file can then be on-boarded to the 5GTANGO service platform or OSM (possibly also to ONAP in future versions).
+
+Call the packager using the following command inside your virtualenv:
+
+```bash
+$ tng-pkg -p descriptors/
+2019-01-23 17:05:02 nb-stschn tango.tngsdk.package.packager:l240 INFO Packager created: TangoPackager(7e4c9fd4-b68d-428b-adc2-4939ad904986)
+2019-01-23 17:05:02 nb-stschn tango.tngsdk.package.packager:l897 INFO Creating 5GTANGO package using project: 'descriptors/'
+Printing all the arguments: Namespace(api=False, cfile=None, custom=False, dext=None, dpath=None, integrity=False, mode='stateless', nsd=None, package_file=None, project_path='descriptors/', service_address='127.0.0.1', service_port=5001, syntax=True, topology=False, verbose=False, vnfd=None, workspace_path='C:\\Users\\Stefan\\.tng-workspace')
+Project validation
+Syntax validation
+2019-01-23 17:05:03 nb-stschn tngsdk.project.project[13976] INFO Loading project 'descriptors/project.yml'
+2019-01-23 17:05:03 nb-stschn tngsdk.validation.validator[13976] INFO Validating project 'descriptors/'
+2019-01-23 17:05:03 nb-stschn tngsdk.validation.validator[13976] INFO ... syntax: True, integrity: False, topology: False
+2019-01-23 17:05:03 nb-stschn tngsdk.validation.validator[13976] INFO Validating service 'descriptors/tango_demo-service.yml'
+2019-01-23 17:05:03 nb-stschn tngsdk.validation.validator[13976] INFO ... syntax: True, integrity: False, topology: False
+2019-01-23 17:05:03 nb-stschn tngsdk.validation.validator[13976] INFO Validating syntax of service 'eu.5gtango.demo-service.0.9'
+No errors found in project validation
+2019-01-23 17:05:03 nb-stschn tango.tngsdk.package.packager:l939 INFO Package created: 'eu.5gtango.generated-project.0.1.tgo'
+2019-01-23 17:05:03 nb-stschn tango.tngsdk.package.packager:l300 INFO Packager done (1.0069s): TangoPackager(7e4c9fd4-b68d-428b-adc2-4939ad904986)
+===============================================================================
+P A C K A G I N G   R E P O R T
+===============================================================================
+Packaged:    descriptors/
+Project:     eu.5gtango.generated-project.0.1
+Artifacts:   9
+Output:      eu.5gtango.generated-project.0.1.tgo
+Error:       None
+Result:      Success.
+===============================================================================
+
+```
+
+As you can see, the packager automatically validates the project again to make sure there are no errors (if the validator is installed) before creating the package `eu.5gtango.generated-project.0.1.tgo` (also available in the repo).
+
 ### Emulation
 
