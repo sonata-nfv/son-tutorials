@@ -116,7 +116,46 @@ If you run the `status` command again, you'll see that the license file is now p
 
 ### Validation
 
-The next step in the SDK workflow is descriptor and project validation to ensure all descriptors are correct. 
+The next step in the SDK workflow is descriptor and project validation to ensure all descriptors are correct. Currently, the validator only works on Linux (not Windows).
+
+#### Validate our project
+
+Validate our project by using the following command:
+
+```bash
+$ tng-validate --project descriptors/
+CLI input arguments: ['--project', 'descriptors/']
+Printing all the arguments: Namespace(api=False, cfile=None, custom=False, dext=None, dpath=None, integrity=False, mode='stateless', nsd=None, package_file=None, project_path='descriptors/', service_address='127.0.0.1', service_port=5001, syntax=False, topology=False, verbose=False, vnfd=None, workspace_path=None)
+Project validation
+2019-01-23 15:41:54 [INFO] [tngsdk.project.project] Loading project 'descriptors/project.yml'
+2019-01-23 15:41:54 [INFO] [tngsdk.validation.validator] Validating project 'descriptors/'
+...
+2019-01-23 15:41:55 [INFO] [tngsdk.validation.validator] Validating topology of service 'eu.5gtango.demo-service.0.9'
+No errors found in project validation
+```
+
+Great, it seems like our descriptors are error-free!
+
+#### Introducing and fixing a bug
+
+Feel free to further test the tool by introducing a bug and using the validator to find and fix it again. For example, you can rename one of the connection points of the vLinks in `descriptors/tango_demo-service.yml`:
+
+```yaml
+- id: input-2-vnf0
+    connectivity_type: E-Line
+    connection_points_reference:
+      - input
+      - 'vnf5:input'	# bug: vnf5 is not defined
+```
+
+When running the validation again, it should warn you about the error:
+
+```bash
+2019-01-23 15:58:26 [ERROR] [validator.events] Undefined connection point
+2019-01-23 15:58:26 [ERROR] [validator.events] Function (VNF) of vnf_id='vnf5' declared in connection point 'vnf5' in virtual link 'input' is not defined
+```
+
+Now it is easy to identify and fix the error again.
 
 ### Packaging
 
