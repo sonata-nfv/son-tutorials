@@ -1,0 +1,45 @@
+descriptor_extension: yml
+version: '0.5'
+files:
+- path: tango_demo-service.yml
+  type: application/vnd.5gtango.nsd
+  tags:
+  - eu.5gtango
+- path: tango_default-vnf0.yml
+  type: application/vnd.5gtango.vnfd
+  tags:
+  - eu.5gtango
+- path: tango_default-vnf1.yml
+  type: application/vnd.5gtango.vnfd
+  tags:
+  - eu.5gtango
+- path: tango_default-vnf2.yml
+  type: application/vnd.5gtango.vnfd
+  tags:
+  - eu.5gtango
+- path: osm_demo-service.yml
+  type: application/vnd.etsi.osm.nsd
+  tags:
+  - etsi.osm
+- path: osm_default-vnf0.yml
+  type: application/vnd.etsi.osm.vnfd
+  tags:
+  - etsi.osm
+- path: osm_default-vnf1.yml
+  type: application/vnd.etsi.osm.vnfd
+  tags:
+  - etsi.osm
+- path: osm_default-vnf2.yml
+  type: application/vnd.etsi.osm.vnfd
+  tags:
+  - etsi.osm
+- path: License.txt
+  type: text/plain
+  tags: []
+package:
+  name: generated-project
+  version: '0.1'
+  maintainer: Stefan
+  vendor: eu.5gtango
+  description: Demo service for hackfest
+uuid: baaf9c9b-523a-44b9-8493-b868c4e67e33

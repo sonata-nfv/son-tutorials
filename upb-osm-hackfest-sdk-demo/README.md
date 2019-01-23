@@ -1,12 +1,10 @@
-# 5GTANGO SDK Demo
+# 5GTANGO SDK Tutorial
 
-This demo shows the 5GTANGO SDK, including the full workflow of descriptor generation, project management, validation, packaging, and on-boarding and instantiation on the *vim-emu* emulator.
+This tutorial shows the 5GTANGO SDK, including the full workflow of descriptor generation, project management, validation, packaging, and on-boarding and instantiation on the *vim-emu* emulator.
 
-This demo is based on a [demo previously presented at IEEE NFV-SDN 2018](https://github.com/CN-UPB/demo-multi-platform-nfv-sdk).
+This tutorial is based on a [demo previously presented at IEEE NFV-SDN 2018](https://github.com/CN-UPB/demo-multi-platform-nfv-sdk).
 
-**Contact information:**
-Stefan Schneider (@[stefanbschneider](https://github.com/stefanbschneider))
-Paderborn University
+**Contact information:** [Stefan Schneider](https://github.com/stefanbschneider), Paderborn University
 
 ## Setup
 
@@ -43,7 +41,7 @@ cd ~/vim-emu/ansible
 sudo ansible-playbook -i "localhost," -c local install.yml
 ```
 
-## Demo walkthrough
+## Tutorial walkthrough
 
 ### Descriptor generation
 
@@ -57,11 +55,68 @@ Finally add VNFs with the following Docker images (in this order!):
 
 ![descriptorgen](docs/descriptorgen.png)
 
-**TODO:** continue here
+Click "generate" to generate the descriptors. After a moment, you'll see the generated NSD and VNFDs for our demo service. Our SDK is has multi-platform support and also generates OSM descriptors.
 
-### Package management
+After reviewing (and potentially adjusting) the generated descriptors, download them by clicking "download all".
+
+*Note:* The descriptor generator is also available as CLI tool for advanced users.
+
+### Project management
+
+Extract the downloaded `descriptors.zip` (or take the `descriptors` directory from this repo) and activate your Python virtual environment in which you installed `tng-sdk-project`.
+
+#### Workspace
+
+If you haven't done so before, create a new workspace (containing some configuration files) by typing `tng-wks` in the terminal with the activated virtual environment.
+
+#### Project status
+
+Now, let's have a look at the generated descriptors and downloaded project, using the project management tool:
+
+```bash
+$ tng-project -p descriptors --status
+2019-01-23 15:16:46 nb-stschn tngsdk.project.project[220] INFO Loading project 'descriptors/project.yml'
+Project: generated-project
+Vendor: eu.5gtango
+Version: 0.1
+UUID: baaf9c9b-523a-44b9-8493-b868c4e67e33
+Demo service for hackfest
++-------------------------------+------------+
+| MIME type                     |   Quantity |
++===============================+============+
+| application/vnd.5gtango.nsd   |          1 |
++-------------------------------+------------+
+| application/vnd.5gtango.vnfd  |          3 |
++-------------------------------+------------+
+| application/vnd.etsi.osm.nsd  |          1 |
++-------------------------------+------------+
+| application/vnd.etsi.osm.vnfd |          3 |
++-------------------------------+------------+
+```
+
+Using the `tng-project --status` command, you'll get an overview of the involved files: 1 NSD and 3 VNFDs for both 5GTANGO and OSM.
+
+#### Adding a file
+
+Now, let's create add a file to our project. For example, a dummy license file:
+
+```bash
+touch descriptors/License.txt
+```
+
+To include this file in our project, use the `tng-project --add` command (similar to `git add`):
+
+```bash
+$ tng-project -p descriptors --add descriptors/License.txt
+2019-01-23 15:22:08 nb-stschn tngsdk.project.project[14016] INFO Loading project 'descriptors\project.yml'
+2019-01-23 15:22:08 nb-stschn tngsdk.project.project[14016] INFO Added descriptors/License.txt to project.yml
+```
+
+If you run the `status` command again, you'll see that the license file is now part of your project (listed as `text/plain` file).
 
 ### Validation
+
+The next step in the SDK workflow is descriptor and project validation to ensure all descriptors are correct. 
 
 ### Packaging
 
