@@ -6,6 +6,8 @@ This tutorial is based on a [demo previously presented at IEEE NFV-SDN 2018](htt
 
 **Contact information:** [Stefan Schneider](https://github.com/stefanbschneider), Paderborn University
 
+![architecture](docs/architecture.png)
+
 ## Setup
 
 To run the full demo, including instantiation of the service on the emulator, you should use Ubuntu 16.04. All previous steps of the demo also work on other operating systems (eg, Windows and Mac OS).
