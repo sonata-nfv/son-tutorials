@@ -1,0 +1,41 @@
+vnfd-catalog:
+  vnfd:
+    - id: default-vnf0
+      name: default-vnf0
+      short-name: default-vnf0
+      vendor: eu.5gtango
+      version: 0.9
+      description: A VNF based on proxy-squid-img
+      vdu:
+        - id: vdu01
+          name: vdu01
+          image: proxy-squid-img
+          vm-flavor:
+            vcpu-count: 1
+            memory-mb: 512
+            storage-gb: 10
+          interface:
+            - name: vnf0-mgmt
+              type: EXTERNAL
+              virtual-interface:
+                type: VIRTIO
+              external-connection-point-ref: mgmt
+            - name: vnf0-input
+              type: EXTERNAL
+              virtual-interface:
+                type: VIRTIO
+              external-connection-point-ref: input
+            - name: vnf0-output
+              type: EXTERNAL
+              virtual-interface:
+                type: VIRTIO
+              external-connection-point-ref: output
+      connection-point:
+        - name: mgmt
+          type: VPORT
+        - name: input
+          type: VPORT
+        - name: output
+          type: VPORT
+      mgmt-interface:
+        cp: mgmt

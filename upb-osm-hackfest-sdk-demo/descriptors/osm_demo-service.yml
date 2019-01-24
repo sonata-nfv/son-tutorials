@@ -1,0 +1,46 @@
+nsd-catalog:
+  nsd:
+    - id: demo-service
+      name: demo-service
+      description: Demo service for hackfest
+      vendor: eu.5gtango
+      version: 1
+      constituent-vnfd:
+        - member-vnf-index: 0
+          vnfd-id-ref: default-vnf0
+        - member-vnf-index: 1
+          vnfd-id-ref: default-vnf1
+        - member-vnf-index: 2
+          vnfd-id-ref: default-vnf2
+      vld:
+        - id: mgmt
+          name: mgmt
+          mgmt-network: true
+          vnfd-connection-point-ref:
+            - member-vnf-index-ref: 0
+              vnfd-connection-point-ref: mgmt
+              vnfd-id-ref: default-vnf0
+            - member-vnf-index-ref: 1
+              vnfd-connection-point-ref: mgmt
+              vnfd-id-ref: default-vnf1
+            - member-vnf-index-ref: 2
+              vnfd-connection-point-ref: mgmt
+              vnfd-id-ref: default-vnf2
+        - id: vnf0-2-vnf1
+          name: vnf0-2-vnf1
+          vnfd-connection-point-ref:
+            - member-vnf-index-ref: 0
+              vnfd-connection-point-ref: output
+              vnfd-id-ref: default-vnf0
+            - member-vnf-index-ref: 1
+              vnfd-connection-point-ref: input
+              vnfd-id-ref: default-vnf1
+        - id: vnf1-2-vnf2
+          name: vnf1-2-vnf2
+          vnfd-connection-point-ref:
+            - member-vnf-index-ref: 1
+              vnfd-connection-point-ref: output
+              vnfd-id-ref: default-vnf1
+            - member-vnf-index-ref: 2
+              vnfd-connection-point-ref: input
+              vnfd-id-ref: default-vnf2
