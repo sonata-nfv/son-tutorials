@@ -24,23 +24,6 @@ tng-validate -h
 tng-package -h
 ```
 
-For the last part of the demo, you will also need the *vim-emu* prototyping platform. You should install it using Python 2, installing it globally (with `sudo`). Follow the install instructions for the [bare-metal installation](https://osm.etsi.org/wikipub/index.php/VIM_emulator#Option_1:_Bare-metal_installation):
-
-```bash
-# package requirements
-sudo apt-get install ansible git aptitude
-
-# containernet
-git clone https://github.com/containernet/containernet.git
-cd ~/containernet/ansible
-sudo ansible-playbook -i "localhost," -c local install.yml
-
-# vim-emu
-git clone https://osm.etsi.org/gerrit/osm/vim-emu.git
-cd ~/vim-emu/ansible
-sudo ansible-playbook -i "localhost," -c local install.yml
-```
-
 ## Tutorial walkthrough
 
 ### Descriptor generation
@@ -192,15 +175,36 @@ Result:      Success.
 
 ```
 
-As you can see, the packager automatically validates the project again to make sure there are no errors (if the validator is installed) before creating the package `eu.5gtango.generated-project.0.1.tgo` (also available in the repo).
+As you can see, the packager automatically validates the project again to make sure there are no errors (if the validator is installed) before creating the package `eu.5gtango.generated-project.0.1.tgo` (also available in the repo). This package is now ready to be on-boarded to the service platform.
 
-### Emulation
+**Congratulations, you successfully completed the 5GTANGO SDK tutorial!**
 
-Now, it's time to on-board and instantiate our developed service.
 
-#### Preparation
 
-##### Build VNFs
+## Extra: Instantiation on emulator
+
+Since the installation and usage of the emulator is a bit more complex and time-consuming than the other SDK tools, it's not part of the tutorial. If you're still interested, you can of course try to use it. Have fun!
+
+### Setup
+
+For the last part of the demo, you will also need the *vim-emu* prototyping platform. You should install it using Python 2, installing it globally (with `sudo`). Follow the install instructions for the [bare-metal installation](https://osm.etsi.org/wikipub/index.php/VIM_emulator#Option_1:_Bare-metal_installation):
+
+```bash
+# package requirements
+sudo apt-get install ansible git aptitude
+
+# containernet
+git clone https://github.com/containernet/containernet.git
+cd ~/containernet/ansible
+sudo ansible-playbook -i "localhost," -c local install.yml
+
+# vim-emu
+git clone https://osm.etsi.org/gerrit/osm/vim-emu.git
+cd ~/vim-emu/ansible
+sudo ansible-playbook -i "localhost," -c local install.yml
+```
+
+#### Build VNFs
 
 On the machine, where you installed vim-emu, build the VNFs that we use in our service. For this, copy the VNFs from the `vnfs` folder of this repo and execute the following command (from within the `vnfs` folder) to build the three Docker images of the VNFs:
 
@@ -210,7 +214,11 @@ sudo ./build.sh
 
 Depending on your connection, this will take a while.
 
-##### Start vim-emu
+### Emulator tutorial
+
+Now, it's time to on-board and instantiate our developed service.
+
+#### Start vim-emu
 
 On the machine, where `vim-emu` is installed, navigate to the cloned `vim-emu` repository and start the emulator using the following command:
 
@@ -277,6 +285,3 @@ This should start the services and return the `service_instance_uuid` of the sta
 
 To stop the vim-emu emulator, type `exit` in the `containernet` terminal. You may need to press "Enter" a couple of times before seeing the `containernet>` prompt.
 
-
-
-**Congratulations, you successfully completed the 5GTANGO SDK tutorial!**
