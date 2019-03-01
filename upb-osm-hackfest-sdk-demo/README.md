@@ -28,6 +28,8 @@ tng-package -h
 
 ## Tutorial walkthrough
 
+*Note:* You do not need the actual VNF containers to start. You only need them for the optional extra with the emulator at the end.
+
 ### Descriptor generation
 
 To use the graphical descriptor generation, navigate to https://sonata-nfv.github.io/tng-sdk-descriptorgen/ and default values for author, service, and description (keep in mind that vendor and service need to be lowercase strings without spaces).
