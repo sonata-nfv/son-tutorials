@@ -30,7 +30,7 @@ ADD apache.conf /etc/apache2/sites-enabled/000-default.conf
 
 # Downlaod large conent from remote site to keep our repository clean
 WORKDIR /var/www/site
-RUN wget http://peuster.de/cattube/bunny.mp4
+RUN wget http://files.peuster.de/cattube/bunny.mp4
 
 WORKDIR /
 
